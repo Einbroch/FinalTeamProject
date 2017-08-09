@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="ariarose.team.project.model.LoginDAO">
+ 	<select id="getUserInfo" resultType="UserVO" parameterType="UserVO">
+ 		SELECT
+			USER_ID,
+			USER_PART,
+			USER_USERID,
+			USER_PASSWORD,
+			USER_NAME,
+			USER_PHONENUMBER,
+			USER_EMAIL
+		FROM
+			USER
+		WHERE
+			USER_USERID = #{user_userId} AND
+	        USER_PASSWORD = #{user_password};
+ 	</select>
+ 	
+ 	<select id="userLogin" resultType="int" parameterType="UserVO">
+		SELECT
+			COUNT(*)
+		FROM
+			USER
+		WHERE
+			USER_USERID = #{user_userId} AND
+	        USER_PASSWORD = #{user_password};
+	</select>
+ 
+ </mapper>
