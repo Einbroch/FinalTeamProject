@@ -40,7 +40,11 @@
 		transaction-manager="transactionManager"> <tx:attributes> <tx:method name="*" 
 		pro/> </tx:attributes> </tx:advice> -->
 
-
+	<!-- 파일 업로드를 위한 Multipart Resolver를 설정 -->
+	<bean name="multipartResolver"
+	   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	   <property name="maxUploadSize" value="10000000"></property>
+	</bean>
 
 	<!-- MyBatis의 SqlSessionFactoryBean을 이용한 SqlSessionFactory 선언 부분 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

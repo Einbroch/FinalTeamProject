@@ -28,11 +28,23 @@ public class LoginController {
 		if(service.userLogin(vo)){
 			vo = service.getUserInfo(vo);
 			HttpSession session = request.getSession();
-			session.setAttribute("getSessionId", vo.getUser_id());
+			/*session.setAttribute("getSessionId", vo.getUser_id());*/
+			session.setAttribute("getSession", vo);
 			entity = new ResponseEntity<UserVO>(vo, HttpStatus.OK); 
 		} else {
 			entity = new ResponseEntity<UserVO>(vo, HttpStatus.BAD_REQUEST);
 		}
+		return entity;
+	}
+	
+	@RequestMapping("/userLogout")
+	public ResponseEntity<UserVO> userLogout(
+			@RequestBody UserVO vo, HttpServletRequest request){
+		System.out.println("userLogout 함 씨불");
+		ResponseEntity<UserVO> entity = null;
+		entity = new ResponseEntity<UserVO>(vo, HttpStatus.OK);
+		HttpSession session = request.getSession();
+		session.invalidate();
 		return entity;
 	}
 }

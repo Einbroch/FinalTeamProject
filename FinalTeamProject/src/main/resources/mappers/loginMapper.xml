@@ -6,7 +6,6 @@
  	<select id="getUserInfo" resultType="UserVO" parameterType="UserVO">
  		SELECT
 			USER_ID,
-			USER_PART,
 			USER_USERID,
 			USER_PASSWORD,
 			USER_NAME,
