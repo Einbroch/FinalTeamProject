@@ -1,0 +1,272 @@
+@CHARSET "UTF-8";
+
+
+/* 동글 동글한 버튼 아이콘 */
+.btn-glyphicon {
+    padding:8px;
+    background:#ffffff;
+    margin-right:4px;
+}
+.icon-btn {
+    padding: 1px 15px 3px 2px;
+    border-radius:50px;
+}
+
+.titleimg{
+   width: 150px;
+    height: 100px;
+    background-image: url("/project/resources/img/title-black.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.userbody {
+   width: 100%;
+   padding-top: 8vh;
+   padding-left: 25vh;
+   padding-right: 25vh;
+   padding-bottom: 8vh;
+   position: static;
+}
+.userBBS{
+   width: 100%;
+   background-color: rgba(255, 255, 255, 0.92);
+   width: 1265px;
+   height: 820px;
+   margin: auto;
+   border-radius: 5px;
+   
+}
+
+.userBBSInfo{
+   width: auto;
+   height: auto;
+   margin: auto;
+}
+
+.margintest{
+   margin-top: 10px;
+   margin-right: 50px;
+   margin-bottom: 10px;
+}
+
+.margintest1{
+   margin-left: 85px;
+}
+
+.margintest2{
+   margin-top: 10px;   
+}
+
+
+* {
+   box-sizing: border-box;
+}
+
+.video-background {
+   background: #000;
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: -99;
+}
+
+.video-foreground, .video-background iframe {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   pointer-events: none;
+}
+
+@media ( min-aspect-ratio : 16/9) {
+   .video-foreground {
+      height: 300%;
+      top: -100%;
+   }
+}
+
+@media ( max-aspect-ratio : 16/9) {
+   .video-foreground {
+      width: 300%;
+      left: -100%;
+   }
+}
+
+
+body, html {
+   -webkit-text-size-adjust: 100% !important;
+   font-family: "맑은 고딕";
+}
+
+a, mark {
+   color: #000
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, hr,
+   menu, nav, section {
+   display: block
+}
+
+a, a:active, a:hover {
+   text-decoration: none
+}
+
+a, button, table {
+   margin: 0;
+   padding: 0;
+   background: 0 0
+}
+
+#board_read .board_main .board_main_view .view_content table, table {
+   border-collapse: collapse
+}
+
+abbr, address, article, aside, audio, b, blockquote, body, canvas,
+   caption, cite, code, dd, del, details, dfn, div, dl, dt, em, fieldset,
+   figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
+   hgroup, html, i, iframe, img, kbd, label, legend, li, mark, menu, nav,
+   object, ol, p, pre, q, samp, section, small, span, strong, sub, summary,
+   sup, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   outline: 0;
+   font-size: 100%;
+   background: 0 0
+}
+
+table {
+   font-size: 100%;
+   border-spacing: 0
+}
+
+html {
+   height: 100%
+}
+
+body {
+   font: 12px/1.5 "ë ‹ì›€", dotum, sans-serif
+}
+
+ul {
+   list-style: none
+}
+
+blockquote, q {
+   quotes: none
+}
+
+blockquote:after, blockquote:before, q:after, q:before {
+   content: "";
+   content: none
+}
+
+a {
+   vertical-align: baseline
+}
+
+ins {
+   background-color: #fff
+}
+
+mark {
+   font-style: italic;
+   font-weight: 700
+}
+
+del {
+   text-decoration: line-through
+}
+
+abbr[title], dfn[title] {
+   border-bottom: 1px dotted;
+   cursor: help
+}
+
+hr {
+   height: 1px;
+   border: 0;
+   margin: 1em 0;
+   padding: 0;
+   border-top: 2px solid #A7A7A7
+}
+
+input, select {
+   vertical-align: middle
+}
+
+input:focus, textarea:focus {
+   outline: 0
+}
+
+[role=button], button, input[type=button], input[type=submit], input[type=reset]
+   {
+   -webkit-box-sizing: content-box;
+   -moz-box-sizing: content-box;
+   box-sizing: content-box
+}
+
+a.deco:hover {
+   text-decoration: underline
+}
+
+.btn_default:hover, .num_reply, .num_reply:hover {
+   text-decoration: none
+}
+
+h4, h5, h6 {
+   font-weight: 400
+}
+
+button {
+   cursor: pointer;
+   border: 0;
+   outline: 0
+}
+
+input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill
+   {
+   background: initial
+}
+
+/* .screen_out, .screenout {
+   display: none
+}
+
+.relative {
+   position: relative !important
+}
+
+.absolute {
+   position: absolute !important
+}
+
+.position_init {
+   position: inherit !important
+}
+
+.clickable {
+   cursor: pointer !important
+}
+
+#main .main_content_area, .row {
+   display: inline-block;
+   width: 100%;
+   vertical-align: middle
+} */
+
+#main .main_content_area.default .main_aside, #main .main_content_area.default .main_center,
+   #main .main_content_area.gnb_main_nav_include .center_aside_containner .main_aside,
+   #main .main_content_area.gnb_main_nav_include .center_aside_containner .main_center,
+   #main .main_content_area.gnb_main_nav_include .nav, .col {
+   display: block;
+   float: left
+}
+
+.r_col {
+   float: right

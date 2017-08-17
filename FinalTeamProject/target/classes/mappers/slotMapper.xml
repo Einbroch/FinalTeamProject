@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="ariarose.team.project.model.SlotPlanDAO">
+ 	<select id="getSlotPlan" parameterType="SlotPlanVO" resultType="SlotPlanVO">
+ 		SELECT * 
+ 		FROM FINALPROJECT.SLOTPLAN 
+ 		WHERE USER_ID = #{user_id}
+ 	</select>
+ 	<update id="updateSlotPlan" parameterType="SlotPlanVO">
+ 		UPDATE finalproject.slotplan SET 
+ 			SP_IMAGE=#{sp_image}, 
+ 			SP_BACKGROUNDCOLOR=#{sp_backgroudColor}, 
+ 			SP_FONTCOLOR=#{sp_fontColor}, 
+ 			SP_TITLE=#{sp_title}, 
+ 			SP_AUTHOR=#{sp_author} 
+ 		WHERE SP_ID=#{sp_id}
+ 	</update>
+ 	<insert id="registSlotPlan" parameterType="SlotPlanVO">
+ 		INSERT INTO FINALPROJECT.SLOTPLAN(
+	 		SP_ID, 
+	 		USER_ID, 
+	 		SP_IMAGE, 
+	 		SP_BACKGROUNDCOLOR, 
+	 		SP_FONTCOLOR, 
+	 		SP_TITLE, 
+	 		SP_AUTHOR) 
+ 		VALUES (
+ 			#{sp_id}, 
+ 			#{user_id}, 
+ 			#{sp_image}, 
+ 			#{sp_backgroudColor}, 
+ 			#{sp_fontColor}, 
+ 			#{sp_title}, 
+ 			#{sp_author});
+ 	</insert>
+ </mapper>
