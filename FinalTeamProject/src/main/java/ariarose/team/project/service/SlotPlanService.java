@@ -26,6 +26,11 @@ public class SlotPlanService {
 		return false;
 	}
 	
+	public SlotPlanVO getSlotData(SlotPlanVO vo){
+		vo = slotMapper().getSlotData(vo);
+		return vo;
+	}
+	
 	public List<SlotPlanVO> getSlotPlan(SlotPlanVO vo){
 		return slotMapper().getSlotPlan(vo);
 	}

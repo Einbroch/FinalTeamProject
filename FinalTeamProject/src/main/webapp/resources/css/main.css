@@ -1,5 +1,39 @@
 @CHARSET "EUC-KR";
 
+#wrapper {
+	width: 96%;
+	margin: 0 auto;
+}
+
+header { /* 헤더 */
+	width: 100%;
+	height: 30px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.header-text {
+	font-size: 32px;
+	color: white;
+	text-align: center;
+	line-height: 120px;
+}
+
+.content { /* 본문 */
+	width: 100%;
+	height: 400px;
+	padding: 1.5625%;
+	background-color: rgba(0, 0, 0, 0);
+	background-position: center;
+}
+
+footer { /* 푸터 */
+	clear: both;
+	width: 100%;
+	height: 120px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+
 * {
 	box-sizing: border-box;
 }
@@ -38,22 +72,7 @@
 }
 
 h1 {
-	color: white;
-}
-
-body {
-	font-family: HiraginoSans-W3, "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo,
-		Verdana, sans-serif;
-	width: 100%;
-	height: auto;
-	padding-top: 20vh;
-	line-height: normal;
-}
-
-@media ( max-width 540px) {
-	body {
-		padding-top: 50px;
-	}
+	color: black;
 }
 
 .body {
@@ -62,12 +81,24 @@ body {
 	padding-top: 23vh;
 }
 
-.logo, .singup-form__logo {
+.logo, .signup-form__logo {
 	display: inline-block;
-	width: 200px;
-	height: 200px;
+	width: 50px;
+	height: 50px;
 	background-size: contain;
 	background-image: url(/project/resources/img/logo.png);
+	background-repeat: no-repeat;
+}
+
+.logo, .signup-form__title {
+	display: inline-block;
+	width: 100%;
+	height: 100px;
+	padding-top: 5%;
+	padding-bottom: 10%;
+	background-position:center;
+	background-size: contain;
+	background-image: url(/project/resources/img/title-white.png);
 	background-repeat: no-repeat;
 }
 
@@ -76,15 +107,30 @@ body {
 }
 
 .signup-form {
-	width: 300px;
-	margin-left: auto;
+	width: 100%;
+	height: 100%; 
+	margin-left : auto;
 	margin-right: auto;
 	text-align: center;
-	background-color: rgba(255, 255, 255, 0.92);
-	width: 363px;
-	padding: 50px 0;
+	background-color: rgba(0, 0, 0, 0);
+	width: auto;
+	/* padding: 50px 0; */
 	border-radius: 4px;
 	font-size: 16px;
+	margin-left: auto;
+}
+
+.signup-form-logo {
+	width: 200px;
+	margin-top: 20%; margin-left : auto;
+	margin-right: auto;
+	text-align: center;
+	background-color: rgba(255, 255, 0, 0);
+	width: 300px;
+	/* padding: 50px 0; */
+	border-radius: 4px;
+	font-size: 16px;
+	margin-left: auto;
 }
 
 .signup-form a {
@@ -99,10 +145,16 @@ body {
 }
 
 .signup-form__logo-box {
+	margin-top: 8%;
+	margin-bottom: 3%;
+	padding-top: 5%;
+}
+
+.signup-form__title-box {
 	margin-bottom: 40px;
 }
 
-@media ( max-width 540px) {
+@media ( max-width 350px) {
 	.signup-form__logo-box {
 		margin-bottom: 24px;
 	}
@@ -135,24 +187,40 @@ body {
 	background-color: #6d7084;
 }
 
-.input[type=text]:focus{
-	 border: 3px solid #555;
-	 border-radius: 5px;
-	 background-color: lightblue;
-	 box-sizing: border-box;
-}
-
-.input[type=password]:focus{
+.input[type=text]:focus {
 	border: 3px solid #555;
 	border-radius: 5px;
 	background-color: lightblue;
 	box-sizing: border-box;
 }
 
-.modalregistposition{
+.input[type=password]:focus {
+	border: 3px solid #555;
+	border-radius: 5px;
+	background-color: lightblue;
+	box-sizing: border-box;
+}
+
+.modalregistposition {
 	padding-top: 20vh;
 }
 
-.modalloginposition{
+.modalloginposition {
 	padding-top: 28vh;
+}
+
+.modalbookcaseposition {
+	padding-top: 15vh;
+}
+
+.w3-container {
+	padding: 0.01em 16px;
+}
+
+.w3-input {
+	padding: 8px;
+	display: block;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	width: 100%
 }

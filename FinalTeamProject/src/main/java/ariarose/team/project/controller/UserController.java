@@ -32,6 +32,7 @@ public class UserController {
 	@RequestMapping("/getSlot")
 	public @ResponseBody List<SlotPlanVO>
 		getSlot(@RequestBody SlotPlanVO vo){
+		System.out.println("list"+service.getSlotPlan(vo));
 		return service.getSlotPlan(vo);
 	}
 	
@@ -39,7 +40,9 @@ public class UserController {
 	public ResponseEntity<SlotPlanVO> getSlotData(
 			@RequestBody SlotPlanVO vo){
 		ResponseEntity<SlotPlanVO> entity = null;
+		vo = service.getSlotData(vo);
 		System.out.println("getSlotData"+vo);
+		entity = new ResponseEntity<SlotPlanVO>(vo, HttpStatus.OK);
 		return entity;
 	}
 	
@@ -56,6 +59,18 @@ public class UserController {
 		vo.setSp_id(id+"_3");
 		service.registSlotPlan(vo);
 		entity = new ResponseEntity<SlotPlanVO>(vo, HttpStatus.OK);
+		return entity;
+	}
+	
+	@RequestMapping("registSlot")
+	public ResponseEntity<SlotPlanVO> registSlot(
+			@RequestBody SlotPlanVO vo){
+		ResponseEntity<SlotPlanVO> entity = null;
+		if(service.updateSlotPlan(vo)){
+			entity = new ResponseEntity<SlotPlanVO>(vo, HttpStatus.OK);
+		} else {
+			entity = new ResponseEntity<SlotPlanVO>(vo, HttpStatus.BAD_REQUEST);
+		}
 		return entity;
 	}
 	

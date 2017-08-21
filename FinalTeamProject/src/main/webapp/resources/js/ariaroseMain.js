@@ -9,7 +9,7 @@ $(function() {
 	/* 게스트로 들어가기 */
 	$("#login_guest").click(function(){
 		location.href = "/project/user/userMain";
-	})
+	});
 	
 	ajaxSession();
 	/* 로그인/로그아웃 여부 확인 */
@@ -39,8 +39,8 @@ $(function() {
 	$("#modal_login").click(function() {
 		$("#modal_login_form").empty();
 		$("#modal_login_form").append(
-			'<input type="text" id="login_user_userid" name="login_user_userid" placeholder="Id">' +
-			'<input type="password" id="login_user_password" name="login_user_password" placeholder="Password">'
+			'<input class="w3-input" type="text" id="login_user_userid" name="login_user_userid" placeholder="Id">' +
+			'<input class="w3-input" type="password" id="login_user_password" name="login_user_password" placeholder="Password">'
 		);
 	});
 	/* id와 pw 입력 후 Login 버튼을 누를 경우 */
@@ -61,7 +61,7 @@ $(function() {
 			data : JSON.stringify(getData),
 			dataType : "json",
 			success : function(data) {
-				alert("개인 페이지로 넘어갑니다아~~씨벌");
+				alert("개인 페이지로 넘어갑니다아~~");
 				location.href = "/project/user/userMain"
 				
 			},
@@ -105,15 +105,15 @@ $(function() {
 	$("#modal_regist").click(function() {
 		$("#modal_regist_form").empty();
 		$("#modal_regist_form").append(		
-			'<input type="text" id="user_userid" name="user_userid" placeholder="ID">' +
+			'<input class="w3-input" type="text" id="user_userid" name="user_userid" placeholder="ID">' +
 			'<p id="check_user_userid"></p>' +
-			'<input type="password" id="user_password" name="user_password" placeholder="Password">' +
+			'<input class="w3-input" type="password" id="user_password" name="user_password" placeholder="Password">' +
 			'<p id="check_user_password"></p>' +
-			'<input type="text" id="user_name" name="user_name" placeholder="Name">' +
+			'<input class="w3-input" type="text" id="user_name" name="user_name" placeholder="Name">' +
 			'<p id="check_user_name"></p>' +
-			'<input type="tel" id="user_phonenumber" name="user_phonenumber" placeholder="Tel ex)010-1234-5678">' +
+			'<input class="w3-input" type="tel" id="user_phonenumber" name="user_phonenumber" placeholder="Tel ex)010-1234-5678">' +
 			'<p id="check_user_phonenumber"></p>' +
-			'<input type="email" id="user_email" name="user_email" placeholder="E-mail">' +
+			'<input class="w3-input" type="email" id="user_email" name="user_email" placeholder="E-mail">' +
 			'<p id="check_user_email"></p>'
 		);
 	});

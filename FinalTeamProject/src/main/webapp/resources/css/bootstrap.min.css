@@ -19,11 +19,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 	display: block
 }
 
-textarea .textbox{
-	rows = "10";
-	cols = "25";
-}
-
 audio, canvas, progress, video {
 	display: inline-block;
 	vertical-align: baseline
@@ -272,7 +267,7 @@ td, th {
 }
 
 .glyphicon {
-	position: relative;
+	position: static;
 	top: 1px;
 	display: inline-block;
 	font-family: 'Glyphicons Halflings';
@@ -919,7 +914,7 @@ td, th {
 	content: "\e158"
 }
 
-.glyphicon-lapse-down:before {
+.glyphicon-collapse-down:before {
 	content: "\e159"
 }
 
@@ -1832,19 +1827,10 @@ pre code {
 }
 
 .container {
-	padding-top: 50px;
-	padding-bottom: 50px;
-	padding-right: 50px;
-	padding-left: 50px;
+	padding-right: 15px;
+	padding-left: 15px;
 	margin-right: auto;
-	margin-left: auto
-}
-
-.container1 {
-	padding-right: auto;
-	padding-left: auto;
-	margin-right: auto;
-	margin-left: auto
+	margin-left: auto;
 }
 
 @media ( min-width :768px) {
@@ -3325,6 +3311,7 @@ select[multiple].input-lg, textarea.input-lg {
 }
 
 .btn {
+	width: -webkit-fill-available;
 	display: inline-block;
 	padding: 6px 12px;
 	margin-bottom: 0;
@@ -6498,6 +6485,19 @@ button.close {
 	margin: 10px
 }
 
+.modal-dialog.modal-80size {
+  width: 60%;
+  height: 60%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content.modal-80size {
+  height: auto;
+  min-height: 60%;
+}
+
+
 .modal-content {
 	position: relative;
 	background-color: #fff;
@@ -6505,7 +6505,7 @@ button.close {
 	background-clip: padding-box;
 	border: 1px solid #999;
 	border: 1px solid rgba(0, 0, 0, .2);
-	border-radius: 6px;
+	border-radius: 0px !important;
 	outline: 0;
 	-webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 	box-shadow: 0 3px 9px rgba(0, 0, 0, .5)
@@ -6518,7 +6518,7 @@ button.close {
 	bottom: 0;
 	left: 0;
 	z-index: 1040;
-	background-color: #000
+	background-color: #000;
 }
 
 .modal-backdrop.fade {
@@ -6532,6 +6532,7 @@ button.close {
 }
 
 .modal-header {
+	background-color: #b0e0e6; /* 파우더블루 */
 	padding: 15px;
 	border-bottom: 1px solid #e5e5e5
 }
@@ -6545,14 +6546,26 @@ button.close {
 	line-height: 1.42857143
 }
 
+.modal-title-bookcase {
+	font-size:20px;
+	margin: 0;
+	line-height: 1.42857143
+}
+
 .modal-body {
+	position: relative;
+	padding: 15px
+}
+
+.modal-body-bookcase {
+	height: 380px;
 	position: relative;
 	padding: 15px
 }
 
 .modal-footer {
 	padding: 15px;
-	text-align: right;
+	text-align: center;
 	border-top: 1px solid #e5e5e5
 }
 
@@ -6591,12 +6604,24 @@ button.close {
 	}
 }
 
+@media ( min-width :880px) {
+	.modal-md {
+		width: 650px
+	}
+}
+
 @media ( min-width :992px) {
 	.modal-lg {
 		width: 900px
 	}
 }
 
+@media ( min-width :992px) {
+	.modal-bookcase {
+		width: 900px;
+		height: 250px; 
+	}
+}
 .tooltip {
 	position: absolute;
 	z-index: 1070;

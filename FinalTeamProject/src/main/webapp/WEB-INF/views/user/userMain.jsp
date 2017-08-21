@@ -7,6 +7,8 @@
 
 <link href="/project/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/project/resources/css/userMain.css" rel="stylesheet">
+<link href="/project/resources/css/main.css" rel="stylesheet">
+<link rel="stylesheet" href="/project/resources/css/farbtastic.css">
 
 </head>
 <body class="userbody">
@@ -22,13 +24,13 @@
 		<div class="row userBBSInfo">
 			<div align="right" style="padding-top: 20px; padding-right: 20px;">
 				<!-- Top 버튼 -->
-				<button type="button" id="btn-mybookcase" data-toggle="modal"
+				<button type="button" id="btn-mybookcase" data-toggle="modal" data-backdrop="static"
 					data-target="#bookcaseModal" name="btn-mybookcase" class="btn btn-primary">내 책장</button>
-				<button class="btn btn-primary" data-toggle="modal"
+				<button class="btn btn-primary" data-toggle="modal" data-backdrop="static"
 					data-target="#loginModal" id="modal_login">Login</button>
-				<button class="btn btn-primary" data-toggle="modal"
+				<button class="btn btn-primary" data-toggle="modal" data-backdrop="static"
 					data-target="#logoutModal" id="modal_logout">Logout</button>
-				<button class="btn btn-primary" data-toggle="modal"
+				<button class="btn btn-primary" data-toggle="modal" data-backdrop="static"
 					data-target="#myinfoModal" id="modal_myinfo">MyInfo</button>
 			</div>
 		</div>
@@ -36,13 +38,21 @@
 
 	<!-- 슬롯 모달 -->
 	<div class="modal fade" id="slotModal" role="dialog" align="center">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 id="slot_title"></h3>
 				</div>
 				<div class="modal-body" align="center">
 					<form method="post" id="modal_slot_form" enctype="multipart/form-data"></form>
+					<form method="post" id="modal_slot_color_form" style="width: 500px;">				
+	  					<div id="picker" style="float: left;"></div>
+	  					<div style="padding:6%; width: 100%; height: 60px;" class="form-item"><label for="color1">배경색 :</label><input type="text" id="color1" name="color1" class="colorwell" value="#ffffff" autofocus="autofocus" />
+	  					<button type="button" id="bg_btn" class="btn btn-primary">적용하기</button></div>
+	  					<div style="padding:6%; width: 100%; height: 60px;" class="form-item"><label for="color2">글자색 :</label><input type="text" id="color2" name="color2" class="colorwell" value="#000000" />
+	  					<button type="button" id="ft_btn" class="btn btn-primary">적용하기</button></div>
+	  					<div style="padding-top: 15%" id="preview"></div>
+	  				</form>
 				</div>
 			</div>
 		</div>
@@ -65,23 +75,28 @@
 	</div>
 	
 	<!-- 내 책장 모달 -->
-	<div class="modal fade" id="bookcaseModal" role="dialog" align="center">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
+	<div class="modal fade modalbookcaseposition" id="bookcaseModal" role="dialog" align="center">
+		<div class="modal-dialog modal-80size" role="document">
+			<div class="modal-content modal-80size">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title" align="center">Bookcase</h3>
+					<h1 class="modal-title-bookcase" align="center">
+						Bookcase
+					</h1>
 				</div>
-				<div class="modal-body" align="center">
+				<div class="modal-body-bookcase" align="center">
 					<form method="post" id="modal_bookcase_form">
 						
 					</form>
+				</div>
+				<div class="modal-footer" style="height: 100px;">
+					<div align="center">
 					<form method="post" id="modal_bookcase_form_btn">
 					
 					</form>
+					</div>
 				</div>
-				<div class="modal-footer" style="text-align: center !important;">
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -130,8 +145,10 @@
 
 	<script src="/project/resources/js/jquery.min.js"></script>
 	<script src="/project/resources/js/bootstrap.min.js"></script>
-	<script src="/project/resources/js/jscolor.js"></script>
+	<script src="/project/resources/js/farbtastic.js"></script>
+	
 	<script type="text/javascript">
+		
 		$(function() {
 			var session = null;
 			var modify;
@@ -139,7 +156,7 @@
 			$("#modal_logout").hide();
 			$("#modal_myinfo").hide();
 			$("#btn-mybookcase").hide();
-			
+			$("#modal_slot_color_form").hide();
 			ajaxSession();
 			
 			function ajaxSession() {
@@ -194,7 +211,7 @@
 						$("#modal_logout").show();
 						$("#modal_myinfo").show();
 						$("#btn-mybookcase").show();
-						alert("로그인 하셨습니다.");
+						/* alert("로그인 하셨습니다."); */
 						$("#loginModal").modal('hide');
 						ajaxSession();
 					},
@@ -226,7 +243,7 @@
 						$("#modal_login").show();
 						$("#modal_myinfo").hide();
 						$("#btn-mybookcase").hide();
-						alert("로그아웃 되었습니다");
+						/* alert("로그아웃 되었습니다"); */
 						session = null;
 					},
 					error : function(data) {}
@@ -402,6 +419,20 @@
 				getSlot(session.user_id, session.user_userId);
 								
 			});
+			
+			$("#ft_btn").click(function(){
+				/* alert("글자색 변경");
+				console.log("글자색"+$("#color2").val()) */
+				$("#title").css("color", $("#color2").val());
+				$("#author").css("color", $("#color2").val());
+			});
+			
+			$("#bg_btn").click(function(){
+				/* alert("배경색 변경");
+				console.log("배경색"+$("#color1").val()) */
+				$("#cover").css("background-color", $("#color1").val());	
+			});
+			
 		});
 		
 		function getSlot(id, userId){
@@ -413,7 +444,7 @@
 				data : JSON.stringify(getData),
 				dataType : "json",
 				success : function(data) {
-					alert("불러오기 성공");
+					/* alert("불러오기 성공"); */
 					slotDisplay(data, id, userId);
 				},
 				error : function(data) {
@@ -436,29 +467,43 @@
 					'<tr>'
 			);
 			$.each(data, function(i, d){
-				slot = {
+				/* slot = {
 					sp_id:d["sp_id"],
 					user_id:d["user_id"],
 					sp_image:d["sp_image"],
-					sp_backgroudColor:d["sp_backgroudColor"],
+					sp_backgroundColor:d["sp_backgroundColor"],
 					sp_fontColor:d["sp_fontColor"],
 					sp_title:d["sp_title"],
 					sp_author:d["sp_author"]
-				};
-				var imglabel = "";
-				imglabel += '<td width="250px" align="center">';
-				if(d["sp_image"] != null){
-					imglabel += '<img width="250px" height="200px" src="/upload/'+d["sp_image"]+'">';	
+				}; */
+				var label = "";
+				label += '<td width="250px" align="center">';
+				if(d["sp_title"] !=null && d["sp_title"]!=""){
+					label += '<div class="modal-title-bookcase" style="background-color: '+d["sp_backgroundColor"]+'" id="cover" align="center"><br><h1 style="color:'+d["sp_fontColor"]+'">'+d["sp_title"]+'</h1><br>';
 				} else {
-					imglabel += '<img width="250px" height="200px" src="/project/resources/img/logo.png">';
+					label += '<div class="modal-title-bookcase style="background-color: '+d["sp_backgroundColor"]+'" id="cover" align="center"><br><h1 style="color:'+d["sp_fontColor"]+'">제목</h1><br>';
 				}
-				imglabel += '</td>'
-				$("#modal_bookcase_form").append(imglabel);
+				if(d["sp_image"] != null || d["sp_image"]==""){
+					label += '<img width="250px" height="200px" src="/upload/'+d["sp_image"]+'">';	
+				} else {
+					label += '<img width="250px" height="200px" src="/project/resources/img/logo.png">';
+				}
+				if(d["sp_author"] !=null && d["sp_author"]!=""){
+					label += '<h1 style="margin-top:20px; color:'+d["sp_fontColor"]+'">'+d["sp_author"]+'</h1><br>';
+				} else {
+					label += '<h1 style="margin-top:20px; color:'+d["sp_fontColor"]+'">글쓴이</h1><br>';
+				}
+				label += '</td></div>'
+				
+				$("#modal_bookcase_form").append(label);
+				
 				var btnlabel = "";
 				btnlabel += '<td width="250px" height="400px" align="center">';
-				btnlabel += '<button type="button" id="planslot_1" class="btn btn-primary"';
+				btnlabel += '<button type="button" class="btn btn-primary"';
 				btnlabel += 'onclick="javascript:addImageSlot(\''+id+'\',\''+d["sp_id"]+'\')">';
-				btnlabel += d["sp_id"]+'편집</button>'
+				btnlabel += /* d["sp_id"]+ */'The Book Cover 편집</button><br>'
+				btnlabel += '<button type="button" class="btn btn-primary">';
+				btnlabel += '계획 세우기</button>'
 				btnlabel += '</td>';
 				$("#modal_bookcase_form_btn").append(btnlabel);
 			});
@@ -474,6 +519,7 @@
 		function addImageSlot(id, slotId){
 			/* alert("슬롯 : "+id);	 */
 			$("#bookcaseModal").modal('hide');
+			$("#modal_slot_color_form").hide();
 			$("#slotModal").modal('show');
 			$("#slot_title").text("표지");
 			$("#modal_slot_form").empty();
@@ -482,8 +528,9 @@
 				'<h1>표지에 넣을 사진을 넣어주세요</h1>'+
 				'<input type="file" id="fileUp" name="fileUp"/><br/><br/>'+
 				'<input type="hidden" name="slotId" value="'+slotId+'"/>'+
-				'<input type="hidden" name="userId" value="'+id+'"/>'+
+				'<input type="hidden" name="userId" value="'+id+'"/>'+ 
 				'<input class="btn btn-primary" type="button" value="다음" onClick="uploadSlot(\''+id+'\',\''+slotId+'\');">'+
+				'<input class="btn btn-primary" type="button" value="건너뛰기" onClick="getSlotData(\''+slotId+'\');">'+
 				'</div>'
 			);
 		}
@@ -497,7 +544,7 @@
 			 	processData : false,
 		        contentType : false,
 				success : function(data){
-					alert("파일 업로드");
+					/* alert("파일 업로드"); */
 					getSlotData(slotId);
 					//addColorSlot(id, slotId);
 				},
@@ -505,7 +552,7 @@
 					alert("파일 업로드 실패");
 				}
 			});
-			
+		}
 		function getSlotData(slotId){
 			var id = {
 				sp_id: slotId
@@ -517,7 +564,8 @@
 				data : JSON.stringify(id),
 				dataType : "json",
 				success : function(data) {
-					alert("데이터 불러오기 성공");
+					//alert("데이터 불러오기 성공");
+					addColorSlot(data);
 				},
 				error : function(data) {
 					alert("데이터 불러오기 실패");
@@ -525,17 +573,69 @@
 			});
 		}
 		
-		function addColorSlot(id, slotId){
-			console.log(id+"_"+slotId);
-			
+		function addColorSlot(data){
+			console.log(data);
 			$("#modal_slot_form").empty();
-			$("#modal_slot_form").append(
-				'<input class="jscolor">'		
-			);
+			$("#preview").empty();
+			$("#modal_slot_color_form").show();
+			var label = "";
+			label+='<div class="modal-title-bookcase" id="cover" align="center">';
+			label+='<input type="text" id="title" placeholder="제목">';
+			label+='<div style="width: 100%; height: 300px; vertical-align: middle;" align="center">';
+			if(data.sp_image!=null){
+				label+='<img width="100%" height="100%" src="/upload/'+data.sp_image+'">';
+			} else {
+				label+='<img  src="/project/resources/img/logo.png">';
+			}
+			label+=	'</div><input type="text" id="author" placeholder="글쓴이"></div>';
+			label+= '<button class="btn btn-primary" type="button" onClick="registSlot(\''+data.sp_id+'\',\''+data.sp_image+'\')">저장</button>';
+			
+			$("#preview").append(label);
 		}
-			/* $("#slot_title").text("차례");
-			$("#modal_slot_form").hide(); */
+		
+		function registSlot(sp_id, sp_image){
+			/* console.log(title+"&"+author+"&"+bgcolor+"&"+ftcolor); */
+			var registData = {
+				sp_id : sp_id,
+				sp_image : sp_image,
+				sp_title : $("#title").val(),
+				sp_author : $("#author").val(),
+				sp_backgroundColor : $("#color1").val(),
+				sp_fontColor : $("#color2").val()
+			}
+			//console.log(registData);
+			$.ajax({
+				url : "/project/user/registSlot",
+				type : "POST",
+				contentType : "application/json;charset=UTF-8",
+				data : JSON.stringify(registData),
+				dataType : "json",
+				success : function(data) {
+					alert("슬롯 저장 완료");
+					$("#slotModal").modal('hide');
+				},
+				error : function(data) {
+					alert("슬롯 저장 실패");
+				}
+			});
 		}
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    var f = $.farbtastic('#picker');
+	    var p = $('#picker').css('opacity', 0.25);
+	    var selected;
+	    $('.colorwell')
+	      .each(function () { f.linkTo(this); $(this).css('opacity', 0.75); })
+	      .focus(function() {
+	        if (selected) {
+	          $(selected).css('opacity', 0.75).removeClass('colorwell-selected');
+	        }
+	        f.linkTo(this);
+	        p.css('opacity', 1);
+	        $(selected = this).css('opacity', 1).addClass('colorwell-selected');
+	      });
+	  });
 	</script>
 </body>
 </html>

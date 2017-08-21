@@ -1,14 +1,17 @@
 package ariarose.team.project.vo;
 
+/**
+ * @author ariarose
+ *
+ */
 public class SlotPlanVO {
 	private String sp_id;
 	private int user_id;
 	private String sp_image;
-	private String sp_backgroudColor;
+	private String sp_backgroundColor;
 	private String sp_fontColor;
 	private String sp_title;
 	private String sp_author;
-	
 	public String getSp_id() {
 		return sp_id;
 	}
@@ -27,11 +30,11 @@ public class SlotPlanVO {
 	public void setSp_image(String sp_image) {
 		this.sp_image = sp_image;
 	}
-	public String getSp_backgroudColor() {
-		return sp_backgroudColor;
+	public String getSp_backgroundColor() {
+		return sp_backgroundColor;
 	}
-	public void setSp_backgroudColor(String sp_backgroudColor) {
-		this.sp_backgroudColor = sp_backgroudColor;
+	public void setSp_backgroundColor(String sp_backgroundColor) {
+		this.sp_backgroundColor = sp_backgroundColor;
 	}
 	public String getSp_fontColor() {
 		return sp_fontColor;
@@ -53,9 +56,9 @@ public class SlotPlanVO {
 	}
 	@Override
 	public String toString() {
-		return "SlotPlanVO [sp_id=" + sp_id + ", user_id=" + user_id + ", sp_image=" + sp_image + ", sp_backgroudColor="
-				+ sp_backgroudColor + ", sp_fontColor=" + sp_fontColor + ", sp_title=" + sp_title + ", sp_author="
-				+ sp_author + "]";
+		return "SlotPlanVO [sp_id=" + sp_id + ", user_id=" + user_id + ", sp_image=" + sp_image
+				+ ", sp_backgroundColor=" + sp_backgroundColor + ", sp_fontColor=" + sp_fontColor + ", sp_title="
+				+ sp_title + ", sp_author=" + sp_author + "]";
 	}
 	
 	
