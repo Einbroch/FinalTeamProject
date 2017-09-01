@@ -39,7 +39,7 @@ $(function() {
 	$("#modal_login").click(function() {
 		$("#modal_login_form").empty();
 		$("#modal_login_form").append(
-			'<input class="w3-input" type="text" id="login_user_userid" name="login_user_userid" placeholder="Id">' +
+			'<input class="w3-input" type="text" id="login_user_userid" name="login_user_userid" placeholder="Id" autofocus="autofocus">' +
 			'<input class="w3-input" type="password" id="login_user_password" name="login_user_password" placeholder="Password">'
 		);
 	});

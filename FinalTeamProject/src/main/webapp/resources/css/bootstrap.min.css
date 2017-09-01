@@ -5394,11 +5394,8 @@ a.badge:focus, a.badge:hover {
 }
 
 .jumbotron {
-	padding-top: 30px;
-	padding-bottom: 30px;
-	margin-bottom: 30px;
 	color: inherit;
-	background-color: #eee
+	background-color: white;
 }
 
 .jumbotron .h1, .jumbotron h1 {
@@ -6441,6 +6438,7 @@ button.close {
 }
 
 .modal-open {
+	padding-right: 0px !important;
 	overflow: hidden
 }
 
@@ -6548,7 +6546,8 @@ button.close {
 
 .modal-title-bookcase {
 	font-size:20px;
-	margin: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	line-height: 1.42857143
 }
 

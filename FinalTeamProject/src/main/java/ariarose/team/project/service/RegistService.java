@@ -10,6 +10,7 @@ import ariarose.team.project.vo.UserVO;
 
 @Service
 public class RegistService {
+	
 	@Inject
 	private SqlSessionTemplate sqlSession;
 	

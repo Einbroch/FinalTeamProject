@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="ariarose.team.project.model.ContentsDAO">
+ 	<delete id="deletePlan" parameterType="ContentsVO">
+ 		DELETE FROM CONTENTS WHERE SLOT_ID = #{slot_id};
+ 	</delete>
+ 	
+ 	<insert id="insertPlan" parameterType="ContentsVO">
+ 		INSERT INTO CONTENTS (
+ 			CONTENTS_ID, 
+ 			SLOT_ID, 
+ 			CONTENTS_DATE,
+ 			CONTENTS_TIME, 
+ 			CONTENTS_PLAN, 
+ 			CONTENTS_NAME, 
+ 			CONTENTS_DESC, 
+ 			CONTENTS_NUMBER, 
+ 			CONTENTS_ADDR, 
+ 			CONTENTS_LAT, 
+ 			CONTENTS_LNG, 
+ 			CONTENTS_IMAGE, 
+ 			CONTENTS_ICON) 
+ 		VALUES (
+ 			#{contents_id}, 
+ 			#{slot_id}, 
+ 			#{contents_date},
+ 			#{contents_time},  
+ 			#{contents_plan}, 
+ 			#{contents_name}, 
+ 			#{contents_desc}, 
+ 			#{contents_number}, 
+ 			#{contents_addr}, 
+ 			#{contents_lat}, 
+ 			#{contents_lng}, 
+ 			#{contents_image}, 
+ 			#{contents_icon});
+ 	</insert>
+ 	
+ 	<select id="getListPlan" parameterType="ContentsVO" resultType="ContentsVO">
+ 		SELECT * 
+ 		FROM FINALPROJECT.CONTENTS 
+ 		WHERE SLOT_ID = #{slot_id}
+ 	</select>
+ </mapper>

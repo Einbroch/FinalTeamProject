@@ -102,8 +102,19 @@ public class UserController {
             	mFile.transferTo(new File(path+newFileName));
             	vo.setSp_image(newFileName);
             }
+            String author = multi.getParameter("author");
+            author = new String(author.getBytes("8859_1"),"utf-8");
+            
+            String title = multi.getParameter("title");
+            title = new String(title.getBytes("8859_1"),"utf-8");
+            
             vo.setSp_id(multi.getParameter("slotId"));
-        	System.out.println(vo);
+            vo.setSp_fontColor(multi.getParameter("fontColor"));
+            vo.setSp_backgroundColor(multi.getParameter("backgroundColor"));
+            vo.setSp_author(author);
+            vo.setSp_title(title);
+            
+        	System.out.println("vo보자"+vo);
         	if(service.updateSlotPlan(vo)){
         		System.out.println("업데이트 성공");
         	} else {

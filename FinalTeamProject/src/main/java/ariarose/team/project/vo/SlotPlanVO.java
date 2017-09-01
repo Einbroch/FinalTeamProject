@@ -1,9 +1,5 @@
 package ariarose.team.project.vo;
 
-/**
- * @author ariarose
- *
- */
 public class SlotPlanVO {
 	private String sp_id;
 	private int user_id;
