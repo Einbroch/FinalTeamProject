@@ -9,4 +9,5 @@ public interface SlotPlanDAO {
 	public List<SlotPlanVO> getSlotPlan(SlotPlanVO vo);
 	public int updateSlotPlan(SlotPlanVO vo);
 	public SlotPlanVO getSlotData(SlotPlanVO vo);
+	public int slotUpdateBook(SlotPlanVO vo);
 }

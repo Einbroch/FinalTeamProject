@@ -62,7 +62,7 @@ public class UserController {
 		return entity;
 	}
 	
-	@RequestMapping("registSlot")
+	@RequestMapping("/registSlot")
 	public ResponseEntity<SlotPlanVO> registSlot(
 			@RequestBody SlotPlanVO vo){
 		ResponseEntity<SlotPlanVO> entity = null;
@@ -122,5 +122,18 @@ public class UserController {
         	}
         }
         return entity;
+	}
+	
+	@RequestMapping("/updateBook")
+	public ResponseEntity<SlotPlanVO> updateBook(
+			@RequestBody SlotPlanVO vo){
+		ResponseEntity<SlotPlanVO> entity = null;
+		if(service.slotUpdateBook(vo)){
+			System.out.println(vo);
+			entity = new ResponseEntity<SlotPlanVO>(vo, HttpStatus.OK);
+		} else {
+			entity = new ResponseEntity<SlotPlanVO>(vo, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
 }

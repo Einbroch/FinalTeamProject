@@ -18,6 +18,9 @@ public class ContentsVO {
 	private String contents_lng;
 	private String contents_image;
 	private String contents_icon;
+	private String contents_review;
+	private String contents_picture;
+	private String contents_book;
 	public String getContents_id() {
 		return contents_id;
 	}
@@ -96,13 +99,34 @@ public class ContentsVO {
 	public void setContents_icon(String contents_icon) {
 		this.contents_icon = contents_icon;
 	}
+	public String getContents_review() {
+		return contents_review;
+	}
+	public void setContents_review(String contents_review) {
+		this.contents_review = contents_review;
+	}
+	public String getContents_picture() {
+		return contents_picture;
+	}
+	public void setContents_picture(String contents_picture) {
+		this.contents_picture = contents_picture;
+	}
+	public String getContents_book() {
+		return contents_book;
+	}
+	public void setContents_book(String contents_book) {
+		this.contents_book = contents_book;
+	}
 	@Override
 	public String toString() {
 		return "ContentsVO [contents_id=" + contents_id + ", slot_id=" + slot_id + ", contents_date=" + contents_date
 				+ ", contents_time=" + contents_time + ", contents_plan=" + contents_plan + ", contents_name="
 				+ contents_name + ", contents_desc=" + contents_desc + ", contents_number=" + contents_number
 				+ ", contents_addr=" + contents_addr + ", contents_lat=" + contents_lat + ", contents_lng="
-				+ contents_lng + ", contents_image=" + contents_image + ", contents_icon=" + contents_icon + "]";
+				+ contents_lng + ", contents_image=" + contents_image + ", contents_icon=" + contents_icon
+				+ ", contents_review=" + contents_review + ", contents_picture=" + contents_picture + ", contents_book="
+				+ contents_book + "]";
 	}
+	
 	
 }

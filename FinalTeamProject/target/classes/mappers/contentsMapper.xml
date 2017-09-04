@@ -38,9 +38,35 @@
  			#{contents_icon});
  	</insert>
  	
+ 	<update id="updateContents" parameterType="ContentsVO">
+ 		UPDATE FINALPROJECT.CONTENTS 
+ 		SET 
+ 			CONTENTS_DATE = #{contents_date},
+ 			CONTENTS_TIME = #{contents_time},
+ 			CONTENTS_PLAN = #{contents_plan},
+ 			CONTENTS_NAME = #{contents_name},
+ 			CONTENTS_DESC = #{contents_desc},
+ 			CONTENTS_NUMBER = #{contents_number},
+ 			CONTENTS_ADDR = #{contents_addr},
+ 			CONTENTS_LAT = #{contents_lat},
+ 			CONTENTS_LNG = #{contents_lng},
+ 			CONTENTS_IMAGE = #{contents_image},
+ 			CONTENTS_ICON = #{contents_icon},
+ 			CONTENTS_REVIEW = #{contents_review},
+ 			CONTENTS_PICTURE  = #{contents_picture}
+ 		WHERE 
+ 			CONTENTS_ID = #{contents_id};
+ 		
+ 	</update>
+ 	
  	<select id="getListPlan" parameterType="ContentsVO" resultType="ContentsVO">
  		SELECT * 
  		FROM FINALPROJECT.CONTENTS 
  		WHERE SLOT_ID = #{slot_id}
  	</select>
+ 	
+ 	<update id="updateBook" parameterType="ContentsVO">
+ 	UPDATE FINALPROJECT.CONTENTS 
+ 		SET CONTENTS_BOOK='Y' WHERE SLOT_ID = #{slot_id};
+ 	</update>
  </mapper>

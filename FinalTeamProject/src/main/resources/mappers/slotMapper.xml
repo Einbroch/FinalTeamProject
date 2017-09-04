@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="ariarose.team.project.model.SlotPlanDAO">
  	<select id="getSlotPlan" parameterType="SlotPlanVO" resultType="SlotPlanVO">
- 		SELECT SP_ID, USER_ID, SP_IMAGE, SP_BACKGROUNDCOLOR, SP_FONTCOLOR, SP_TITLE, SP_AUTHOR 
+ 		SELECT *
  		FROM FINALPROJECT.SLOTPLAN 
  		WHERE USER_ID = #{user_id}
  	</select>
@@ -22,6 +22,12 @@
  			SP_AUTHOR=#{sp_author} 
  		WHERE SP_ID=#{sp_id}
  	</update>
+ 	
+ 	<update id="slotUpdateBook" parameterType="SlotPlanVO">
+ 		UPDATE finalproject.slotplan SET
+ 		SP_BOOK='Y' WHERE SP_ID = #{sp_id};
+ 	</update>
+ 	
  	<insert id="registSlotPlan" parameterType="SlotPlanVO">
  		INSERT INTO FINALPROJECT.SLOTPLAN(
 	 		SP_ID, 

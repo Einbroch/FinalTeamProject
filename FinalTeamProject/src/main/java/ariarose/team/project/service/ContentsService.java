@@ -37,4 +37,18 @@ public class ContentsService {
 	public List<ContentsVO> getListPlan(ContentsVO vo){
 		return contentsMapper().getListPlan(vo);
 	}
+	
+	public boolean updateContents(ContentsVO vo){
+		if(contentsMapper().updateContents(vo)>0){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean updateBook(ContentsVO vo){
+		if(contentsMapper().updateBook(vo)>0){
+			return true;
+		}
+		return false;
+	}
 }

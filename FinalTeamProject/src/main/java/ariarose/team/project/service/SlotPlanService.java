@@ -41,4 +41,11 @@ public class SlotPlanService {
 		}
 		return false;
 	}
+	
+	public boolean slotUpdateBook(SlotPlanVO vo){
+		if(slotMapper().slotUpdateBook(vo)>0){
+			return true;
+		}
+		return false;
+	}
 }

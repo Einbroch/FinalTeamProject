@@ -73,10 +73,26 @@
 		</div>
 		</aside>
 	</div>
-	<div>
-	<br>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<h1>아아아아아아아</h1>
+	<!-- 검색 -->
+	<div align="center" style="margin-top: 15px; margin-bottom: 50px;">
+         <input type="search" class="w3-input" style="width: 20%;" placeholder="Search"> &nbsp;&nbsp;
+         <button class="button2" id="search_btn">Search</button>
+    </div>
+
+	<!-- BBS -->
+	<div class="bbs-container" align="center">
+		<div class="bbs-container-content">
+			<div class="bbs-container-bbs">
+			<br>
+				<div>
+					<h4>파리 여행기</h4>
+					<p>이채성</p>
+				</div>
+				<div class="bbs-container-bbs-img">
+					<img src="/BBSProject/img/bbs-img.jpg" style="width:100%; height:100%;">
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- 슬롯 커버 모달 -->
 	<div class="modal fade modalposition" id="slotModal" role="dialog" align="center" data-backdrop="static">
@@ -106,7 +122,7 @@
 	
 	<!-- 슬롯 리뷰 모달 -->
 	<div class="modal fade modalposition1" id="slotReviewmodal" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-90size" role="document">
+      <div class="modal-dialog modal-90size" role="document" style="overflow-y: scroll; max-height:90%;  margin-top: 50px; margin-bottom:50px;">
          <div class="modal-content modal-90size">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -912,6 +928,7 @@
 			console.log(id);*/
 			console.log(list); 
 			var label = "";
+			var isThereBook = 'N';
 			var count = 0;
 			$("#bookcaseModal").modal("hide");
 			setTimeout(function() {
@@ -919,6 +936,7 @@
 			}, 500);
 			
 			$("#modal_review_form").empty();
+			
 			label += '<div class="book-container-list">';//1시작
 			label += '<div class="book-container-list-head" align="center">';//2시작
 			label += '<h4>여행후기</h4>';
@@ -934,8 +952,17 @@
 			label += '<input class="review-input-1-time" value = "시간" readonly>';
 			label += '<input class="review-input-1-plan" value = "계획" readonly>';
 			label += '</div>';//번외끝
+			count = list.length;
+			var slotId = "";
 			$.each(list, function(i, d){
-				label += '<div id="review'+i+'" onClick="writeReview(\''+d["contents_id"]+'\')">';//6시작
+				slotId = d["slot_id"];
+				isThereBook = d["contents_book"];
+				label += '<div style="border:1px;" id="review'+i+'" onClick="writeReview(\''+
+						d["contents_id"]+'\',\''+d["slot_id"]+'\',\''+d["contents_date"]+'\',\''+d["contents_time"]+'\',\''+
+						d["contents_plan"]+'\',\''+d["contents_name"]+'\',\''+d["contents_desc"]+'\',\''+
+						d["contents_number"]+'\',\''+d["contents_addr"]+'\',\''+d["contents_lat"]+'\',\''+
+						d["contents_lng"]+'\',\''+d["contents_image"]+'\',\''+d["contents_icon"]+'\', \''+
+						d["contents_review"]+'\',\''+d["contents_picture"]+'\', \''+d["contents_book"]+'\','+i+','+count+')">';//6시작
 				label += '<input class="review-input-1-time" value="'+d["contents_date"]+'" readonly>';
 				label += '<input class="review-input-1-time" value="'+d["contents_time"]+'" readonly>';
 				label += '<input class="review-input-1-plan" value="'+d["contents_plan"]+'" readonly>';
@@ -949,7 +976,6 @@
 				label += '<input type="hidden" id="image'+i+'" value="'+d["contents_image"]+'">';
 				label += '<input type="hidden" id="icon'+i+'" value="'+d["contents_icon"]+'">';
 				label += '</div>';//6끝
-				count++;
 			});
 			label += '<div align="center">'; //7시작
 			label += '<nav aria-label="Page navigation example">';
@@ -962,44 +988,133 @@
 			label += '</div>';//4끝
 			//여기서부터 function으로 id를 받아서 처리해야함
 			label += '<div class="book-container-list-body">';//8시작
-			label += '<div class="book-container-list-body-input">';//9시작
-			label += '<div class="book-container-review-map">';//10시작
-			label += '<div align="center">';//11시작
-			label += '<p>제주도 숲길 걸어다니기<br>';
-			label += '- 사려니 숲길에서 -</p>';
-			label += '</div>';//11끝
-			label += '<img src="/project/resources/img/cover1.jpg" style="width:100%; height:88%;">';
-			label += '</div>';//10끝
-			label += '<div class="book-container-review-btn" align="right">';//12시작
-			label += '<img src="/project/resources/img/mapmarker.png">';
-			label += '<a class="mapballoon" href="#">위치 보기 아직 안됨 씨벌';
-			label += '<span><img src="/project/resources/img/map.jpg"></span></a>';
-			label += '</div>';//12끝
-			label += '<div class="book-container-review-list">';//13시작
-			label += '<textarea rows="12" cols="82" style="resize:none;">';
-			label += '</textarea>';
-			label += '</div>';//13끝
-			label += '</div>';//9끝
+			for(var i = 0; i < count; i++){
+				label += '<div id="reviewlist'+i+'" class="book-container-list-body-input">';//9시작
+				label += '<div class="book-container-review-map">';//10시작
+				label += '<div id="reviewtitle'+i+'" align="center">';//11시작
+				label += '</div>';//11끝
+				label += '<div id="reviewmap'+i+'" align="center">';
+				label += '</div>';
+				label += '</div>';//10끝
+				label += '<div class="book-container-review-btn" align="right">';//12시작
+				label += '<form id="reviewaddimage'+i+'">';
+				label += '<input id="hiddeninput" type="file">';
+				label += '<button type="button" id="hiddenbutton">계획을 클릭해서 후기를 작성하세요</button>'
+				label += '</div>';//12끝
+				label += '<div id="reviewtextarea'+i+'" class="book-container-review-list">';//13시작
+				/* label += '<textarea rows="12" cols="82" style="resize:none;">';
+				label += '</textarea>'; */
+				label += '</div></form>';//13끝
+				label += '</div>';//9끝
+			}
 			label += '</div>';//8끝
 			label += '</div>';//3끝
 			label += '<div class="book-container-list-foot" align="right">';//14시작
-			label += '<button type="button" class="list-input-btn" style="margin-right:30px;">다음</button>';
-			label += '<button type="button" class="list-input-btn">끝내기</button>';
+			
+			if(isThereBook == 'N'){
+				label += '<button type="button" class="list-input-btn" style="margin-right:30px;" onClick="updateReview(\''+slotId+'\','+count+')">책 만들기</button>';	
+			}
+			
+			label += '<button type="button" class="list-input-btn" data-dismiss="modal">끝내기</button>';
 			label += '</div>';//14끝
 			label += '</div>';//1끝
 			$("#modal_review_form").append(label);
+			reviewList(0, count);
 			pageReview(1);
 		}
 		
-		function writeReview(id){
-			alert(id);
-			//모든정보 다있고
+		function reviewList(i, count){
+			for(var j = 0; j < count; j++){
+				$("#reviewlist"+j).hide();
+			}
+			$("#reviewlist"+i).show();
+		}
+		
+		function writeReview(id, slotid, date, time, plan, name, desc, number, addr, lat, lng, image, icon, review, picture, book, i, count){
+			console.log(id+","+slotid+","+date+","+time+","+plan+","+name+","+desc+","+number+","+addr+","+lat+","+lng+","+image+","+icon+","+review+","+picture);
+			$("#reviewtitle"+i).empty();
+			$("#reviewmap"+i).empty();
+			$("#reviewaddimage"+i).empty();
+			$("#reviewtextarea"+i).empty();
+			reviewList(i, count);
 			
+			var titleLabel = '<p>'+plan+'</p>';
+			$("#reviewtitle"+i).append(titleLabel);
+			
+			var mapLabel = "";
+			if(picture==null || picture=="" || picture=="null"){
+				mapLabel = '<img src="">';	
+			} else {
+				mapLabel = '<img width="500px" height="346px" src="/upload/'+picture+'">';
+			}
+			$("#reviewmap"+i).append(mapLabel);
+			
+			review = review.replace(/<br>/g, '\n');
+			
+			var textAreaLabel = "";
+			textAreaLabel += '<textarea id="reviewarea'+i+'" name="reviewarea" rows="12" cols="82" style="resize:none;">'; 
+			if(review == null || review == "" || review == "null"){
+				
+			} else {
+				textAreaLabel += review
+			}
+			textAreaLabel += '</textarea>';
+			$("#reviewtextarea"+i).append(textAreaLabel);
+			
+			var addImageLabel = '';
+			
+			if(book == "N"){
+				addImageLabel += '<input type="file" id="addImage" name="addImage">';
+				addImageLabel += '<button type="button" onClick="uploadReview('+i+',\''+slotid+'\')">후기 저장하기</button>';	
+			}
+						
+			addImageLabel += '<input type="hidden" name="reviewid" value="'+id+'">';
+			addImageLabel += '<input type="hidden" name="reviewslotid" value="'+slotid+'">';
+			addImageLabel += '<input type="hidden" name="reviewdate" value="'+date+'">';
+			addImageLabel += '<input type="hidden" name="reviewtime" value="'+time+'">';
+			addImageLabel += '<input type="hidden" name="reviewplan" value="'+plan+'">';
+			addImageLabel += '<input type="hidden" name="reviewname" value="'+name+'">';
+			addImageLabel += '<input type="hidden" name="reviewdesc" value="'+desc+'">';
+			addImageLabel += '<input type="hidden" name="reviewnumber" value="'+number+'">';
+			addImageLabel += '<input type="hidden" name="reviewaddr" value="'+addr+'">';
+			addImageLabel += '<input type="hidden" name="reviewlat" value="'+lat+'">';
+			addImageLabel += '<input type="hidden" name="reviewlng" value="'+lng+'">';
+			addImageLabel += '<input type="hidden" name="reviewimage" value="'+image+'">';
+			addImageLabel += '<input type="hidden" name="reviewicon" value="'+icon+'">';
+			addImageLabel += '<input type="hidden" name="reviewpicture" value="'+picture+'">';
+			$("#reviewaddimage"+i).append(addImageLabel);	
+		}
+		
+		function uploadReview(i, slotId){
+			var textarea = $("#reviewarea"+i).val();
+			var label = '<input type="hidden" id="reviewreview" name="reviewreview" value="'+textarea+'">'; 
+			$("#reviewaddimage"+i).append(label);
+			
+			var formData = new FormData($("#reviewaddimage"+i)[0]);
+			$.ajax({
+				type : 'post',
+				url : '/project/contents/addReviewImage',
+				data : formData,
+				processData : false,
+				contentType : false,
+				success : function(data){
+					//console.log(slotId);		
+					ajaxgetListPlan(slotId, "review");					
+					setTimeout(function() {
+						$("#review"+i).click();	
+					}, 500);
+					
+				}, 
+				error : function(data){
+					alert("업로드 실패");
+				}
+			});
 		}
 		
 		function addIndex(id, list){
 			/* console.log(list); */
 			var label = "";
+			var isThereBook = "N";
 			$("#bookcaseModal").modal("hide");
 			setTimeout(function() {
 				$("#slotIndexModal").modal("show");
@@ -1023,8 +1138,13 @@
 			label += '<input class="list-input-2-plan" value = "계획" readonly>';
 			label += '</div>';
 			var count=0;
-			$.each(list, function(i, d){				
+			
+			/* 삭제버튼 처리 */
+			/* 해결방법 id밑에 append 새로쓸 것 */
+			$.each(list, function(i, d){			
+				isThereBook = d["contents_book"];
 				label += '<div id="planList'+i+'">';
+				label += '<form>';
 				label += '<input type="date" required class="list-input-1-time" placeholder="Date" id="date'+i+'"';
 				label += 'value="'+d["contents_date"]+'">';
 				label += '<input type="time" required class="list-input-1-time" placeholder="Time" id="time'+i+'"';
@@ -1040,26 +1160,32 @@
 				label += '<input type="hidden" id="imagebtn'+i+'" value="'+d["contents_image"]+'">';
 				label += '<input type="hidden" id="iconbtn'+i+'" value="'+d["contents_icon"]+'">';
 				var btnId = 'btn'+i;
+				/* label += '<p>'; */
+				label += '<ul>';
+				label += '<li id="mapbtn'+i+'">';
 				label += '<button type="button" class="list-input-2-btn-main"';
-				label += 'id="btn'+i+'" onClick="add(\''+d["contents_name"]+'\',\''+d["contents_desc"]+'\',\''
-						+d["contents_number"]+'\',\''+d["contents_addr"]+'\',\''+d["contents_lat"]+'\',\''
-						+d["contents_lng"]+'\',\''+d["contents_image"]+'\',\''+d["contents_icon"]+'\',\''+btnId+'\',\''+true+'\')">';
-				if(d["contents_name"] == null || d["contents_name"] == "null"){
-					label += '&nbsp;</button>';	
+				if(d["contents_name"] == null || d["contents_name"] == "null" || d["contents_name"] == ""){
+					label += 'id="btn'+i+'">';
+					label += '&nbsp;</button>';
 				} else {
+					label += 'id="btn'+i+'" onClick="add(\''+d["contents_name"]+'\',\''+d["contents_desc"]+'\',\''
+					+d["contents_number"]+'\',\''+d["contents_addr"]+'\',\''+d["contents_lat"]+'\',\''
+					+d["contents_lng"]+'\',\''+d["contents_image"]+'\',\''+d["contents_icon"]+'\',\''+btnId+'\',\''+true+'\')">';
 					label += d["contents_name"]+'</button>';
 				}
-				
+				label += '</li>';
+				label += '<li>';
+				/* label += '</p>'; */
 				/* label += '<button type="button" class="list-input-2-btn-main" id="btn'+i+'">'+d["contents_name"]+'</button>'; */
+				label += '<button type="button" class="list-input-2-btn-side" onClick="deleteMap(\''+i+'\')">삭제</button>';
 				label += '<button type="button" class="list-input-2-btn-side" onClick="getAccomMap(\'btn'+i+'\')">숙소</button>';
 				label += '<button type="button" class="list-input-2-btn-side" onClick="getRentMap(\'btn'+i+'\')">렌트</button>';
 				label += '<button type="button" class="list-input-2-btn-side" onClick="getLeisureMap(\'btn'+i+'\')">레저</button>';	
+				label += '</li>';
+				label += '</ul>';
+				label += '</form>';
 				label += '</div>';
-				/* $("#btn"+i).click(function(){
-					alert("버튼눌렀네?");
-					add(d["contents_name"], d["contents_desc"], d["contents_number"], d["contents_addr"], 
-							d["contents_lat"], d["contents_lng"], d["contents_image"], d["contents_icon"], btnId)
-				}); */
+				
 				count = i;
 			});
 			//console.log(count);
@@ -1077,6 +1203,7 @@
 				label += '<input type="hidden" id="imagebtn'+i+'">';
 				label += '<input type="hidden" id="iconbtn'+i+'">';
 				label += '<button type="button" class="list-input-2-btn-main" id="btn'+i+'">&nbsp;</button>';
+				label += '<button type="button" class="list-input-2-btn-side" onClick="deleteMap(\''+i+'\')">삭제</button>';
 				label += '<button type="button" class="list-input-2-btn-side" onClick="getAccomMap(\'btn'+i+'\')">숙소</button>';
 				label += '<button type="button" class="list-input-2-btn-side" onClick="getRentMap(\'btn'+i+'\')">렌트</button>';
 				label += '<button type="button" class="list-input-2-btn-side" onClick="getLeisureMap(\'btn'+i+'\')">레저</button>';	
@@ -1108,22 +1235,42 @@
 			label += '</div>';
 			$("#modal_slot_index_form").append(label);
 			pagePlan(1);
-			addIndexButton(id);
+			addIndexButton(id, isThereBook);
 		}
 		
+		function deleteMap(i){
+			$("#mapbtn"+i).empty();
+			var label = "";
+			label += '<button type="button" class="list-input-2-btn-main"';
+			label += 'id="btn'+i+'">';
+			label += '&nbsp;</button>';
+			$("#mapbtn"+i).append(label);
+			$("#namebtn"+i).val("");
+			$("#descbtn"+i).val("");
+			$("#numberbtn"+i).val("");
+			$("#addrbtn"+i).val("");
+			$("#latbtn"+i).val("");
+			$("#lngbtn"+i).val("");
+			$("#imagebtn"+i).val("");
+			$("#iconbtn"+i).val("");
+		}
 		function helpPlan(){
 			
 		}
 		
-		function addIndexButton(id){
+		function addIndexButton(id, book){
 			var label="";
+			
 			label += '<div class="book-container-list-foot" align="right">';
 			/* label += '<button type="button" class="list-input-btn" style="margin-right:20px;" onClick="addIndex(\''+id+'\')">Reset</button>'; */
-			label += '<button type="button" class="list-input-btn" style="margin-right:20px;" onClick="planSave(\''+id+'\')">저장하기</button>';
+			if(book == 'N'){
+				label += '<button type="button" class="list-input-btn" style="margin-right:20px;" onClick="planSave(\''+id+'\')">저장하기</button>';	
+			}			
 			label += '<button type="button" class="list-input-btn" data-dismiss="modal">끝내기</button>';
 			label += '</div>';
 			label += '</div>';	
 			$("#modal_slot_index_form").append(label);
+			
 		}
 		
 		function getAccomMap(btnId){
@@ -1180,6 +1327,56 @@
 			}
 		}
 		
+		function updateReview(id, count){
+			var result = confirm("한번 만든 책은 수정이 되지 않습니다 계속하시겠습니까?");
+			if(result){
+				alert(count);
+				
+				var contents = {
+					slot_id : id
+				};
+				var slot = {
+					sp_id : id	
+				};
+				console.log(contents);
+					
+				ajaxUpdateBook(contents);
+				ajaxSlotUpdateBook(slot);
+			} 
+		}
+		
+		function ajaxSlotUpdateBook(slot){
+			$.ajax({
+				url : "/project/user/updateBook",
+				type : "POST",
+				contentType : "application/json;charset=UTF-8",
+				data : JSON.stringify(slot),
+				dataType : "json",
+				success : function(data) {
+					alert("슬롯에서 책 만들기 완료");
+				},
+				error : function(data) {
+					alert("슬롯에서 책 만들기 실패");
+				}
+			});
+		}
+		
+		function ajaxUpdateBook(contents){
+			$.ajax({
+				url : "/project/contents/updateBook",
+				type : "POST",
+				contentType : "application/json;charset=UTF-8",
+				data : JSON.stringify(contents),
+				dataType : "json",
+				success : function(data) {
+					alert("책 만들기 완료");
+				},
+				error : function(data) {
+					alert("책 만들기 실패");
+				}
+			});
+		}
+		
 		function planSave(id){
 			/* ajax통해서 기존 id값 내용 삭제 */
 			var result = confirm("기존 내용이 삭제 됨 저장 할꺼임?");
@@ -1217,7 +1414,7 @@
 						for(var j=0; j<100000000; j++){
 							
 						}
-						ajaxInsertPlan(contents);
+						ajaxInsertPlan(id, contents);
 						
 					}				
 				}
@@ -1243,7 +1440,7 @@
 			});
 		}
 		
-		function ajaxInsertPlan(contents){
+		function ajaxInsertPlan(id, contents){
 			/* alert("저장한다"); */
 			$.ajax({
 				url : "/project/contents/insertPlan",
@@ -1252,7 +1449,7 @@
 				data : JSON.stringify(contents),
 				dataType : "json",
 				success : function(data) {
-					
+					ajaxgetListPlan(id, "plan");
 				},
 				error : function(data) {
 					alert("저장 실패");
@@ -1270,7 +1467,7 @@
 				dataType : "json",
 				success : function(data) {
 					if(cr=="plan"){
-						//alert(cr);
+						
 						addIndex(slot_id, data);	
 					} else if(cr=="review"){
 						//alert(cr);

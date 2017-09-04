@@ -8,4 +8,6 @@ public interface ContentsDAO {
 	public int deletePlan(ContentsVO vo);
 	public int insertPlan(ContentsVO vo);
 	public List<ContentsVO> getListPlan(ContentsVO vo);
+	public int updateContents(ContentsVO vo);
+	public int updateBook(ContentsVO vo);
 }

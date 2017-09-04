@@ -8,6 +8,7 @@ public class SlotPlanVO {
 	private String sp_fontColor;
 	private String sp_title;
 	private String sp_author;
+	private String sp_book;
 	public String getSp_id() {
 		return sp_id;
 	}
@@ -50,12 +51,16 @@ public class SlotPlanVO {
 	public void setSp_author(String sp_author) {
 		this.sp_author = sp_author;
 	}
+	public String getSp_book() {
+		return sp_book;
+	}
+	public void setSp_book(String sp_book) {
+		this.sp_book = sp_book;
+	}
 	@Override
 	public String toString() {
 		return "SlotPlanVO [sp_id=" + sp_id + ", user_id=" + user_id + ", sp_image=" + sp_image
 				+ ", sp_backgroundColor=" + sp_backgroundColor + ", sp_fontColor=" + sp_fontColor + ", sp_title="
-				+ sp_title + ", sp_author=" + sp_author + "]";
+				+ sp_title + ", sp_author=" + sp_author + ", sp_book=" + sp_book + "]";
 	}
-	
-	
 }
