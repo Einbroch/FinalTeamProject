@@ -23,8 +23,10 @@ public class OwnerController {
 	
 	@Inject
 	private AccomService accomService;
+	
 	@Inject
 	private RentService rentService;
+	
 	@Inject
 	private LeisureService leisureService;
 	

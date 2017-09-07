@@ -10,4 +10,5 @@ public interface SlotPlanDAO {
 	public int updateSlotPlan(SlotPlanVO vo);
 	public SlotPlanVO getSlotData(SlotPlanVO vo);
 	public int slotUpdateBook(SlotPlanVO vo);
+	public List<SlotPlanVO> getBBSList(int value);
 }

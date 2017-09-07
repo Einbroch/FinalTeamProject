@@ -48,4 +48,8 @@ public class SlotPlanService {
 		}
 		return false;
 	}
+	
+	public List<SlotPlanVO> getBBSList(int value){
+		return slotMapper().getBBSList(value*100);
+	}
 }

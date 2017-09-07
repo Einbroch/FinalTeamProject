@@ -8,92 +8,172 @@
 
 <link href="/project/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/project/resources/css/main.css" rel="stylesheet">
-<link href="/project/resources/css/userMain.css" rel="stylesheet">
 <link href="/project/resources/css/bbsbook.css" rel="stylesheet">
 <link href="/project/resources/css/farbtastic.css" rel="stylesheet">
-
+<link href="/project/resources/css/Qqu.css" rel="stylesheet">
+<link href="/project/resources/css/Qqu.min.css" rel="stylesheet">
 <style type="text/css">
-
-.h1 {
-	font-size: 24px;
+@media all and (max-width:450px) {
+	
 }
 
-.h4 {
-	font-size: 18px;
+.glyphicon {
+	font-size: 15px;
 }
+
+.bookingbtn {
+	width: 25%;
+	height:25px;
+	border: 0px;
+	background-color: white;
+}
+
 </style>
 </head>
-<body style="background-color: white;">
-	
-	<div id="wrapper">
-		<aside class="banner">
-		<div class="header-img" align="center"></div>
-		<br>
-		<br>
-		<div class="container" align="center">
-			<div class="col-sm-4">
-				<div class="jumbotron-title">
-					<img id="img_info" src="/project/resources/img/info.png">
-				</div>
-			</div>
-			
-			<div class="col-sm-4">
-				<div class="jumbotron-title">
-					<img id="img_log" src="/project/resources/img/log.png">
-				</div>
-			</div>
-			
-			<div class="col-sm-4">
-				<div class="jumbotron-title">
-					<img id="img_bookcase" src="/project/resources/img/bookcase.png">
-				</div>
-			</div>
-		
-		
-			<div class="col-sm-4">
-				<div class="jumbotron-title">
-					<button class="button1-info" data-toggle="modal"
-						data-target="#myinfoModal" data-backdrop="static" id="modal_myinfo">내 정보</button>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="jumbotron-title">
-					<button class="button1-info" data-toggle="modal"
-						data-target="#loginModal" data-backdrop="static" id="modal_login">로그인</button>
-					<button class="button1-info" data-toggle="modal"
-						data-target="#logoutModal" data-backdrop="static" id="modal_logout">로그아웃</button>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="jumbotron-title">
-					<button class="button1-info" data-toggle="modal"
-						data-target="#bookcaseModal" data-backdrop="static" id="btn-mybookcase">내 책장</button>
-				</div>
-			</div>
-		</div>
-		</aside>
-	</div>
-	<!-- 검색 -->
-	<div align="center" style="margin-top: 15px; margin-bottom: 50px;">
-         <input type="search" class="w3-input" style="width: 20%;" placeholder="Search"> &nbsp;&nbsp;
-         <button class="button2" id="search_btn">Search</button>
-    </div>
+<body>
 
-	<!-- BBS -->
-	<div class="bbs-container" align="center">
-		<div class="bbs-container-content">
-			<div class="bbs-container-bbs">
-			<br>
-				<div>
-					<h4>파리 여행기</h4>
-					<p>이채성</p>
+	<!-- 헤더 이미지 영역 -->
+	<header class="masthead">
+	<div class="header-content" align="center">
+		<div class="header-content-inner">
+			<div class="header-content-img">
+				<div style="margin: auto; margin-top: 75px;">
+					<img src="/project/resources/img/title-white.png"
+						style="width: 175px; height: 85px;">
+					<div class="header-content-btn">
+						<button class="loginbtn" data-toggle="modal"
+						data-target="#myinfoModal" data-backdrop="static" id="modal_myinfo">내 정보</button>
+						&#166;
+						<button class="bookcasebtn" id="modal_login" data-toggle="modal" 
+						data-target="#loginModal" data-backdrop="static">로그인</button>
+						<button class="bookcasebtn" data-toggle="modal"
+						data-target="#logoutModal" id="modal_logout">로그아웃</button>
+						&#166;
+						<button class="bookcasebtn" data-toggle="modal"
+						data-target="#bookcaseModal" data-backdrop="static" id="btn-mybookcase">내 책장</button>
+					</div>
+					<div class="" style="width: 96%; height: 240px; margin:auto;">
+						<div style="background-image: url('/project/resources/img/headeri.jpg'); background-size:contain; width: 100%; height: 100%; background-repeat: no-repeat;"></div>
+					</div>
 				</div>
-				<div class="bbs-container-bbs-img">
-					<img src="/BBSProject/img/bbs-img.jpg" style="width:100%; height:100%;">
+			</div>
+
+			<div class="col-lg-8 mx-auto text-center"
+				style="width: 100%; text-align: center">
+				<h2 class="section-heading text-white"
+					style="color: rgba(255, 255, 255, 1); font-weight:bold;">즐거웠던 추억을 아름답게.</h2>
+				<hr class="light">
+				
+				<a id = "doolerzz" class="BBSScrollbtn" style="text-decoration: none;">둘러보기</a>
+							
+				<p class="text-faded" style="margin-top: 30px;">
+				둘이서 함께 나누었던 기억.. 사랑하는 이와 <br>
+				같은 시간대에 같은 공간에서 같은 추억을 공유해도 <br>
+				사람마다 기억의 유효기간은 다릅니다. <br>
+				그 추억을 제주일기에서 공유하세요! 롸잇나우!! 씨벌!!
+				</p>
+			</div>
+		</div>
+	</div>
+	</header>
+
+	<!-- 콘텐츠 설명-->
+	<section id="services">
+	<div class="container">
+		<div class="row" align="center">
+			<div style="background-image: url('/project/resources/img/content1.png'); background-repeat: no-repeat; width: 150px; height: 70px; margin-bottom: 28px;"></div>
+			<div class="col-lg-12 text-center">
+				<h2 class="section-heading"></h2>
+				<!-- <hr class="primary"> -->
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 text-center">
+				<div class="service-box">
+					<img src="/project/resources/img/icon1.png" style="width: 65px; height: 80px;">
+					<h3>여행을 계획하고</h3>
+					<p class="text-muted">We are planning a trip</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 text-center">
+				<div class="service-box">
+					<img src="/project/resources/img/icon2.png" style="width: 65px; height: 80px;">
+					<h3>여행 후기를 책으로!</h3>
+					<p class="text-muted">We make a book for the trip</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 text-center">
+				<div class="service-box">
+					<img src="/project/resources/img/addbook.png" style="width: 65px; height: 80px;">
+					<h3>여행 정보 공유하기</h3>
+					<p class="text-muted">We share our information for the trip </p>
 				</div>
 			</div>
 		</div>
 	</div>
+	</section>
+
+
+	<!-- 게시판 -->
+	<section class="BBS">
+
+	<div class="container-fluid" align="center" style="width: 100%; height: auto; background-color: rgba(135,206,250,0.4); padding-left:7.5%; padding-right: 7.5% ">
+
+		<!-- 글자 영역 -->
+		<div id="BBS" style="margin:auto; margin-top: 120px; width: 29%; height: 430px; background-image: url('/project/resources/img/sea3.jpg'); background-repeat: no-repeat; background-position: center;">
+			<div class="BBS-content-head1">
+				<h3 class="font1">하나의 바다.</h3>
+			</div>
+			<div class="BBS-content-head2">
+				<p class="font2">바다를 바라보는 사람이 천명이라면<br>그 바다는 천개의 바다라고 합니다.<br>사람들의 다양한 이야기를 찾아보세요.</p>
+			</div>
+			<div>
+				<div style="margin-top: 85px;">
+					<input class="search-input" type="search" placeholder="찾아보기" style="width: 40%; height: 29px; margin-bottom: 30px; text-align: center;">		
+				</div>
+				<div>
+					<button class="searchbtn"></button>
+				</div>
+			</div>
+		</div>
+		<div style="border: 1px solid white; width: 10%; margin-top: 70px; margin-bottom: 50px;">
+		</div>
+
+		<!-- 게시판 내용물 영역 -->
+		<div class="BBS-content-books">
+			<div class="BBSBook">
+				<ul class="Books" id="bbslist">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	</section>
+
+	<!-- 페이징 버튼 영역 -->
+	<div class="pageingspace" style="display: block;">
+		<div style="padding-top: 70px;" align="center">
+			<div style="padding-right: 40px;">
+				<ul class="pageclass" id="bbslistpage">
+				
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 로고 -->
+	<section id="contact">
+	<div class="container-footer" style="text-align: center;">
+		<div align="center">
+			<img class="logoimg" src="/project/resources/img/Qqu.png">
+		</div>
+		<p>copyright(C) all reserved by Qqu</p>
+	</div>
+	</section>
+	
 	<!-- 슬롯 커버 모달 -->
 	<div class="modal fade modalposition" id="slotModal" role="dialog" align="center" data-backdrop="static">
 		<div class="modal-dialog modal-coversize" role="document">
@@ -121,9 +201,9 @@
 	</div>
 	
 	<!-- 슬롯 리뷰 모달 -->
-	<div class="modal fade modalposition1" id="slotReviewmodal" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-90size" role="document" style="overflow-y: scroll; max-height:90%;  margin-top: 50px; margin-bottom:50px;">
-         <div class="modal-content modal-90size">
+	<div class="modal fade" id="slotReviewmodal" role="dialog" data-backdrop="static">
+      <div class="modal-dialog" role="document" style="overflow-y: scroll; width:90%; max-height:90%;">
+         <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h3 class="modal-title" align="center">
@@ -132,7 +212,7 @@
                   </h3>
             </div>
             
-            <form class="w3-container" method="post" id="modal_review_form">
+            <form class="w3-container basic-line" style="width: 100%;" method="post" id="modal_review_form">
                
             </form>
             <br>
@@ -142,9 +222,9 @@
 	
 	
 	<!-- 슬롯 차례 모달 -->
-	<div class="modal fade modalposition1" id="slotIndexModal" role="dialog" align="center" data-backdrop="static">
-		<div class="modal-dialog modal-65size" role="document" style="overflow-y: scroll; max-height:90%;  margin-top: 50px; margin-bottom:50px;">
-			<div class="modal-content modal-65size">
+	<div class="modal fade" id="slotIndexModal" role="dialog" align="center" data-backdrop="static">
+		<div class="modal-dialog" role="document" style="overflow-y: scroll; width:90%; max-height:90%;">
+			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3 id="slot_title" align="center">
@@ -152,8 +232,8 @@
                   	</font>
 					</h3>
 				</div>
-				<div class="modal-body">
-					<form class="w3-container" method="post" id="modal_slot_index_form">
+				<div class="modal-body basic-line">
+					<form class="w3-container basic-line" style="width: 100%;" method="post" id="modal_slot_index_form">
 							
 					</form>
 				</div>
@@ -220,12 +300,14 @@
 		</div>
 	</div>
 	
-	<!-- 도움말 -->
 	
 
-	<script src="/project/resources/js/jquery.min.js"></script>
+	<!-- <script src="/project/resources/js/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="/project/resources/js/bootstrap.min.js"></script>
 	<script src="/project/resources/js/farbtastic.js"></script>
+	<script src="/project/resources/js/jquery.easing.min.js"></script>
+				
 	<!-- 클러스터 -->
 	<script
       src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
@@ -240,8 +322,16 @@
 		var rentList;
 		var leisureList;
 		var contentList;
-		
+		var callbbs = null;
+		var bbsListPage = null;
 		$(function() {
+			/* 둘러보기 scroll event */
+			$("#doolerzz").click(function(){
+				$('html, body').animate({
+					scrollTop : $("#BBS").offset().top
+				}, 1250, 'easeInOutExpo');
+			});
+			
 			var session = null;
 			var modify;
 			$("#modal_login").hide();
@@ -250,6 +340,14 @@
 			$("#btn-mybookcase").hide();
 			$("#modal_slot_color_form").hide();
 			ajaxSession();
+			
+			$("#doolerpreview").click(function(){
+				
+				$('html, body').animate({
+					scrollTop : $("#BBS").offset().top
+				}, 1250, 'easeInOutExpo');	
+			})
+			
 			
 			/* ajax통해서 로그인한 아이디의 사용자 정보를 가져옴 */
 			function ajaxSession() {
@@ -682,6 +780,121 @@
 				}, 3000);
 			}
 			
+			bbsListPage = function listBBSPage(data, block){				
+				$("#bbslistpage").empty();
+				var count = 0;
+				var label = '';
+				label += '<div class= "pagination" style="text-align:center">';
+				if(block != 0){
+					label += '<a onClick="bbsListPage('+data+','+(block-1)+')">&laquo;</a>'; //넘어가짐	
+				} else {
+					/* label += '<a href="#">안넘어가져</a>'; //disable */
+				}
+				
+				for (var i = 0; i<data; i++){
+					$("#bbsbook"+i).hide();
+					if(i%10==0){
+						label += '<a onClick="bbsListPage('+data+','+count+')">'+(++count)+'</a>';
+					}
+				}
+				for(var i = (block*10); i<((block*10)+10); i++){
+					$("#bbsbook"+i).show();
+				}
+				
+				if(block != (count-1)){
+					label += '<a onClick="bbsListPage('+data+','+(block+1)+')">&raquo;</a>';//넘어가짐	
+				} else {
+					
+				}
+				
+				
+				label += '</div>';
+				
+				$("#bbslistpage").append(label);
+				
+			}
+			
+			/* bbs */
+			callbbs = function ajaxBBS(block) {
+				var url = "/project/bbs/data/" + block;
+				$.ajax({
+					url : url,
+					type : "post",
+					dataType : "json",
+					success : function(data){
+						var returndata = returnlength(data);
+						listBBS(data);
+						bbsListPage(returndata, block);
+					},
+					complete : function(data){
+						
+					}
+				});
+			}
+			
+			function returnlength(data){
+				return data.length;
+			}
+			
+			callbbs(0);
+			
+			/* list뿌리기 */
+			function listBBS(data){
+				var label = "";
+				var count = 0;
+				$.each(data, function(i, d){
+					console.log(d["sp_backgroundColor"]);
+					label += '<li class="col Book" id="bbsbook'+i+'">';
+					if(d["sp_backgroundColor"] != null && d["sp_backgroundColor"] != "null" && d["sp_backgroundColor"] != ""){
+						label += '<div style="width: 130px; height: 180px; background-color:'+d["sp_backgroundColor"]+';">';
+					} else {
+						label += '<div style="width: 130px; height: 180px; background-color:white;">';
+					}
+					
+					/* 제목 */
+					label += '<div>';
+					
+					if(d["sp_title"]!= null && d["sp_title"]!="" && d["sp_title"]!= "null"){
+						if(d["sp_title"].length>10){
+							label += '<p class = "BBS-book-title">'+d["sp_title"].substring(0, 8)+'..'+'</p>';
+						} else {
+							label += '<p class = "BBS-book-title">'+d["sp_title"]+'</p>';	
+						}	
+					} else {
+						label += '<p class = "BBS-book-title">제목</p>';
+					}
+					
+					
+					label += '</div>';
+					/* 글쓴이 */
+					label += '<div>';
+					if(d["sp_author"]!= null && d["sp_author"]!="" && d["sp_author"]!= "null"){
+						if(d["sp_author"].length>10){
+							label += '<p class = "BBS-book-writer">'+d["sp_author"].substring(0, 8)+'..'+'</p>';
+						} else {
+							label += '<p class = "BBS-book-writer">'+d["sp_author"]+'</p>';	
+						}	
+					} else {
+						label += '<p class = "BBS-book-writer">글쓴이</p>';
+					}
+					
+					label += '</div>';
+					/* 이미지 123123123 */
+					label += '<div class = "BBS-book-img">';
+					if(d["sp_author"]!= null && d["sp_author"]!="" && d["sp_author"]!= "null"){
+						label += '<img style="width:100%; height:100%;"  src="/upload/'+d["sp_image"]+'">';	
+					} else {
+						label += '<img style="width:100%; height:100%;" src="/project/resources/img/cover1.jpg">';
+					}
+					label += '</div>';
+					
+					label += '</div>';
+					label += '</li>';
+				});
+				$("#bbslist").append(label);
+			}
+			
+			
 		});
 		
 		
@@ -713,15 +926,28 @@
 				label += '<div class="book-container-block">';
 				label += '<div class="book-container-bbs" style="background-color:'+d["sp_backgroundColor"]+';"><br>';
 				label += '<div style="color:'+d["sp_fontColor"]+'; margin-top: 30px;">';
-				if(d["sp_title"] == null || d["sp_title"] == "") {
-					label += '<h4 class="h4">제목</h4>';
+				if(d["sp_title"] == null || d["sp_title"] == ""  || d["sp_title"] == "null") {
+					label += '<h4>제목</h4>';
 				} else {
-					label += '<h4 class="h4">'+d["sp_title"]+'</h4>';
+					if(d["sp_title"].length>10){
+						var title = d["sp_title"].substring(0, 8);
+						title += '..';
+						label += '<h4>'+title+'</h4>';
+					} else {
+						label += '<h4>'+d["sp_title"]+'</h4>';	
+					}
+					
 				} 
-				if(d["sp_author"] == null || d["sp_author"] =="") {
-					label += '<p>글쓴이</p></div>';
+				if(d["sp_author"] == null || d["sp_author"] =="" || d["sp_author"] =="null") {
+					label += '<h6>글쓴이</h6></div>';
 				} else {
-					label += '<p>'+d["sp_author"]+'</p></div>';
+					if(d["sp_author"].length>10){
+						var author = d["sp_author"].substring(0, 10);
+						author += '..';
+						label += '<h6>'+author+'</h6></div>';	
+					} else {
+						label += '<h6>'+d["sp_author"]+'</h6></div>';	
+					}
 				}
 				label += '<div class="book-container-bbs-img">';
 				
@@ -923,6 +1149,7 @@
 			});
 		}
 		
+		/* 책내용 */
 		function addReview(id, list){
 			/* console.log("addReview");
 			console.log(id);*/
@@ -937,36 +1164,42 @@
 			
 			$("#modal_review_form").empty();
 			
-			label += '<div class="book-container-list">';//1시작
-			label += '<div class="book-container-list-head" align="center">';//2시작
-			label += '<h4>여행후기</h4>';
-			label += '<p>아름다운 여행을 책으로 만들어 기록해 보세요!</p>';
-			label += '<a class="helpbtn mapballoon" href="#">도움말';
-			label += '<span><img style="width:100%; height:100%;" src="/project/resources/img/reviewPlan.png"></span></a>';
-			label += '</div>';//2끝
-			label += '<div class="align-body">';//3시작
-			label += '<div class="book-container-list-body">';//4시작
-			label += '<div class="book-container-list-body-input">';//5시작
-			label += '<div color:red;">';//번외
-			label += '<input class="review-input-1-time" value = "날짜" readonly>';
-			label += '<input class="review-input-1-time" value = "시간" readonly>';
-			label += '<input class="review-input-1-plan" value = "계획" readonly>';
-			label += '</div>';//번외끝
+			/* 1 */
+			label += '<div align="center" style="width: 100%; height: 150px; color:white; font-weight: bold; margin:auto; margin-bottom: 15px; background-image: url(\'/project/resources/img/planheader.jpg\'); background-repeat: no-repeat; background-size: cover;">';
+			label += '<h3 style="line-height: 40px; font-weight: bold;">여 행 후 기</h3>';
+			label += '<p style="line-height: 25px;">아름다운 여행을 책으로 만들어 기록해 보세요!</p>';
+			label += '<button type="button" style="color: #6495ed; border: 0px; background-color: white;">도움말 보기</button>';
+			/* 1- */
+			label += '</div>';
+			
+			/* 2 */
+			label += '<div style="display: inline-block; width: 100%; background-color: #e7e7e7;">';
+			/* 3 */
+			label += '<div class="" style="background-color:white; width: 50%; height:1200px; display:inline-block; float: left;">';
+			/* 10 */
+			label += '<div align="center" class="" style="background-color:white; width: 100%; height:1040px; text-align:center">'
+			label += '<h2>차  례</h2>';
+			label += '<p>여행을 완성해보세요!</p><br>'
 			count = list.length;
 			var slotId = "";
 			$.each(list, function(i, d){
 				slotId = d["slot_id"];
 				isThereBook = d["contents_book"];
-				label += '<div style="border:1px;" id="review'+i+'" onClick="writeReview(\''+
-						d["contents_id"]+'\',\''+d["slot_id"]+'\',\''+d["contents_date"]+'\',\''+d["contents_time"]+'\',\''+
-						d["contents_plan"]+'\',\''+d["contents_name"]+'\',\''+d["contents_desc"]+'\',\''+
-						d["contents_number"]+'\',\''+d["contents_addr"]+'\',\''+d["contents_lat"]+'\',\''+
-						d["contents_lng"]+'\',\''+d["contents_image"]+'\',\''+d["contents_icon"]+'\', \''+
-						d["contents_review"]+'\',\''+d["contents_picture"]+'\', \''+d["contents_book"]+'\','+i+','+count+')">';//6시작
-				label += '<input class="review-input-1-time" value="'+d["contents_date"]+'" readonly>';
-				label += '<input class="review-input-1-time" value="'+d["contents_time"]+'" readonly>';
-				label += '<input class="review-input-1-plan" value="'+d["contents_plan"]+'" readonly>';
-				label += '<input class="review-input-2-plan" value="'+d["contents_name"]+'" readonly>';
+				
+				label += '<div align="center" style="background-color:white;" id="review'+i+'" onClick="writeReview(\''+
+				d["contents_id"]+'\',\''+d["slot_id"]+'\',\''+d["contents_date"]+'\',\''+d["contents_time"]+'\',\''+
+				d["contents_plan"]+'\',\''+d["contents_name"]+'\',\''+d["contents_desc"]+'\',\''+
+				d["contents_number"]+'\',\''+d["contents_addr"]+'\',\''+d["contents_lat"]+'\',\''+
+				d["contents_lng"]+'\',\''+d["contents_image"]+'\',\''+d["contents_icon"]+'\', \''+
+				d["contents_review"]+'\',\''+d["contents_picture"]+'\', \''+d["contents_book"]+'\','+i+','+count+')">';
+				/* 보임 */
+				label += '<div class="test" style="width: 55%; color:black; border-bottom:1px solid orange; padding-top: 7px; padding-bottom: 7px;">';
+				label += '<input class="" style="text-align:right; width:20%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_date"]+'" readonly>';
+				label += '<input class="" style="text-align:center	; width:20%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_time"]+'" readonly>';
+				label += '<input class="" style="text-align:left; width:60%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_plan"]+'" readonly><br>';
+				label += '<input class="" style="text-align:center; width:100%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_name"]+'" readonly>';
+				label += '</div>';
+				/* 안보임 */
 				label += '<input type="hidden" id="name'+i+'" value="'+d["contents_name"]+'">';
 				label += '<input type="hidden" id="desc'+i+'" value="'+d["contents_desc"]+'">';
 				label += '<input type="hidden" id="number'+i+'" value="'+d["contents_number"]+'">';
@@ -975,49 +1208,68 @@
 				label += '<input type="hidden" id="lng'+i+'" value="'+d["contents_lng"]+'">';
 				label += '<input type="hidden" id="image'+i+'" value="'+d["contents_image"]+'">';
 				label += '<input type="hidden" id="icon'+i+'" value="'+d["contents_icon"]+'">';
-				label += '</div>';//6끝
+				label += '</div>';
 			});
-			label += '<div align="center">'; //7시작
+			
+			/* 10- */
+			label += '</div>';
+			
+			/* 9 */
+			label += '<div class="" style="background-color:white; width: 100%; height:138px;">'
 			label += '<nav aria-label="Page navigation example">';
 			label += '<ul class="pagination">';
 			for(var i = 0; i < (count/15); i++){
 				label += '<li class="page-item"><a class="page-link" onClick="pageReview('+(i+1)+')">'+(i+1)+'</a></li>';	
 			}
-			label += '</ul></nav></div>'; //7끝
-			label += '</div>';//5끝
-			label += '</div>';//4끝
-			//여기서부터 function으로 id를 받아서 처리해야함
-			label += '<div class="book-container-list-body">';//8시작
+			label += '</ul></nav>';
+			/* 9- */
+			label += '</div>';
+			
+			/* 3- */
+			label += '</div>';
+			
+			/* 4 */
+			label += '<div align="center" class="" style="background-color:white; width: 50%; height:1200px; display:inline-block; float: left;">';
+			
+			
 			for(var i = 0; i < count; i++){
-				label += '<div id="reviewlist'+i+'" class="book-container-list-body-input">';//9시작
-				label += '<div class="book-container-review-map">';//10시작
-				label += '<div id="reviewtitle'+i+'" align="center">';//11시작
+				label += '<div id="reviewlist'+i+'" class="">';//9시작
+				label += '<div>';//10시작 사진이랑 이미지가 다들어가야함
+				/* 제목 */
+				label += '<div id="reviewtitle'+i+'" align="center" class="basic-line" style="margin-top:10px; width: 90%; height: 78px; background-color:white;">';//11시작
 				label += '</div>';//11끝
-				label += '<div id="reviewmap'+i+'" align="center">';
+				/* 이미지 */
+				label += '<div class="basic-line" id="reviewmap'+i+'" align="center" style="width: 90%; height: 500px; background-color:white;">';
 				label += '</div>';
 				label += '</div>';//10끝
-				label += '<div class="book-container-review-btn" align="right">';//12시작
-				label += '<form id="reviewaddimage'+i+'">';
-				label += '<input id="hiddeninput" type="file">';
-				label += '<button type="button" id="hiddenbutton">계획을 클릭해서 후기를 작성하세요</button>'
+				label += '<div class="basic-line" style="width: 90%; height: 80px; background-color:white;">';//12시작
+				label += '<form  id="reviewaddimage'+i+'">';
 				label += '</div>';//12끝
-				label += '<div id="reviewtextarea'+i+'" class="book-container-review-list">';//13시작
-				/* label += '<textarea rows="12" cols="82" style="resize:none;">';
-				label += '</textarea>'; */
+				label += '<div id="reviewtextarea'+i+'" class="basic-line" style="width: 90%; height: 342px; background-color:white;">';//13시작
 				label += '</div></form>';//13끝
-				label += '</div>';//9끝
+				label += '</div>';//9끝label += '</div>';//9끝	
 			}
-			label += '</div>';//8끝
-			label += '</div>';//3끝
-			label += '<div class="book-container-list-foot" align="right">';//14시작
+						
+			/* 11 */	
+			label += '<div id="savereviewbtn" class="" style="width: 90%; height: 95px; background-color:white;">';
+			/* 11- */
+			label += '</div>';
 			
+			/* 12 책만들기 버튼 */	
+			label += '<div id="" class="" style="width: 90%; height: 92px; background-color:white; padding-top: 25px;">';
 			if(isThereBook == 'N'){
 				label += '<button type="button" class="list-input-btn" style="margin-right:30px;" onClick="updateReview(\''+slotId+'\','+count+')">책 만들기</button>';	
 			}
-			
 			label += '<button type="button" class="list-input-btn" data-dismiss="modal">끝내기</button>';
-			label += '</div>';//14끝
-			label += '</div>';//1끝
+			/* 12- */
+			label += '</div>';
+			
+			/* 4- */
+			label += '</div>';
+
+			/* 2- */
+			label += '</div>';
+			
 			$("#modal_review_form").append(label);
 			reviewList(0, count);
 			pageReview(1);
@@ -1036,23 +1288,24 @@
 			$("#reviewmap"+i).empty();
 			$("#reviewaddimage"+i).empty();
 			$("#reviewtextarea"+i).empty();
+			$("#savereviewbtn").empty();
 			reviewList(i, count);
 			
-			var titleLabel = '<p>'+plan+'</p>';
+			var titleLabel = '<h3>'+plan+'</h3>';
 			$("#reviewtitle"+i).append(titleLabel);
 			
 			var mapLabel = "";
 			if(picture==null || picture=="" || picture=="null"){
 				mapLabel = '<img src="">';	
 			} else {
-				mapLabel = '<img width="500px" height="346px" src="/upload/'+picture+'">';
+				mapLabel = '<img width="100%" height="500px" src="/upload/'+picture+'">';
 			}
 			$("#reviewmap"+i).append(mapLabel);
 			
 			review = review.replace(/<br>/g, '\n');
 			
 			var textAreaLabel = "";
-			textAreaLabel += '<textarea id="reviewarea'+i+'" name="reviewarea" rows="12" cols="82" style="resize:none;">'; 
+			textAreaLabel += '<textarea id="reviewarea'+i+'" name="reviewarea" style="resize:none; width:100%; height: 100%;">'; 
 			if(review == null || review == "" || review == "null"){
 				
 			} else {
@@ -1063,9 +1316,12 @@
 			
 			var addImageLabel = '';
 			
+			/* 파일업로드 */
 			if(book == "N"){
-				addImageLabel += '<input type="file" id="addImage" name="addImage">';
-				addImageLabel += '<button type="button" onClick="uploadReview('+i+',\''+slotid+'\')">후기 저장하기</button>';	
+				addImageLabel += '<div style="background-image: url(\'/project/resources/img/planheader.jpg\')";>';
+				addImageLabel += '<input type="file" id="addImage" name="addImage" class="upload">';
+				addImageLabel += '</div>';
+				/* addImageLabel += '<button type="button" onClick="uploadReview('+i+',\''+slotid+'\')">후기 저장하기</button>'; */	
 			}
 						
 			addImageLabel += '<input type="hidden" name="reviewid" value="'+id+'">';
@@ -1083,6 +1339,10 @@
 			addImageLabel += '<input type="hidden" name="reviewicon" value="'+icon+'">';
 			addImageLabel += '<input type="hidden" name="reviewpicture" value="'+picture+'">';
 			$("#reviewaddimage"+i).append(addImageLabel);	
+			
+			var btnLabel = '';
+			btnLabel = '<button style="margin-top: 25px;" class="review-btn" type="button" onClick="uploadReview('+i+',\''+slotid+'\')">후기 저장하기2</button>';
+			$("#savereviewbtn").append(btnLabel);
 		}
 		
 		function uploadReview(i, slotId){
@@ -1111,6 +1371,7 @@
 			});
 		}
 		
+		/* 차례 */
 		function addIndex(id, list){
 			/* console.log(list); */
 			var label = "";
@@ -1120,36 +1381,36 @@
 				$("#slotIndexModal").modal("show");
 			}, 500);
 			$("#modal_slot_index_form").empty();
-			
-			label += '<div class="book-container-list">';
-			label += '<div class="book-container-list-head" align="center">';
-			label += '<h4>여 행 계 획</h4>';
-			label += '<p>계획 부분은 책에 있어 차례에 들어갈 부분입니다.';
-			label += ' 완성된 계획은 여행 후기를 쓸 때 잘 정리할 수 있게 도와줍니다.</p>';
-			label += '<a class="helpbtn mapballoon" href="#">도움말';
-			label += '<span><img style="width:100%; height:100%;" src="/project/resources/img/plan.png"></span></a>';
+			/* 1 */
+			label += '<div style="width: 100%; height: 150px; color:white; font-weight: bold; margin-bottom: 15px; background-image: url(\'/project/resources/img/planheader.jpg\'); background-repeat: no-repeat; background-size: cover;">';
+			label += '<h3 style="line-height: 40px; font-weight: bold;">여 행 계 획</h3>';
+			label += '<p style="line-height: 25px;">계획 부분은 책에 있어 차례에 들어갈 부분입니다.<br>완성된 계획은 여행 후기를 쓸 때 잘 정리할 수 있게 도와줍니다.</p>';
+			label += '<button type="button" style="color: #6495ed; border: 0px; background-color: white;">도움말 보기</button>';
+			/* 1- */
 			label += '</div>';
-			label += '<div class="align-body">';
-			label += '<div class="book-container-list-body">';
-			label += '<div class="book-container-list-body-input">';
-			label += '<div style="text-align:center; color:red;">';
-			label += '<input class="list-input-2-time" value = "날짜" readonly>';
-			label += '<input class="list-input-2-time" value = "시간" readonly>';
-			label += '<input class="list-input-2-plan" value = "계획" readonly>';
-			label += '</div>';
-			var count=0;
 			
-			/* 삭제버튼 처리 */
-			/* 해결방법 id밑에 append 새로쓸 것 */
+			/* 2 */
+			label += '<div style="display: inline-block; width: 100%;">';
+			/* 3 */
+			label += '<div class="basic-line" style="width: 50%; height:960px; display:inline-block; float: left; padding-top: 8px;">';
+			label += '<input type="text" style="width: 20%" value="날짜" readonly>';
+			label += '<input type="text" style="width: 20%" value="시간" readonly>';
+			label += '<input type="text" style="width: 60%" value="계획" readonly>';
+			
+			/* 4 */
+			label += '<div class="basic-line" style="width: 100% height: auto; margin-top: 10px; border: 0px; margin-bottom: 5px;">';
+			var count = 0;
+			
 			$.each(list, function(i, d){			
 				isThereBook = d["contents_book"];
-				label += '<div id="planList'+i+'">';
+				/* 5 */
+				label += '<div class="test" id="planList'+i+'">';
 				label += '<form>';
-				label += '<input type="date" required class="list-input-1-time" placeholder="Date" id="date'+i+'"';
+				label += '<input type="date" style="width : 20%;" required placeholder="Date" id="date'+i+'"';
 				label += 'value="'+d["contents_date"]+'">';
-				label += '<input type="time" required class="list-input-1-time" placeholder="Time" id="time'+i+'"';
+				label += '<input type="time" style="width : 20%;" required  placeholder="Time" id="time'+i+'"';
 				label += 'value="'+d["contents_time"]+'">';
-				label += '<input class="list-input-1-plan" placeholder="Plan" id="plan'+i+'"';
+				label += '<input class="" style="width : 60%;" placeholder="Plan" id="plan'+i+'"';
 				label += 'value="'+d["contents_plan"]+'">';
 				label += '<input type="hidden" id="namebtn'+i+'" value="'+d["contents_name"]+'">';
 				label += '<input type="hidden" id="descbtn'+i+'" value="'+d["contents_desc"]+'">';
@@ -1159,11 +1420,12 @@
 				label += '<input type="hidden" id="lngbtn'+i+'" value="'+d["contents_lng"]+'">';
 				label += '<input type="hidden" id="imagebtn'+i+'" value="'+d["contents_image"]+'">';
 				label += '<input type="hidden" id="iconbtn'+i+'" value="'+d["contents_icon"]+'">';
+				
 				var btnId = 'btn'+i;
-				/* label += '<p>'; */
-				label += '<ul>';
-				label += '<li id="mapbtn'+i+'">';
-				label += '<button type="button" class="list-input-2-btn-main"';
+				
+				label += '<div class="basic-line" style="width: 100%;">';
+				label += '<div id="mapbtn'+i+'" style="width: 70%; display: inline-block;">';
+				label += '<button type="button" style="width: 100%; border: 0px; background-color: white"';	
 				if(d["contents_name"] == null || d["contents_name"] == "null" || d["contents_name"] == ""){
 					label += 'id="btn'+i+'">';
 					label += '&nbsp;</button>';
@@ -1173,27 +1435,27 @@
 					+d["contents_lng"]+'\',\''+d["contents_image"]+'\',\''+d["contents_icon"]+'\',\''+btnId+'\',\''+true+'\')">';
 					label += d["contents_name"]+'</button>';
 				}
-				label += '</li>';
-				label += '<li>';
-				/* label += '</p>'; */
-				/* label += '<button type="button" class="list-input-2-btn-main" id="btn'+i+'">'+d["contents_name"]+'</button>'; */
-				label += '<button type="button" class="list-input-2-btn-side" onClick="deleteMap(\''+i+'\')">삭제</button>';
-				label += '<button type="button" class="list-input-2-btn-side" onClick="getAccomMap(\'btn'+i+'\')">숙소</button>';
-				label += '<button type="button" class="list-input-2-btn-side" onClick="getRentMap(\'btn'+i+'\')">렌트</button>';
-				label += '<button type="button" class="list-input-2-btn-side" onClick="getLeisureMap(\'btn'+i+'\')">레저</button>';	
-				label += '</li>';
-				label += '</ul>';
+				label += '</div>';
+				label += '<div style="width: 30%; display: inline-block;">';
+				label += '<button type="button" class="glyphicon glyphicon-trash bookingbtn" onClick="deleteMap(\''+i+'\')"></button>';
+				label += '<button type="button" class="glyphicon glyphicon-home" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getAccomMap(\'btn'+i+'\')"></button>';
+				label += '<button type="button" class="glyphicon glyphicon-road" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getRentMap(\'btn'+i+'\')"></button>';
+				label += '<button type="button" class="glyphicon glyphicon-music" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getLeisureMap(\'btn'+i+'\')"></button>';	
+				label += '</div>';
+				label += '</div>';
 				label += '</form>';
+				/* 5- */
 				label += '</div>';
 				
 				count = i;
 			});
-			//console.log(count);
+			
 			for(var i=(count+1); i<75; i++){
-				label += '<div id="planList'+i+'">';
-				label += '<input type="date" required class="list-input-1-time" placeholder="Date" id="date'+i+'">';
-				label += '<input type="time" required class="list-input-1-time" placeholder="Time" id="time'+i+'">';
-				label += '<input class="list-input-1-plan" placeholder="Plan" id="plan'+i+'">';
+				label += '<div class="test" id="planList'+i+'">';
+				label += '<form>';
+				label += '<input type="date" style="width : 20%;" required placeholder="Date" id="date'+i+'">';
+				label += '<input type="time" style="width : 20%;" required  placeholder="Time" id="time'+i+'">';
+				label += '<input type="text" style="width : 60%;" placeholder="Plan" id="plan'+i+'"';
 				label += '<input type="hidden" id="namebtn'+i+'">';
 				label += '<input type="hidden" id="descbtn'+i+'">';
 				label += '<input type="hidden" id="numberbtn'+i+'">';
@@ -1202,13 +1464,26 @@
 				label += '<input type="hidden" id="lngbtn'+i+'">';
 				label += '<input type="hidden" id="imagebtn'+i+'">';
 				label += '<input type="hidden" id="iconbtn'+i+'">';
-				label += '<button type="button" class="list-input-2-btn-main" id="btn'+i+'">&nbsp;</button>';
-				label += '<button type="button" class="list-input-2-btn-side" onClick="deleteMap(\''+i+'\')">삭제</button>';
-				label += '<button type="button" class="list-input-2-btn-side" onClick="getAccomMap(\'btn'+i+'\')">숙소</button>';
-				label += '<button type="button" class="list-input-2-btn-side" onClick="getRentMap(\'btn'+i+'\')">렌트</button>';
-				label += '<button type="button" class="list-input-2-btn-side" onClick="getLeisureMap(\'btn'+i+'\')">레저</button>';	
+				var btnId = 'btn'+i;
+				/* label += '<p>'; */
+				label += '<div class="basic-line" style="width: 100%;">';
+				label += '<div id="mapbtn'+i+'" style="width: 70%; display: inline-block;">';
+				label += '<button type="button" style="width: 100%; border: 0px; background-color: white" id="btn'+i+'">';
+				label += '&nbsp;</button>';
 				label += '</div>';
-			}			
+				label += '<div style="width: 30%; display: inline-block;">';
+				label += '<button type="button" class="glyphicon glyphicon-trash bookingbtn" onClick="deleteMap(\''+i+'\')"></button>';
+				label += '<button type="button" class="glyphicon glyphicon-home" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getAccomMap(\'btn'+i+'\')"></button>';
+				label += '<button type="button" class="glyphicon glyphicon-road" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getRentMap(\'btn'+i+'\')"></button>';
+				label += '<button type="button" class="glyphicon glyphicon-music" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getLeisureMap(\'btn'+i+'\')"></button>';	
+				label += '</div>';
+				label += '</div>';
+				label += '</form>';
+				/* 5- */
+				label += '</div>';	
+			}
+			
+			/* plan-page */
 			label += '<div align="center">';
 			label += '<nav aria-label="Page navigation example">';
 			label += '<ul class="pagination">';
@@ -1218,21 +1493,27 @@
 			label += '</ul>';
 			label += '</nav>';
 			label += '</div>';
+			
+			/* 4- */
 			label += '</div>';
+			/* 3- */
 			label += '</div>';
-			label += '<div class="book-container-list-body">';
-			label += '<div class="book-container-list-body-input">';
-			label += '<div class="book-container-list-body-input-map" id="map">';
+			/* 6 */
+			label += '<div class="basic-line" style="width: 50%; height: 960px; display: inline-block; float: left;">';
+			/* 7 */
+			label += '<div class="basic-line" style="width: 98%; height: 600px; background-color:white; margin-bottom: 10px;" id="map" >';
 			/* label += '<img src="/project/resources/img/map.jpg" style="width:100%; height:100%;">'; */
+			/* 7- */
 			label += '</div>';
-			label += '<div class="book-container-list-body-input-list" id = "">';
-			/* label += '<img src="/project/resources/img/list.png" style="width:100%; height:100%;">'; */
-			label += '<div class="book-container-list-body-input-list-contentList" id="contentList"></div>';
-			label += '<div class="pageViewList" id="pageViewList" align="center"></div>';
+			/* 8 */
+			label += '<div class="basic-line" id="contentList" style="width: 98%; height: 260px; background-color: white;">';
+			/* 8- */
 			label += '</div>';
+			//map 밑에 페이지처리
+			label += '<div class="" id="pageViewList" style="width: 98%; height: auto;" align="center"></div>';
+			/* 6- */
 			label += '</div>';
-			label += '</div>';
-			label += '</div>';
+			
 			$("#modal_slot_index_form").append(label);
 			pagePlan(1);
 			addIndexButton(id, isThereBook);
@@ -1241,7 +1522,7 @@
 		function deleteMap(i){
 			$("#mapbtn"+i).empty();
 			var label = "";
-			label += '<button type="button" class="list-input-2-btn-main"';
+			label += '<button type="button" style="width: 100%; border: 0px; background-color: white"';
 			label += 'id="btn'+i+'">';
 			label += '&nbsp;</button>';
 			$("#mapbtn"+i).append(label);
@@ -1254,20 +1535,23 @@
 			$("#imagebtn"+i).val("");
 			$("#iconbtn"+i).val("");
 		}
+		
 		function helpPlan(){
 			
 		}
 		
 		function addIndexButton(id, book){
 			var label="";
-			
-			label += '<div class="book-container-list-foot" align="right">';
+			/* 9 */
+			label += '<div class="" align="right">';
 			/* label += '<button type="button" class="list-input-btn" style="margin-right:20px;" onClick="addIndex(\''+id+'\')">Reset</button>'; */
 			if(book == 'N'){
 				label += '<button type="button" class="list-input-btn" style="margin-right:20px;" onClick="planSave(\''+id+'\')">저장하기</button>';	
 			}			
 			label += '<button type="button" class="list-input-btn" data-dismiss="modal">끝내기</button>';
+			/* 9- */
 			label += '</div>';
+			/* 2- */
 			label += '</div>';	
 			$("#modal_slot_index_form").append(label);
 			
@@ -1489,7 +1773,7 @@
 			$("#contentList").empty();
 			$.each(listData, function(i, d){
 				/* label += '<button class="list-input-3-btn-side" type="button" onClick="viewList(\''+listData+'\')">'+d["name"]+'</button>'; */ 
-				label += '<button id="btnViewList'+i+'" class="list-input-3-btn-side" type="button" onClick="viewList(\''+d["lat"]+'\',\''+d["lng"]+'\',\''+icon+'\',\''+btnId+'\')">'+d["name"]+'</button>';
+				label += '<button id="btnViewList'+i+'" class="list-input-4-btn-side" type="button" onClick="viewList(\''+d["lat"]+'\',\''+d["lng"]+'\',\''+icon+'\',\''+btnId+'\')">'+d["name"]+'</button>';
 				if(i%10==0){
 					page++;
 				}	
@@ -1512,9 +1796,9 @@
 				$("#btnViewList"+i).show();
 			}
 			var label = "";
-			label += '<ul class="pagination2">';
+			label += '<ul class="pagination pagination-sm">';
 			for(var i=0; i<end; i++){
-				label += '<li class="page-item"><a type="button" class="page-link" onClick="pageViewList('+index+','+(i+1)+','+end+')">'+(i+1)+'</a></li>';	
+				label += '<li class=""><a type="button" class="page-link" onClick="pageViewList('+index+','+(i+1)+','+end+')">'+(i+1)+'</a></li>';	
 			}
 			label += '</ul>';
 			$("#pageViewList").append(label);			
@@ -1525,7 +1809,7 @@
 				$("#planList"+j).hide();	
 			}
 			
-			for(var j=((i-1)*15); j<((i*15)-1); j++){
+			for(var j=((i-1)*15); j<=((i*15)-1); j++){
 				$("#planList"+j).show();
 			}
 		}
@@ -1534,7 +1818,7 @@
 			for(var j=0; j<75; j++){
 				$("#review"+j).hide();
 			}
-			for(var j=((i-1)*15); j<((i*15)-1); j++){
+			for(var j=((i-1)*15); j<=((i*15)-1); j++){
 				$("#review"+j).show();
 			}
 		}

@@ -377,12 +377,12 @@ h2 {
 }
 
 .modal-content.modal-coversize {
-  height: 600px;
+  height: 680px;
   min-height: 50%;
 }
 
 .modalposition {
-	padding-top: 15vh;
+	padding-top: 6vh;
 }
 
 .modalposition1 {
@@ -490,8 +490,8 @@ input.placeholder {
 .book-container-list {
    width: 100%;
    height: auto;
-   /* display: flex; */
-   flex-direction:inital;
+   /* display: flex;
+   flex-direction:inital; */
    background-color: white;
    /* border: 1px solid red; */
 }
@@ -608,10 +608,11 @@ input.placeholder {
    height: 20px;
 }
 
-.list-input-2-btn-main {
+.list-input-7-btn-main {
+	display: inline-block;
    background-color: rgba(0,0,0,0);
    color: black;
-   border: 2px solid #e7e7e7; /* Gray */
+   border: 2px solid #e7e7e7; 
    transition-duration: 0.4s;
    width: 58%;
    height: 18px;
@@ -619,15 +620,16 @@ input.placeholder {
    text-align: center;
 }
 
-.list-input-2-btn-main:hover {
+.list-input-7-btn-main:hover {
    background-color: #d4f4fa;
    color: #747474;
 }
 
-.list-input-2-btn-side {
+.list-input-7-btn-side {
+	display: inline-block;
    background-color: rgba(0,0,0,0);
    color: black;
-   border: 2px solid #e7e7e7; /* Gray */
+   border: 2px solid #e7e7e7;
    transition-duration: 0.4s;
    width: 9%;
    height: 18px;
@@ -635,7 +637,23 @@ input.placeholder {
    text-align: center;
 }
 
-.list-input-2-btn-side:hover {
+.list-input-7-btn-side:hover {
+   background-color: #d4f4fa;
+   color: #747474;
+}
+
+.list-input-4-btn-side {
+   background-color: rgba(0,0,0,0);
+   color: gray;
+   border: 2px solid #e7e7e7; /* Gray */
+   transition-duration: 0.4s;
+   width: 100%;
+   height: 25px;
+   font-size: 13px;
+   text-align: center;
+}
+
+.list-input-4-btn-side:hover {
    background-color: #d4f4fa;
    color: #747474;
 }
@@ -770,99 +788,7 @@ input.placeholder {
   min-height: 70%;
 }
 
-.pagination2 {
-	position: relative;
-	display: inline-block;
-	padding-left: 0;
-	border-radius: 4px
-}
 
-
-.pagination2>li {
-	display: inline
-}
-
-.pagination2>li>a, .pagination2>li>span {
-	position: relative;
-	float: left;
-	padding: 6px 12px;
-	margin-left: -1px;
-	line-height: 1.42857143;
-	color: #337ab7;
-	text-decoration: none;
-	background-color: #fff;
-	border: 1px solid #ddd
-}
-
-.pagination2>li:first-child>a, .pagination2>li:first-child>span {
-	margin-left: 0;
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px
-}
-
-.pagination2>li:last-child>a, .pagination2>li:last-child>span {
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px
-}
-
-.pagination2>li>a:focus, .pagination2>li>a:hover, .pagination2>li>span:focus,
-	.pagination2>li>span:hover {
-	z-index: 2;
-	color: #23527c;
-	background-color: #eee;
-	border-color: #ddd
-}
-
-.pagination2>.active>a, .pagination2>.active>a:focus, .pagination2>.active>a:hover,
-	.pagination2>.active>span, .pagination2>.active>span:focus, .pagination2>.active>span:hover
-	{
-	z-index: 3;
-	color: #fff;
-	cursor: default;
-	background-color: #337ab7;
-	border-color: #337ab7
-}
-
-.pagination2>.disabled>a, .pagination2>.disabled>a:focus, .pagination2>.disabled>a:hover,
-	.pagination2>.disabled>span, .pagination2>.disabled>span:focus,
-	.pagination2>.disabled>span:hover {
-	color: #777;
-	cursor: not-allowed;
-	background-color: #fff;
-	border-color: #ddd
-}
-
-.pagination2-lg>li>a, .pagination2-lg>li>span {
-	padding: 10px 16px;
-	font-size: 18px;
-	line-height: 1.3333333
-}
-
-.pagination2-lg>li:first-child>a, .pagination2-lg>li:first-child>span {
-	border-top-left-radius: 6px;
-	border-bottom-left-radius: 6px
-}
-
-.pagination2-lg>li:last-child>a, .pagination2-lg>li:last-child>span {
-	border-top-right-radius: 6px;
-	border-bottom-right-radius: 6px
-}
-
-.pagination2-sm>li>a, .pagination2-sm>li>span {
-	padding: 5px 10px;
-	font-size: 12px;
-	line-height: 1.5
-}
-
-.pagination2-sm>li:first-child>a, .pagination2-sm>li:first-child>span {
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px
-}
-
-.pagination2-sm>li:last-child>a, .pagination2-sm>li:last-child>span {
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px
-}
 
 .pageViewList{
 	position: relative;
@@ -1037,7 +963,7 @@ button:focus.mapballoon span {
 
 .book-container-review-list {
    width: 98%;
-   height: 250px;
+   height: 237px;
    background-color: white;
    border: 1px solid black;
    margin: 6px;
@@ -1098,6 +1024,205 @@ button:focus.mapballoon span {
 }
 
 .modal-content.modal-90size {
-  height: 900px;
+  height: 950px;
   min-height: 65%;
+}
+
+.test {
+		 
+}
+
+.test:hover {
+	transition-duration: 0.4s;
+	background: #e7e7e7;  
+}
+
+.basic-line {
+	border: 1px solid black;
+}
+
+.pagination {
+	display: inline-block;
+	padding-left: 0;
+	margin: 20px 0;
+	border-radius: 4px
+}
+
+.pagination>li {
+	display: inline-block;
+}
+
+.pagebtn{
+	width: 100%;
+	height: 25px;
+	background-color: white;
+	font-size: 15px; 
+}
+
+.pagination>li>a, .pagination>li>span {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #337ab7;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+	margin-left: 0;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	z-index: 2;
+	color: #23527c;
+	background-color: #eee;
+	border-color: #ddd
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #337ab7;
+	border-color: #337ab7
+}
+
+.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover,
+	.pagination>.disabled>span, .pagination>.disabled>span:focus,
+	.pagination>.disabled>span:hover {
+	color: #777;
+	cursor: not-allowed;
+	background-color: #fff;
+	border-color: #ddd
+}
+
+.pagination-lg>li>a, .pagination-lg>li>span {
+	padding: 10px 16px;
+	font-size: 18px;
+	line-height: 1.3333333
+}
+
+.pagination-lg>li:first-child>a, .pagination-lg>li:first-child>span {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px
+}
+
+.pagination-lg>li:last-child>a, .pagination-lg>li:last-child>span {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px
+}
+
+.pagination-sm>li>a, .pagination-sm>li>span {
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5
+}
+
+.pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px
+}
+
+.pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px
+}
+
+.pager {
+	padding-left: 0;
+	margin: 20px 0;
+	text-align: center;
+	list-style: none
+}
+
+.pager li {
+	display: inline
+}
+
+.pager li>a, .pager li>span {
+	display: inline-block;
+	padding: 5px 14px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 15px
+}
+
+.pager li>a:focus, .pager li>a:hover {
+	text-decoration: none;
+	background-color: #eee
+}
+
+.pager .next>a, .pager .next>span {
+	float: right
+}
+
+.pager .previous>a, .pager .previous>span {
+	float: left
+}
+
+.pager .disabled>a, .pager .disabled>a:focus, .pager .disabled>a:hover,
+	.pager .disabled>span {
+	color: #777;
+	cursor: not-allowed;
+	background-color: #fff
+}
+
+input[type=file] {             /*input tag 공통 스타일*/
+  width: 100%;
+  height: 78px;
+  border-radius: 3px;
+  font-weight: 600;
+  border-color: transparent;
+  font-size: 25px;
+  background: hotpink;
+  color: #fff;
+  cursor: pointer;
+  z-index: 999;
+}
+input.upload {  
+  opacity: 0;       /*input type="file" tag 투명하게 처리*/
+  position: relative;
+}
+/*button tag 에 원하는 스타일 적용*/
+button.replace {
+  position: absolute;
+  width: 200px;
+  height: 78px;
+  border-radius: 3px;
+  font-weight: 600;
+  border-color: transparent;
+  font-size: 25px;
+  background: hotpink;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 후기 저장하기 버튼 */
+.review-btn {
+   background-color: rgba(0,0,0,0);
+   color: gray;
+   border: 2px solid #e7e7e7; /* Gray */
+   transition-duration: 0.4s;
+   width: 50%;
+   height: 45px;
+   font-size: 17px;
+   text-align: center;
+}
+
+.review-btn:hover {
+   background-color: #d4f4fa;
+   color: #747474;
 }
