@@ -46,8 +46,8 @@
 				<a href="#registModal" style="text-decoration: none;" data-toggle="modal"
 					data-backdrop="static" data-target="#registModal" id="modal_regist">
 					<font color="white" size="4px">회 원 가 입</font></a>
-				<button class="btn btn-primary" id="upload_test">업로드테스트</button>
-				<button class="btn btn-primary" id="map_test">map테스트</button>						
+				<!-- <button class="btn btn-primary" id="upload_test">업로드테스트</button>
+				<button class="btn btn-primary" id="map_test">map테스트</button>		 -->				
 			</div>
 		</section>	
 		<footer>

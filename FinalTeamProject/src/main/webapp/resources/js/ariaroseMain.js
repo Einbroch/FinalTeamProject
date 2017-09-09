@@ -61,7 +61,7 @@ $(function() {
 			data : JSON.stringify(getData),
 			dataType : "json",
 			success : function(data) {
-				alert("개인 페이지로 넘어갑니다아~~");
+				/*alert("개인 페이지로 넘어갑니다");*/
 				location.href = "/project/user/userMain"
 				
 			},
@@ -331,7 +331,7 @@ $(function() {
 			data : JSON.stringify(Data),
 			dataType : "json",
 			success : function(data) {
-				alert("슬롯이 생성되었음 로그인하고 이용해라");
+				//alert("슬롯이 생성되었음 로그인하고 이용해라");
 			},
 			error : function(data) {
 				alert("슬롯저장 실패");

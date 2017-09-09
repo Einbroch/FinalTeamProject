@@ -31,7 +31,7 @@
  	<select id="getBBSList" resultType="SlotPlanVO" parameterType="int">
  		SELECT *
 		FROM SLOTPLAN 
-		WHERE SP_BOOK='Y' ORDER BY SP_DATE LIMIT ${value} , 10000;
+		WHERE SP_BOOK='Y' ORDER BY SP_DATE DESC LIMIT ${value} , 10000;
  	</select>
  	
  	<insert id="registSlotPlan" parameterType="SlotPlanVO">
@@ -52,4 +52,8 @@
  			#{sp_title}, 
  			#{sp_author});
  	</insert>
+ 	
+ 	<select id="searchBBSList" parameterType="SearchVO" resultType="SlotPlanVO">
+ 		SELECT * FROM SLOTPLAN WHERE SP_BOOK = 'Y' AND SP_TITLE LIKE #{search} ORDER BY SP_DATE DESC;
+ 	</select>
  </mapper>

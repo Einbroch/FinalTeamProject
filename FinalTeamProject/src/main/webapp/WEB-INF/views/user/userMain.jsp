@@ -12,6 +12,7 @@
 <link href="/project/resources/css/farbtastic.css" rel="stylesheet">
 <link href="/project/resources/css/Qqu.css" rel="stylesheet">
 <link href="/project/resources/css/Qqu.min.css" rel="stylesheet">
+<link href="/project/resources/css/basic.css" rel="stylesheet">
 <style type="text/css">
 @media all and (max-width:450px) {
 	
@@ -70,7 +71,7 @@
 				둘이서 함께 나누었던 기억.. 사랑하는 이와 <br>
 				같은 시간대에 같은 공간에서 같은 추억을 공유해도 <br>
 				사람마다 기억의 유효기간은 다릅니다. <br>
-				그 추억을 제주일기에서 공유하세요! 롸잇나우!! 씨벌!!
+				그 추억을 제주일기에서 공유하세요! 롸잇나우!!
 				</p>
 			</div>
 		</div>
@@ -115,6 +116,59 @@
 	</div>
 	</section>
 
+	<!-- 플립북 -->
+	   <!-- 여기서부터  상세페이지 -->
+
+   <div class="modal fade position" id="book_modal" role="dialog">
+      <div class="modal-dialog modal-size" role="document">
+         <div class="modal-content modal-size" style="overflow: hidden;">
+
+            <!-- 헤더 -->
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h3 class="modal-title" align="center">
+                  <font color="black"> <span class="glyphicon glyphicon-list"></span>
+                  </font>
+               </h3>
+            </div>
+            <!-- 바디 -->
+            <!-- ㅋㅋㅋ -->
+            <div class="modal-body" align="center">
+               <div class="flipbook-viewport">
+                  <!-- 사이드바 -->
+                  <div id="sidebar" class="sidemenubar">
+                     
+                  </div>
+                  <!-- 플립북 -->
+                  <div class="container">
+                     <div class="flipbook" id="userReviewPage" >
+                     	<!-- 첫 페이지 고정 -->
+                        <div class="hard" style="border: 1px solid #000000;" id="firstpage">
+                           
+                        </div>
+                        <!-- 두번째 페이지 고정 -->
+                        <div class="hard" style="border: 1px solid #000000;" id="secondpage">
+                           
+                        </div>
+                        <!-- 세번째 페이지 고정 -->
+                        <div
+                           style="border: 1px solid #000000; background-color: #9ED685; opacity: 1;"></div>
+                        <!-- 네번째 페이지 고정 -->
+                        <div
+                           style="border: 1px solid #000000; background-color: #9ED685; opacity: 1;"></div>
+                        
+                        <!-- 다섯번째 페이지 고정 -->
+                        <div style="background-image: url(/project/resources/img/first_title.png)"></div>
+					 </div>
+                  </div>
+               </div>
+            </div>
+            <!-- <div class="modal-footer"></div> -->
+            <br>
+         </div>
+      </div>
+   </div>
+   <!-- 여기까지 상세페이지 -->
 
 	<!-- 게시판 -->
 	<section class="BBS">
@@ -131,10 +185,10 @@
 			</div>
 			<div>
 				<div style="margin-top: 85px;">
-					<input class="search-input" type="search" placeholder="찾아보기" style="width: 40%; height: 29px; margin-bottom: 30px; text-align: center;">		
+					<input id="bbssearch" class="search-input" type="search" placeholder="찾아보기" style="width: 40%; height: 29px; margin-bottom: 30px; text-align: center;">		
 				</div>
 				<div>
-					<button class="searchbtn"></button>
+					<button id="bbssearchbtn" class="searchbtn"></button>
 				</div>
 			</div>
 		</div>
@@ -233,7 +287,7 @@
 					</h3>
 				</div>
 				<div class="modal-body basic-line">
-					<form class="w3-container basic-line" style="width: 100%;" method="post" id="modal_slot_index_form">
+					<form class="w3-container" style="width: 100%;" method="post" id="modal_slot_index_form">
 							
 					</form>
 				</div>
@@ -304,15 +358,21 @@
 
 	<!-- <script src="/project/resources/js/jquery.min.js"></script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/project/resources/js/modernizr.2.5.3.min.js"></script>
 	<script src="/project/resources/js/bootstrap.min.js"></script>
 	<script src="/project/resources/js/farbtastic.js"></script>
 	<script src="/project/resources/js/jquery.easing.min.js"></script>
+	<!-- <script src="/project/resources/js/jquery.basic.js"></script> -->
+
+	
 				
 	<!-- 클러스터 -->
 	<script
       src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
+    <script type="text/javascript">
     
+    </script>
 	<!-- 위도경도를 입력해서 지도에 뿌려주는 구글맵 api 키값 -->
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs-T1EEykIfdXaJaB5ML6HYsddRZ5BD4U"></script>
@@ -324,7 +384,9 @@
 		var contentList;
 		var callbbs = null;
 		var bbsListPage = null;
+		
 		$(function() {
+			
 			/* 둘러보기 scroll event */
 			$("#doolerzz").click(function(){
 				$('html, body').animate({
@@ -334,19 +396,16 @@
 			
 			var session = null;
 			var modify;
+			/* 처음에 로그인, 로그아웃, 내정보수정, 내책장의 버튼을 모두 hide시킴 */
 			$("#modal_login").hide();
 			$("#modal_logout").hide();
 			$("#modal_myinfo").hide();
 			$("#btn-mybookcase").hide();
 			$("#modal_slot_color_form").hide();
+			/* ajax를 통해 로그인을 했는지 여부를 판단하고 로그인 했을 경우에는 로그아웃 버튼과 내정보수정, 내책장의 버튼을 show
+				아닐 경우 로그인만 show
+			*/
 			ajaxSession();
-			
-			$("#doolerpreview").click(function(){
-				
-				$('html, body').animate({
-					scrollTop : $("#BBS").offset().top
-				}, 1250, 'easeInOutExpo');	
-			})
 			
 			
 			/* ajax통해서 로그인한 아이디의 사용자 정보를 가져옴 */
@@ -389,6 +448,7 @@
 				/* console.log(loginData); */
 				ajaxLogin(loginData);
 			});
+			
 			/* ajax 통한 로그인 */
 			function ajaxLogin(getData) {
 				$.ajax({
@@ -472,6 +532,7 @@
 					'<p id="check_user_email"></p><br>'
 				);
 			});
+			
 			/* 유저 정보를 수정함 */
 			$("#user_update").click(function(){
 				if(inputCheck(getModifyData())){
@@ -480,7 +541,7 @@
 					alert("수정실패");
 				}
 			});
-			
+			/* 정보 수정  */
 			function ajaxUpdateUser(getData){
 				$.ajax({
 					url : "/project/regist/modifyUser",
@@ -780,6 +841,33 @@
 				}, 3000);
 			}
 			
+			/* bbs 검색 기능 */
+			$("#bbssearchbtn").click(function(){
+				var search = $("#bbssearch").val();
+				ajaxSearchBBSList(search);
+			});
+			
+			function ajaxSearchBBSList(search){
+				var d = {search: search};
+				$.ajax({
+					url:"/project/bbs/search",
+					type:"POST",
+					contentType:"application/json;charset=UTF-8",
+					data:JSON.stringify(d),
+					dataType:"json",
+					success:function(data){
+						alert("검색 성공");
+						var returndata = returnlength(data);
+						listBBS(data);
+						bbsListPage(returndata, 0);
+					},
+					error:function(data){
+						alert("일치하는 책 이름이 없습니다.");
+					}
+				});
+			}
+			
+			/* bbs에서 페이징처리 */
 			bbsListPage = function listBBSPage(data, block){				
 				$("#bbslistpage").empty();
 				var count = 0;
@@ -814,7 +902,7 @@
 				
 			}
 			
-			/* bbs */
+			/* bbs 불러옴*/
 			callbbs = function ajaxBBS(block) {
 				var url = "/project/bbs/data/" + block;
 				$.ajax({
@@ -837,23 +925,28 @@
 			}
 			
 			callbbs(0);
-			
+			/* 리스트 */
 			/* list뿌리기 */
 			function listBBS(data){
+				$("#bbslist").empty();
 				var label = "";
 				var count = 0;
 				$.each(data, function(i, d){
-					console.log(d["sp_backgroundColor"]);
-					label += '<li class="col Book" id="bbsbook'+i+'">';
+					label += '<li class="col Book" id="bbsbook'+i+'" onClick="ajaxBookPage(\''+d["sp_id"]+'\',\''+d["sp_title"]+'\',\''+d["sp_author"]+'\',\''+d["sp_image"]+'\', \''+d["sp_backgroundColor"]+'\', \''+d["sp_fontColor"]+'\')">';
 					if(d["sp_backgroundColor"] != null && d["sp_backgroundColor"] != "null" && d["sp_backgroundColor"] != ""){
 						label += '<div style="width: 130px; height: 180px; background-color:'+d["sp_backgroundColor"]+';">';
+						
 					} else {
 						label += '<div style="width: 130px; height: 180px; background-color:white;">';
+						
 					}
 					
 					/* 제목 */
-					label += '<div>';
-					
+					if(d["sp_fontColor"] != null && d["sp_fontColor"] != 'null' && d["sp_fontColor"] != ''){
+						label += '<div style="color:'+d["sp_fontColor"]+'">';	 
+					} else {
+						label += '<div style="color:'+d["sp_fontColor"]+'">';
+					}
 					if(d["sp_title"]!= null && d["sp_title"]!="" && d["sp_title"]!= "null"){
 						if(d["sp_title"].length>10){
 							label += '<p class = "BBS-book-title">'+d["sp_title"].substring(0, 8)+'..'+'</p>';
@@ -867,7 +960,11 @@
 					
 					label += '</div>';
 					/* 글쓴이 */
-					label += '<div>';
+					if(d["sp_fontColor"] != null && d["sp_fontColor"] != 'null' && d["sp_fontColor"] != ''){
+						label += '<div style="color:'+d["sp_fontColor"]+'">';
+					} else {
+						label += '<div style="color:'+d["sp_fontColor"]+'">';
+					}
 					if(d["sp_author"]!= null && d["sp_author"]!="" && d["sp_author"]!= "null"){
 						if(d["sp_author"].length>10){
 							label += '<p class = "BBS-book-writer">'+d["sp_author"].substring(0, 8)+'..'+'</p>';
@@ -879,9 +976,9 @@
 					}
 					
 					label += '</div>';
-					/* 이미지 123123123 */
+					
 					label += '<div class = "BBS-book-img">';
-					if(d["sp_author"]!= null && d["sp_author"]!="" && d["sp_author"]!= "null"){
+					if(d["sp_image"]!= null && d["sp_image"]!="" && d["sp_image"]!= "null"){
 						label += '<img style="width:100%; height:100%;"  src="/upload/'+d["sp_image"]+'">';	
 					} else {
 						label += '<img style="width:100%; height:100%;" src="/project/resources/img/cover1.jpg">';
@@ -897,6 +994,198 @@
 			
 		});
 		
+		function turnPage(num){
+			   $('.flipbook').turn("page",num);
+			}
+
+			function loadApp() {
+
+			   // Create the flipbook
+
+			   $('.flipbook').turn({
+			         // Width
+
+			         width:922,
+			         
+			         // Height
+
+			         height:600,
+
+			         // Elevation
+
+			         elevation: 50,
+			         
+			         // Enable gradients
+
+			         gradients: true,
+			         
+			         // Auto center this flipbook
+
+			         autoCenter: true
+
+			   });
+			}
+
+			// Load the HTML4 version if there's not CSS transform
+
+			yepnope({
+			   test : Modernizr.csstransforms,
+			   yep: ['/project/resources/js/turn.js'],
+			   nope: ['/project/resources/js/turn.html4.min.js'],
+			   both: ['/project/resources/css/basic.css'],
+			   complete: loadApp
+			});
+		
+		function ajaxBookPage(slot_id, title, author, image, backgroundColor, fontColor){
+			var id = {slot_id : slot_id};
+			$.ajax({
+				url : "/project/contents/getListPlan",
+				type : "POST",
+				contentType : "application/json;charset=UTF-8",
+				data : JSON.stringify(id),
+				dataType : "json",
+				success : function(data) {
+					//일루
+					var length = returnlength(data);
+					$("#userReviewPage").turn("pages", length+5);
+					$("#userReviewPage").turn("page", 1);
+					bookPage(data, title, author, image, backgroundColor, fontColor);
+				},
+				error : function(data) {
+					alert("리스트 불러오기 실패");
+				}
+			});
+		}
+		
+		function returnlength(length){
+			return length.length;
+		}
+		
+		function bookPage(data, title, author, image, backgroundColor, fontColor){
+			
+			
+			$("#sidebar").empty();
+			$("#firstpage").empty();
+			$("#secondpage").empty();
+			
+			var count;
+			var sidebarLabel = '';
+			var userReviewPageLabel = '';
+			var fitstpageLabel = '';
+			var secondpageLabel = '';
+			/* sidebar */
+			sidebarLabel += '<h1>Side Bar</h1>';
+			sidebarLabel += '<div>';
+			sidebarLabel += '<ul class="nav nav-list">';
+			sidebarLabel += '<li><label class="tree-toggle nav-header">차 례</label>';
+			sidebarLabel += '<ul class="nav nav-list tree">';
+			
+			$.each(data, function(i, d){
+					/* sidebar */
+				sidebarLabel += '<li onClick="turnPage('+(i+6)+')">'+d["contents_date"]+'  '+d["contents_time"]+'  '+d["contents_plan"]+'<br><font size="2">'+d["contents_name"]+'</font></li>';
+					
+			});
+			/* sidebar */
+			sidebarLabel += '</ul>';
+			sidebarLabel += '</li>';
+			sidebarLabel += '</ul>';
+			sidebarLabel += '</div>';
+			
+			/* 첫번째 페이지 */
+			if(backgroundColor != 'null'){
+				$("#firstpage").css("background-color", backgroundColor);
+				fitstpageLabel += '<div style="background-color:'+backgroundColor+';">';
+			} else {
+				$("#firstpage").css("background-color", "white");
+				fitstpageLabel += '<div>';	
+			}
+			if(fontColor != 'null'){
+				fitstpageLabel += '<div style="margin-top:100px; ">';
+			} else {
+				fitstpageLabel += '<div style="margin-top:100px;">';	
+			}
+			if(title == 'null'){
+				fitstpageLabel += '<h1 style="color:'+fontColor+'">제목</h1><br>';	
+			} else {
+				fitstpageLabel += '<h1 style="color:'+fontColor+'">'+title+'</h1><br>';
+			}
+			if(author == 'null'){
+				fitstpageLabel += '<p style="color:'+fontColor+'">글쓴이</p>';
+			} else {
+				fitstpageLabel += '<p style="color:'+fontColor+'">'+author+'</p>';	
+			}
+			fitstpageLabel += '</div>';
+			fitstpageLabel += '<div style="margin-top: 120px;">';
+			if(image == 'null'){
+				
+			} else {
+				fitstpageLabel += '<img src="/upload/'+image+'" style="width: 100%; height: 100%;">';	
+			}
+			fitstpageLabel += '</div>';
+			fitstpageLabel += '</div>';
+			
+
+			/* 두번째 페이지 */
+			secondpageLabel = '<div style="float: left; width: 50%; height: 100%; background-color: orange;"></div>';
+			secondpageLabel = '<div style="float: left; width: 50%; height: 100%; background-color: white;"></div>';
+		   
+         	$.each(data, function(i, d){
+				userReviewPageLabel += '<div>';
+				userReviewPageLabel += '<div>';
+				if(d["contents_plan"]!=null && d["contents_plan"]!='null' && d["contents_plan"]!=''){
+					userReviewPageLabel += '<h3>'+d["contents_plan"]+'</h3>';	
+				} else {
+					userReviewPageLabel += '<h2>제목</h2>';
+				}
+				
+				userReviewPageLabel += '</div>';
+				
+				if(d["contents_picture"]!=null && d["contents_picture"]!='null' && d["contents_picture"]!=''){
+					userReviewPageLabel += '<div>';
+					userReviewPageLabel += '<img style="width:96%; height:300px;" src="/upload/'+d["contents_picture"]+'">';	
+				} else {
+					userReviewPageLabel += '<div>';
+					userReviewPageLabel += '<img style="width:96%; height:300px;">';
+				}
+				var review = d["contents_review"];
+				
+				
+				if(review !=null && review !='' && review !='null'){
+					review = review.replace(/<br>/g, '\n');
+					
+					userReviewPageLabel += '<div>';
+					userReviewPageLabel += '<textarea rows="11" style="width:96%; margin-top:5px; resize:none;" readonly>'+review+'</textarea>';
+					userReviewPageLabel += '<div>';
+				} else {
+					userReviewPageLabel += '<div>';
+					userReviewPageLabel += '<textarea rows="11" style="width:96%; margin-top:5px; resize:none;" readonly></textarea>';
+					userReviewPageLabel += '<div>';
+				}
+					
+				userReviewPageLabel += '</div>';
+				console.log(d["contents_plan"]+"_"+d["contents_picture"]);
+				
+				
+				var element = $("<div />").html(userReviewPageLabel);
+				$("#userReviewPage").turn("addPage", element, (i+6));
+				
+				count = (i+6);
+				
+				userReviewPageLabel = '';
+			});
+         	userReviewPageLabel = '<div class="hard"><img style="width:100%; height:600px;" src="/project/resources/img/dummy1.png"></div>';
+         	
+         	var element = $("<div />").html(userReviewPageLabel);
+         	$("#userReviewPage").turn("addPage", element, (count+1));
+         	
+			$("#sidebar").append(sidebarLabel);
+			$("#firstpage").append(fitstpageLabel);
+			$("#secondpage").append(secondpageLabel);
+			console.log(data);			
+			
+			$("#book_modal").modal("show");
+			
+		}
 		
 		function getSlot(id, userId){
 			var getData = {user_id:id};
@@ -1197,7 +1486,12 @@
 				label += '<input class="" style="text-align:right; width:20%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_date"]+'" readonly>';
 				label += '<input class="" style="text-align:center	; width:20%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_time"]+'" readonly>';
 				label += '<input class="" style="text-align:left; width:60%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_plan"]+'" readonly><br>';
-				label += '<input class="" style="text-align:center; width:100%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_name"]+'" readonly>';
+				if(d["contents_name"]==null || d["contents_name"]=='null' || d["contents_name"]==''){
+					label += '<input class="" style="text-align:center; width:100%; background-color:rgba(0,0,0,0); border:0px;" value="" readonly>';	
+				} else {
+					label += '<input class="" style="text-align:center; width:100%; background-color:rgba(0,0,0,0); border:0px;" value="'+d["contents_name"]+'" readonly>';
+				}
+				
 				label += '</div>';
 				/* 안보임 */
 				label += '<input type="hidden" id="name'+i+'" value="'+d["contents_name"]+'">';
@@ -1296,7 +1590,8 @@
 			
 			var mapLabel = "";
 			if(picture==null || picture=="" || picture=="null"){
-				mapLabel = '<img src="">';	
+				mapLabel = '<img src="">';
+				alert("이미지는 저장하면 바껴여~~");
 			} else {
 				mapLabel = '<img width="100%" height="500px" src="/upload/'+picture+'">';
 			}
@@ -1318,7 +1613,7 @@
 			
 			/* 파일업로드 */
 			if(book == "N"){
-				addImageLabel += '<div style="background-image: url(\'/project/resources/img/planheader.jpg\')";>';
+				addImageLabel += '<div style="text-align:center; background-image: url(\'/project/resources/img/addimage.png\'); width:100%; height:100%; background-size:cover; background-repeat:no-repeat;";>';
 				addImageLabel += '<input type="file" id="addImage" name="addImage" class="upload">';
 				addImageLabel += '</div>';
 				/* addImageLabel += '<button type="button" onClick="uploadReview('+i+',\''+slotid+'\')">후기 저장하기</button>'; */	
@@ -1341,7 +1636,9 @@
 			$("#reviewaddimage"+i).append(addImageLabel);	
 			
 			var btnLabel = '';
-			btnLabel = '<button style="margin-top: 25px;" class="review-btn" type="button" onClick="uploadReview('+i+',\''+slotid+'\')">후기 저장하기2</button>';
+			if(book == "N"){
+				btnLabel = '<button style="margin-top: 25px;" class="review-btn" type="button" onClick="uploadReview('+i+',\''+slotid+'\')">후기 저장하기</button>';
+			}
 			$("#savereviewbtn").append(btnLabel);
 		}
 		
@@ -1374,6 +1671,7 @@
 		/* 차례 */
 		function addIndex(id, list){
 			/* console.log(list); */
+			
 			var label = "";
 			var isThereBook = "N";
 			$("#bookcaseModal").modal("hide");
@@ -1392,13 +1690,13 @@
 			/* 2 */
 			label += '<div style="display: inline-block; width: 100%;">';
 			/* 3 */
-			label += '<div class="basic-line" style="width: 50%; height:960px; display:inline-block; float: left; padding-top: 8px;">';
+			label += '<div class="" style="width: 50%; height:960px; display:inline-block; float: left; padding-top: 8px;">';
 			label += '<input type="text" style="width: 20%" value="날짜" readonly>';
 			label += '<input type="text" style="width: 20%" value="시간" readonly>';
 			label += '<input type="text" style="width: 60%" value="계획" readonly>';
 			
 			/* 4 */
-			label += '<div class="basic-line" style="width: 100% height: auto; margin-top: 10px; border: 0px; margin-bottom: 5px;">';
+			label += '<div class="" style="width: 100% height: auto; margin-top: 10px; border: 0px; margin-bottom: 5px;">';
 			var count = 0;
 			
 			$.each(list, function(i, d){			
@@ -1423,7 +1721,7 @@
 				
 				var btnId = 'btn'+i;
 				
-				label += '<div class="basic-line" style="width: 100%;">';
+				label += '<div class="" style="width: 100%;">';
 				label += '<div id="mapbtn'+i+'" style="width: 70%; display: inline-block;">';
 				label += '<button type="button" style="width: 100%; border: 0px; background-color: white"';	
 				if(d["contents_name"] == null || d["contents_name"] == "null" || d["contents_name"] == ""){
@@ -1466,7 +1764,7 @@
 				label += '<input type="hidden" id="iconbtn'+i+'">';
 				var btnId = 'btn'+i;
 				/* label += '<p>'; */
-				label += '<div class="basic-line" style="width: 100%;">';
+				label += '<div class="" style="width: 100%;">';
 				label += '<div id="mapbtn'+i+'" style="width: 70%; display: inline-block;">';
 				label += '<button type="button" style="width: 100%; border: 0px; background-color: white" id="btn'+i+'">';
 				label += '&nbsp;</button>';
@@ -1499,7 +1797,7 @@
 			/* 3- */
 			label += '</div>';
 			/* 6 */
-			label += '<div class="basic-line" style="width: 50%; height: 960px; display: inline-block; float: left;">';
+			label += '<div class="" style="width: 50%; height: 960px; display: inline-block; float: left;">';
 			/* 7 */
 			label += '<div class="basic-line" style="width: 98%; height: 600px; background-color:white; margin-bottom: 10px;" id="map" >';
 			/* label += '<img src="/project/resources/img/map.jpg" style="width:100%; height:100%;">'; */
@@ -1515,6 +1813,10 @@
 			label += '</div>';
 			
 			$("#modal_slot_index_form").append(label);
+			
+			$('#slotIndexModal').on('shown.bs.modal', function () {
+			    $('#slotIndexModal').animate({ scrollTop: 0 }, 'slow');
+			});
 			pagePlan(1);
 			addIndexButton(id, isThereBook);
 		}
@@ -1614,7 +1916,7 @@
 		function updateReview(id, count){
 			var result = confirm("한번 만든 책은 수정이 되지 않습니다 계속하시겠습니까?");
 			if(result){
-				alert(count);
+				/* alert(count); */
 				
 				var contents = {
 					slot_id : id
@@ -1637,7 +1939,8 @@
 				data : JSON.stringify(slot),
 				dataType : "json",
 				success : function(data) {
-					alert("슬롯에서 책 만들기 완료");
+					/* alert("슬롯에서 책 만들기 완료"); */
+					
 				},
 				error : function(data) {
 					alert("슬롯에서 책 만들기 실패");
@@ -1654,6 +1957,9 @@
 				dataType : "json",
 				success : function(data) {
 					alert("책 만들기 완료");
+					$("#slotReviewmodal").modal('hide');
+					$("#bbslist").empty();
+					callbbs(0);
 				},
 				error : function(data) {
 					alert("책 만들기 실패");
@@ -1702,6 +2008,7 @@
 						
 					}				
 				}
+				alert("저장 완료!!");
 			}
 		}
 
@@ -1716,10 +2023,10 @@
 				data : JSON.stringify(id),
 				dataType : "json",
 				success : function(data) {
-					alert("저장이 완료되었음");
+					
 				},
 				error : function(data) {
-					alert("삭제할 데이터가 없어 바로 저장함");
+					/* alert("삭제할 데이터가 없어 바로 저장함"); */
 				}
 			});
 		}
@@ -1751,7 +2058,6 @@
 				dataType : "json",
 				success : function(data) {
 					if(cr=="plan"){
-						
 						addIndex(slot_id, data);	
 					} else if(cr=="review"){
 						//alert(cr);
@@ -1822,6 +2128,7 @@
 				$("#review"+j).show();
 			}
 		}
+		
 	</script>
 	
 	<script type="text/javascript">

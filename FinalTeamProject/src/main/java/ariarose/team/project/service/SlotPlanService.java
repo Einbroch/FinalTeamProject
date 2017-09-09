@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import ariarose.team.project.model.SlotPlanDAO;
+import ariarose.team.project.vo.SearchVO;
 import ariarose.team.project.vo.SlotPlanVO;
 
 @Service
@@ -51,5 +52,9 @@ public class SlotPlanService {
 	
 	public List<SlotPlanVO> getBBSList(int value){
 		return slotMapper().getBBSList(value*100);
+	}
+	
+	public List<SlotPlanVO> searchBBSList (SearchVO vo){
+		return slotMapper().searchBBSList(vo);
 	}
 }

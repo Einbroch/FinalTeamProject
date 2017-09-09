@@ -1226,3 +1226,28 @@ button.replace {
    background-color: #d4f4fa;
    color: #747474;
 }
+
+.position {
+   margin-top: 3vh;
+}
+
+.modal-dialog.modal-size {
+   width: 1500px;
+   height: 800px;
+}
+
+.modal-content.modal-size {
+   width: 1500px;
+   height: 800px;
+}
+
+.sidemenubar {
+   width: 450px;
+   height: 700px;
+   font-weight:bold;
+   background-color: #e0ffff;
+   opacity: 0.5;
+   /* margin-right: 100%; */
+   float: left;
+   overflow-y: scroll;
+}
