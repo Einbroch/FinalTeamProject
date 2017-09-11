@@ -152,9 +152,11 @@
                         </div>
                         <!-- 세번째 페이지 고정 -->
                         <div
+                        	id="thirdpage"
                            style="border: 1px solid #000000; background-color: #9ED685; opacity: 1;"></div>
                         <!-- 네번째 페이지 고정 -->
                         <div
+                        	id="fourthpage"
                            style="border: 1px solid #000000; background-color: #9ED685; opacity: 1;"></div>
                         
                         <!-- 다섯번째 페이지 고정 -->
@@ -209,7 +211,7 @@
 	<!-- 페이징 버튼 영역 -->
 	<div class="pageingspace" style="display: block;">
 		<div style="padding-top: 70px;" align="center">
-			<div style="padding-right: 40px;">
+			<div style="/* padding-right: 40px; */">
 				<ul class="pageclass" id="bbslistpage">
 				
 				</ul>
@@ -277,16 +279,16 @@
 	
 	<!-- 슬롯 차례 모달 -->
 	<div class="modal fade" id="slotIndexModal" role="dialog" align="center" data-backdrop="static">
-		<div class="modal-dialog" role="document" style="overflow-y: scroll; width:90%; max-height:90%;">
+		<div class="modal-dialog" role="document" style="overflow-y: scroll; width:90%; max-height:90%;" id="modal_scroll">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header" >
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3 id="slot_title" align="center">
 					<font color="black"><span class="glyphicon glyphicon-list"></span>
                   	</font>
 					</h3>
 				</div>
-				<div class="modal-body basic-line">
+				<div class="modal-body basic-line" id="here">
 					<form class="w3-container" style="width: 100%;" method="post" id="modal_slot_index_form">
 							
 					</form>
@@ -856,7 +858,7 @@
 					data:JSON.stringify(d),
 					dataType:"json",
 					success:function(data){
-						alert("검색 성공");
+						/* alert("검색 성공"); */
 						var returndata = returnlength(data);
 						listBBS(data);
 						bbsListPage(returndata, 0);
@@ -874,15 +876,15 @@
 				var label = '';
 				label += '<div class= "pagination" style="text-align:center">';
 				if(block != 0){
-					label += '<a onClick="bbsListPage('+data+','+(block-1)+')">&laquo;</a>'; //넘어가짐	
+					label += '<li onClick="bbsListPage('+data+','+(block-1)+')">&laquo;</li>'; //넘어가짐	
 				} else {
-					/* label += '<a href="#">안넘어가져</a>'; //disable */
+					label += '<li class="disabled">&laquo;</li>'; //넘어가짐
 				}
 				
 				for (var i = 0; i<data; i++){
 					$("#bbsbook"+i).hide();
 					if(i%10==0){
-						label += '<a onClick="bbsListPage('+data+','+count+')">'+(++count)+'</a>';
+						label += '<li id="bbspage'+i+'" onClick="bbsListPage('+data+','+count+')">'+(++count)+'</li>';
 					}
 				}
 				for(var i = (block*10); i<((block*10)+10); i++){
@@ -890,16 +892,15 @@
 				}
 				
 				if(block != (count-1)){
-					label += '<a onClick="bbsListPage('+data+','+(block+1)+')">&raquo;</a>';//넘어가짐	
+					label += '<li onClick="bbsListPage('+data+','+(block+1)+')">&raquo;</li>';//넘어가짐	
 				} else {
-					
+					label += '<li class="disabled">&raquo;</li>';//넘어가짐
 				}
 				
 				
 				label += '</div>';
 				
 				$("#bbslistpage").append(label);
-				
 			}
 			
 			/* bbs 불러옴*/
@@ -1082,8 +1083,12 @@
 			
 			$.each(data, function(i, d){
 					/* sidebar */
-				sidebarLabel += '<li onClick="turnPage('+(i+6)+')">'+d["contents_date"]+'  '+d["contents_time"]+'  '+d["contents_plan"]+'<br><font size="2">'+d["contents_name"]+'</font></li>';
-					
+				sidebarLabel += '<li onClick="turnPage('+(i+6)+')">'+d["contents_date"]+'  '+d["contents_time"]+'  '+d["contents_plan"]+'<br>';
+				if(d["contents_name"] != 'null'){
+					sidebarLabel += '<font size="2">'+d["contents_name"]+'</font>';	
+				}
+				sidebarLabel += '</li>';
+				
 			});
 			/* sidebar */
 			sidebarLabel += '</ul>';
@@ -1129,6 +1134,10 @@
 			secondpageLabel = '<div style="float: left; width: 50%; height: 100%; background-color: orange;"></div>';
 			secondpageLabel = '<div style="float: left; width: 50%; height: 100%; background-color: white;"></div>';
 		   
+			/* 세번째, 네번째 페이지 컬러변경 */
+			$("#thirdpage").css("background-color", backgroundColor);
+			$("#fourthpage").css("background-color", backgroundColor);
+			
          	$.each(data, function(i, d){
 				userReviewPageLabel += '<div>';
 				userReviewPageLabel += '<div>';
@@ -1213,7 +1222,11 @@
 			$.each(data, function(i, d){	
 				var label = "";
 				label += '<div class="book-container-block">';
-				label += '<div class="book-container-bbs" style="background-color:'+d["sp_backgroundColor"]+';"><br>';
+				if(d["sp_backgroundColor"] == null || d["sp_backgroundColor"] == 'null' || d["sp_backgroundColor"] == ''){
+					label += '<div class="book-container-bbs" style="background-color:white;"><br>';	
+				} else {
+					label += '<div class="book-container-bbs" style="background-color:'+d["sp_backgroundColor"]+';"><br>';
+				}
 				label += '<div style="color:'+d["sp_fontColor"]+'; margin-top: 30px;">';
 				if(d["sp_title"] == null || d["sp_title"] == ""  || d["sp_title"] == "null") {
 					label += '<h4>제목</h4>';
@@ -1554,7 +1567,7 @@
 			if(isThereBook == 'N'){
 				label += '<button type="button" class="list-input-btn" style="margin-right:30px;" onClick="updateReview(\''+slotId+'\','+count+')">책 만들기</button>';	
 			}
-			label += '<button type="button" class="list-input-btn" data-dismiss="modal">끝내기</button>';
+			/* label += '<button type="button" class="list-input-btn" data-dismiss="modal">끝내기</button>'; */
 			/* 12- */
 			label += '</div>';
 			
@@ -1667,16 +1680,16 @@
 				}
 			});
 		}
-		
+				
 		/* 차례 */
 		function addIndex(id, list){
 			/* console.log(list); */
-			
 			var label = "";
 			var isThereBook = "N";
 			$("#bookcaseModal").modal("hide");
 			setTimeout(function() {
 				$("#slotIndexModal").modal("show");
+				
 			}, 500);
 			$("#modal_slot_index_form").empty();
 			/* 1 */
@@ -1738,7 +1751,7 @@
 				label += '<button type="button" class="glyphicon glyphicon-trash bookingbtn" onClick="deleteMap(\''+i+'\')"></button>';
 				label += '<button type="button" class="glyphicon glyphicon-home" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getAccomMap(\'btn'+i+'\')"></button>';
 				label += '<button type="button" class="glyphicon glyphicon-road" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getRentMap(\'btn'+i+'\')"></button>';
-				label += '<button type="button" class="glyphicon glyphicon-music" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getLeisureMap(\'btn'+i+'\')"></button>';	
+				label += '<button type="button" class="glyphicon glyphicon-tent" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getLeisureMap(\'btn'+i+'\')"></button>';	
 				label += '</div>';
 				label += '</div>';
 				label += '</form>';
@@ -1773,7 +1786,7 @@
 				label += '<button type="button" class="glyphicon glyphicon-trash bookingbtn" onClick="deleteMap(\''+i+'\')"></button>';
 				label += '<button type="button" class="glyphicon glyphicon-home" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getAccomMap(\'btn'+i+'\')"></button>';
 				label += '<button type="button" class="glyphicon glyphicon-road" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getRentMap(\'btn'+i+'\')"></button>';
-				label += '<button type="button" class="glyphicon glyphicon-music" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getLeisureMap(\'btn'+i+'\')"></button>';	
+				label += '<button type="button" class="glyphicon glyphicon-tent" style="width: 25%; height:25px; border: 0px; background-color:white;" onClick="getLeisureMap(\'btn'+i+'\')"></button>';	
 				label += '</div>';
 				label += '</div>';
 				label += '</form>';
@@ -1814,9 +1827,6 @@
 			
 			$("#modal_slot_index_form").append(label);
 			
-			$('#slotIndexModal').on('shown.bs.modal', function () {
-			    $('#slotIndexModal').animate({ scrollTop: 0 }, 'slow');
-			});
 			pagePlan(1);
 			addIndexButton(id, isThereBook);
 		}
@@ -1846,18 +1856,20 @@
 			var label="";
 			/* 9 */
 			label += '<div class="" align="right">';
-			/* label += '<button type="button" class="list-input-btn" style="margin-right:20px;" onClick="addIndex(\''+id+'\')">Reset</button>'; */
+			
 			if(book == 'N'){
 				label += '<button type="button" class="list-input-btn" style="margin-right:20px;" onClick="planSave(\''+id+'\')">저장하기</button>';	
 			}			
-			label += '<button type="button" class="list-input-btn" data-dismiss="modal">끝내기</button>';
+			/* label += '<button type="button" class="list-input-btn" data-dismiss="modal">끝내기</button>'; */
+			
 			/* 9- */
 			label += '</div>';
 			/* 2- */
 			label += '</div>';	
 			$("#modal_slot_index_form").append(label);
-			
 		}
+		
+		
 		
 		function getAccomMap(btnId){
 			var accom = {id : 0};
@@ -2058,7 +2070,7 @@
 				dataType : "json",
 				success : function(data) {
 					if(cr=="plan"){
-						addIndex(slot_id, data);	
+						addIndex(slot_id, data);
 					} else if(cr=="review"){
 						//alert(cr);
 						addReview(slot_id, data);

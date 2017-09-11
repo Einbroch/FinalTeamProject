@@ -565,6 +565,7 @@ ul li >.pagebtn{
 
 .pageclass{
 	display: inline-block;
+	width: 800px;
 	margin: 1px;
 }
 
@@ -593,7 +594,7 @@ ul li >.pagebtn{
 .pagination a {
    color:black;
    float: left;
-   padding: 8px 16px;
+   /* padding: 8px 16px; */
    text-decoration: none;
    transition: background-color .3s;
    border: 1px solid #ddd;
@@ -603,4 +604,9 @@ ul li >.pagebtn{
    background-color: #4caf50;
    color: white;
    border: 1px solid #4caf50;
+}
+
+.disabled {
+    pointer-events:none; //This makes it not clickable
+    opacity:0.6;         //This grays it out to look disabled
 }
