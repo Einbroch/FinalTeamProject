@@ -1,8 +1,32 @@
 /**
- * 
+ * 1. 회원가입
+ *  
  */
 
+/*function ajaxSession(){
+		var getData = {
+			user_userId : 0 //vo 와 같은 형태로 값을 넣어줌 vo안에 user_userId의 값을 넣음	
+		}
+		$.ajax({
+			url : "/project/session/getSession",	//controller 단의 requestmapping이 되어있는 session/getSession으로 연결됨
+			type : "POST",//무시
+			contentType : "application/json;charset=UTF-8",//무시
+			data : JSON.stringify(getData),//json의 string형태로 위에서 선언한 getData를 넣어줌
+			dataType : "json",//리턴받을 타임을 json으로 설정함
+			success : function(data) {//쿼리문에서 성공할 경우 
+				$("#modal_logout").show();
+			},
+			error : function(data) {//쿼리문에서 실패할 경우
+				$("#modal_login").show();
+			}
+		});
+}*/
+
+
 $(function() {
+	/*
+		처음에 login 버튼과 logout 버튼을 모두 숨김
+	 * */
 	$("#modal_login").hide();
 	$("#modal_logout").hide();
 	
@@ -25,10 +49,10 @@ $(function() {
 			data : JSON.stringify(getData),
 			dataType : "json",
 			success : function(data) {
-				$("#modal_logout").show();
+				$("#modal_logout").show();//숨겼던 로그인 버튼과 로그아웃 버튼에서 로그인이 되어있을 경우 로그아웃만 보임
 			},
 			error : function(data) {
-				$("#modal_login").show();
+				$("#modal_login").show();//로그인을 하지 않았다면 로그인만 보임
 			}
 		});
 	}
@@ -43,15 +67,17 @@ $(function() {
 			'<input class="w3-input" type="password" id="login_user_password" name="login_user_password" placeholder="Password">'
 		);
 	});
+	
 	/* id와 pw 입력 후 Login 버튼을 누를 경우 */
 	$("#user_login").click(function() {
 		var loginData = {
 			user_userId : $("#login_user_userid").val(),
 			user_password : $("#login_user_password").val()
-		};
-		/* console.log(loginData); */
+		};/*vo형태의 id, pw폼으로 넣어서 ajax로 전송*/
+		
 		ajaxLogin(loginData);
 	});
+	
 	/* ajax 통한 로그인 */
 	function ajaxLogin(getData) {
 		$.ajax({
@@ -77,12 +103,13 @@ $(function() {
 	$("#modal_logout").click(function(){
 		ajaxLogout();
 	});
+	
 	/* ajax를 통한 로그아웃 */
 	function ajaxLogout() {
 		var getData = {
 			user_userId : 0	
 		}
-		
+		/*컨트롤러에서 session을 지워버림*/
 		$.ajax({
 			url : "/project/login/userLogout",
 			type : "POST",
@@ -101,8 +128,8 @@ $(function() {
 	}
 	
 	/* 회원가입 액션 */
-	
 	$("#modal_regist").click(function() {
+		/*modal_regist_form안에 input을 생성함*/
 		$("#modal_regist_form").empty();
 		$("#modal_regist_form").append(		
 			'<input class="w3-input" type="text" id="user_userid" name="user_userid" placeholder="ID">' +
@@ -124,7 +151,6 @@ $(function() {
 	});
 
 	$("#user_regist").click(function() {
-		/* console.log(getRegistUserData()); */
 		if (inputCheck(getRegistUserData())) {
 			ajaxRegistUser(getRegistUserData());
 		} else {
@@ -146,6 +172,7 @@ $(function() {
 	
 	/* 회원가입 양식에 잘못된기입이 있는지 확인 */
 	function inputCheck(getData) {
+		/*회원가입시 정보기입한 내역을 불러와서 password의 길이, 전화번호의 타입, email의 타입을 검사함*/
 		$("#check_user_password").text("");
 		$("#check_user_name").text("");
 		$("#check_user_phonenumber").text("");
@@ -300,7 +327,10 @@ $(function() {
 			}
 		});
 	}
-	
+	/*회원가입을 하면 슬롯아이디를 3개 생성함
+		먼저 내가 저장한 데이터를 불러오고난 뒤
+		ajaxAddSlot을 통해 슬롯 아이디를 3개 생성함
+	*/
 	function ajaxGetRegistData(getData){
 		console.log(getData);
 		$.ajax({
@@ -318,7 +348,9 @@ $(function() {
 			}
 		});
 	}
-	
+	/*
+		슬롯을 3개 생성 하는 ajax
+	 */
 	function ajaxAddSlot(data){
 		var Data = {
 			sp_id : data.user_userId,

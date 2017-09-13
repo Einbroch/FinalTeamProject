@@ -14,6 +14,7 @@
 <link href="/project/resources/css/Qqu.min.css" rel="stylesheet">
 <link href="/project/resources/css/basic.css" rel="stylesheet">
 <style type="text/css">
+
 @media all and (max-width:450px) {
 	
 }

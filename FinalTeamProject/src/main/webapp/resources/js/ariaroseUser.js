@@ -1,8 +1,7 @@
 /**
  * 
  */
-
-		
+/* $function 밖에서도 쓰기위해 변수 선언 */
 		var view;
 		var accomList;
 		var rentList;
@@ -12,8 +11,8 @@
 		var bbsListPage = null;
 		
 		$(function() {
+			/* 둘러보기 scroll event 둘러보기를 눌렀을 경우 bbs 리스트로 스무스하게 이동함 ㅋ*/
 			
-			/* 둘러보기 scroll event */
 			$("#doolerzz").click(function(){
 				$('html, body').animate({
 					scrollTop : $("#BBS").offset().top
@@ -28,7 +27,8 @@
 			$("#modal_myinfo").hide();
 			$("#btn-mybookcase").hide();
 			$("#modal_slot_color_form").hide();
-			/* ajax를 통해 로그인을 했는지 여부를 판단하고 로그인 했을 경우에는 로그아웃 버튼과 내정보수정, 내책장의 버튼을 show
+			
+			/* ajaxSession을 통해 로그인을 했는지 여부를 판단하고 로그인 했을 경우에는 로그아웃 버튼과 내정보수정, 내책장의 버튼을 show
 				아닐 경우 로그인만 show
 			*/
 			ajaxSession();
@@ -122,12 +122,14 @@
 						$("#btn-mybookcase").hide();
 						/* alert("로그아웃 되었습니다"); */
 						session = null;
+						
 					},
 					error : function(data) {}
 				});
 			}
 	
 			/* 내 정보 보기 */
+			/* 저장되어 있는 session의 정보를 뿌림 */
 			$("#modal_myinfo").click(function(){
 				$("#user_update").hide();
 				$("#user_info").show();
@@ -139,10 +141,13 @@
 					'<p><input class="w3-input" type="email" id="user_email" name="user_email" value="'+session.user_email+'" readonly></p><br>'
 				);
 			});
+			
 			$("#close").click(function(){
+				/*닫기 버튼을 누르면 모달을 닫음*/
 				$("#myinfoModal").modal("hide");
 			});
-			/* 유저 정보를 보여줌 */
+			
+			/* DB에 저장되어있는 값들을 미리 세팅해놓음 */
 			$("#user_info").click(function(){
 				$("#user_update").show();
 				$("#user_info").hide();
@@ -167,6 +172,7 @@
 					alert("수정실패");
 				}
 			});
+			
 			/* 정보 수정  */
 			function ajaxUpdateUser(getData){
 				$.ajax({
@@ -186,6 +192,7 @@
 				});
 			}
 			
+			/* 내 정보에서 수정하고자 하는 데이터를 불러와서 업데이트 시킴 */
 			function getModifyData(){
 				modify = {
 						user_id : session.user_id,
@@ -194,9 +201,9 @@
 						user_phoneNumber : $("#user_phonenumber").val(),
 						user_email : $("#user_email").val()	
 				};
-				/* console.log(modify); */
 				return modify;
 			}
+			
 			/* 회원가입 및 유저정보 수정에 필요한 function */
 			function inputCheck(getData) {
 				$("#check_user_password").text("");
@@ -315,13 +322,13 @@
 								
 			});
 			
-			/* 적용하기 버튼을 누를경우 컬러값을 바꿈 */
+			/* 적용하기 버튼을 누를경우 폰트 컬러값을 바꿈 */
 			$("#ft_btn").click(function(){
 				$("#title").css("color", $("#color2").val());
 				$("#author").css("color", $("#color2").val());
 			});
 			
-			/* 적용하기 버튼을 누를경우 컬러값을 바꿈 */
+			/* 적용하기 버튼을 누를경우 백그라운드 컬러값을 바꿈 */
 			$("#bg_btn").click(function(){
 				$("#cover").css("background-color", $("#color1").val());	
 			});
@@ -378,7 +385,7 @@
 				});
 			}
 			
-			/* ctrl+f용 view맵*/
+			
 			/* map을 display함 */
 			view = function viewMap(value, lat, lng, icon, btnId){
 				function initmap(data) {
@@ -457,9 +464,6 @@
 							
 						});
 					}
-					/* var markerCluster = new MarkerClusterer(map,markers,{
-		                  imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-		            }); */
 				}
 				var initmap = initmap(value);
 				setTimeout(function() {
@@ -473,6 +477,7 @@
 				ajaxSearchBBSList(search);
 			});
 			
+			/* searchvo 의 값을 변수d에 넣고 ajax를 태움 */
 			function ajaxSearchBBSList(search){
 				var d = {search: search};
 				$.ajax({
@@ -484,41 +489,49 @@
 					success:function(data){
 						/* alert("검색 성공"); */
 						var returndata = returnlength(data);
+						/* 검색한 bbs List를 뿌려줌 */
 						listBBS(data);
+						/* 검색한 bbs List 페이지 처리 */
 						bbsListPage(returndata, 0);
 					},
 					error:function(data){
-						alert("일치하는 책 이름이 없습니다.");
+						
 					}
 				});
 			}
 			
 			/* bbs에서 페이징처리 */
-			bbsListPage = function listBBSPage(data, block){				
+			/* data: 뿌릴 데이터 block: 페이지*/
+			bbsListPage = function listBBSPage(data, block){	
+				/* bbslistpage를 처음에 비워준다 */
 				$("#bbslistpage").empty();
 				var count = 0;
 				var label = '';
 				label += '<div class= "pagination" style="text-align:center">';
+				/* 좌측 화살표 */
 				if(block != 0){
-					label += '<li onClick="bbsListPage('+data+','+(block-1)+')">&laquo;</li>'; //넘어가짐	
+					label += '<li onClick="bbsListPage('+data+','+(block-1)+')">&laquo;</li>';	
 				} else {
-					label += '<li class="disabled">&laquo;</li>'; //넘어가짐
+					label += '<li class="disabled">&laquo;</li>';
 				}
 				
+				/* 모든 데이터를 hide 시키고 페이지를 생성시킴 */
 				for (var i = 0; i<data; i++){
 					$("#bbsbook"+i).hide();
 					if(i%10==0){
+						/* 10개에 1묶음으로 페이지 생성 */
 						label += '<li id="bbspage'+i+'" onClick="bbsListPage('+data+','+count+')">'+(++count)+'</li>';
 					}
 				}
+				/* 현재 페이지를 show 시킴 */
 				for(var i = (block*10); i<((block*10)+10); i++){
 					$("#bbsbook"+i).show();
 				}
-				
+				/* 우측 화살표 */
 				if(block != (count-1)){
-					label += '<li onClick="bbsListPage('+data+','+(block+1)+')">&raquo;</li>';//넘어가짐	
+					label += '<li onClick="bbsListPage('+data+','+(block+1)+')">&raquo;</li>'; //다음페이지	
 				} else {
-					label += '<li class="disabled">&raquo;</li>';//넘어가짐
+					label += '<li class="disabled">&raquo;</li>'; // 끝이면 disable
 				}
 				
 				
@@ -536,7 +549,9 @@
 					dataType : "json",
 					success : function(data){
 						var returndata = returnlength(data);
+						//bbslist를 뿌림
 						listBBS(data);
+						//bbslist 페이지 처리
 						bbsListPage(returndata, block);
 					},
 					complete : function(data){
@@ -549,6 +564,8 @@
 				return data.length;
 			}
 			
+			//첫 시작에 callbbs를 통해 1페이지의 bbs를 뿌림
+			
 			callbbs(0);
 			/* 리스트 */
 			/* list뿌리기 */
@@ -556,6 +573,7 @@
 				$("#bbslist").empty();
 				var label = "";
 				var count = 0;
+				/* ajax에서 가져온 데이터를 each function을 통해 하나하나 뿌려줌 d[""]에서 ""안은 vo안에 변수이름 임*/
 				$.each(data, function(i, d){
 					label += '<li class="col Book" id="bbsbook'+i+'" onClick="ajaxBookPage(\''+d["sp_id"]+'\',\''+d["sp_title"]+'\',\''+d["sp_author"]+'\',\''+d["sp_image"]+'\', \''+d["sp_backgroundColor"]+'\', \''+d["sp_fontColor"]+'\')">';
 					if(d["sp_backgroundColor"] != null && d["sp_backgroundColor"] != "null" && d["sp_backgroundColor"] != ""){
@@ -567,29 +585,35 @@
 					}
 					
 					/* 제목 */
+					/* 제목 색깔이 있으면 */
 					if(d["sp_fontColor"] != null && d["sp_fontColor"] != 'null' && d["sp_fontColor"] != ''){
 						label += '<div style="color:'+d["sp_fontColor"]+'">';	 
 					} else {
 						label += '<div style="color:'+d["sp_fontColor"]+'">';
 					}
+					/* 제목 값이 있으면 */
 					if(d["sp_title"]!= null && d["sp_title"]!="" && d["sp_title"]!= "null"){
 						if(d["sp_title"].length>10){
+							/* 제목이 8자 이상 되면 .. 처리 */
 							label += '<p class = "BBS-book-title">'+d["sp_title"].substring(0, 8)+'..'+'</p>';
 						} else {
 							label += '<p class = "BBS-book-title">'+d["sp_title"]+'</p>';	
 						}	
 					} else {
+						/* 제목 값이 없으면 */
 						label += '<p class = "BBS-book-title">제목</p>';
 					}
 					
 					
 					label += '</div>';
 					/* 글쓴이 */
+					/* 글쓴이 색깔 값이 있으면 */
 					if(d["sp_fontColor"] != null && d["sp_fontColor"] != 'null' && d["sp_fontColor"] != ''){
 						label += '<div style="color:'+d["sp_fontColor"]+'">';
 					} else {
 						label += '<div style="color:'+d["sp_fontColor"]+'">';
 					}
+					/* 글쓴이 값이 있으면 */
 					if(d["sp_author"]!= null && d["sp_author"]!="" && d["sp_author"]!= "null"){
 						if(d["sp_author"].length>10){
 							label += '<p class = "BBS-book-writer">'+d["sp_author"].substring(0, 8)+'..'+'</p>';
@@ -597,6 +621,7 @@
 							label += '<p class = "BBS-book-writer">'+d["sp_author"]+'</p>';	
 						}	
 					} else {
+						/* 색깔 값이 없으면 */
 						label += '<p class = "BBS-book-writer">글쓴이</p>';
 					}
 					
@@ -619,6 +644,8 @@
 			
 		});
 		
+		
+		/* 플립북 page넘기는 효과 function */
 		function turnPage(num){
 			   $('.flipbook').turn("page",num);
 			}
@@ -661,6 +688,7 @@
 			   complete: loadApp
 			});
 		
+			/* 클릭해서 book에 뿌려질 list 불러오는 함수 */
 		function ajaxBookPage(slot_id, title, author, image, backgroundColor, fontColor){
 			var id = {slot_id : slot_id};
 			$.ajax({
@@ -687,7 +715,7 @@
 		}
 		
 		function bookPage(data, title, author, image, backgroundColor, fontColor){
-			
+			/* 플립북 안에 뿌려줄 내용 */
 			
 			$("#sidebar").empty();
 			$("#firstpage").empty();
@@ -707,6 +735,7 @@
 			
 			$.each(data, function(i, d){
 					/* sidebar */
+				/* 사이드바에서 차례를 클릭하면 그 페이지로 넘어감 */
 				sidebarLabel += '<li onClick="turnPage('+(i+6)+')">'+d["contents_date"]+'  '+d["contents_time"]+'  '+d["contents_plan"]+'<br>';
 				if(d["contents_name"] != 'null'){
 					sidebarLabel += '<font size="2">'+d["contents_name"]+'</font>';	
@@ -721,6 +750,7 @@
 			sidebarLabel += '</div>';
 			
 			/* 첫번째 페이지 */
+			/* db에서 불러온 데이터로 책 커버를 적용함 */
 			if(backgroundColor != 'null'){
 				$("#firstpage").css("background-color", backgroundColor);
 				fitstpageLabel += '<div style="background-color:'+backgroundColor+';">';
@@ -762,9 +792,11 @@
 			$("#thirdpage").css("background-color", backgroundColor);
 			$("#fourthpage").css("background-color", backgroundColor);
 			
+			/* db에서 내가 작성한 후기 데이터를 가져와 뿌려줌 */
          	$.each(data, function(i, d){
 				userReviewPageLabel += '<div>';
 				userReviewPageLabel += '<div>';
+				/* db에서 가져온 제목이 null이 아니면 내가 저장한 제목 아니면 그냥 이름을 제목으로 함 */
 				if(d["contents_plan"]!=null && d["contents_plan"]!='null' && d["contents_plan"]!=''){
 					userReviewPageLabel += '<h3>'+d["contents_plan"]+'</h3>';	
 				} else {
@@ -773,6 +805,7 @@
 				
 				userReviewPageLabel += '</div>';
 				
+				/* db에서 가져온 그림이 없으면 빈공간으로 놔두고 있다면 이미지를 뿌림 */
 				if(d["contents_picture"]!=null && d["contents_picture"]!='null' && d["contents_picture"]!=''){
 					userReviewPageLabel += '<div>';
 					userReviewPageLabel += '<img style="width:96%; height:300px;" src="/upload/'+d["contents_picture"]+'">';	
@@ -782,7 +815,7 @@
 				}
 				var review = d["contents_review"];
 				
-				
+				/* db에서 가져온 후기가 null이면 textarea만 출력 아니면 textarea에 후기를 출력 */
 				if(review !=null && review !='' && review !='null'){
 					review = review.replace(/<br>/g, '\n');
 					
@@ -798,7 +831,7 @@
 				userReviewPageLabel += '</div>';
 				console.log(d["contents_plan"]+"_"+d["contents_picture"]);
 				
-				
+				/* each문이 한번씩 돌때마다 위에서 뿌려준 데이터를 flipbook function인 addPage를 통해 페이지 추가 */
 				var element = $("<div />").html(userReviewPageLabel);
 				$("#userReviewPage").turn("addPage", element, (i+6));
 				
@@ -806,20 +839,19 @@
 				
 				userReviewPageLabel = '';
 			});
+         	/* 맨 마지막 페이지는 저작권 관련 페이지 */
          	userReviewPageLabel = '<div class="hard"><img style="width:100%; height:600px;" src="/project/resources/img/dummy1.png"></div>';
-         	
          	var element = $("<div />").html(userReviewPageLabel);
          	$("#userReviewPage").turn("addPage", element, (count+1));
          	
 			$("#sidebar").append(sidebarLabel);
 			$("#firstpage").append(fitstpageLabel);
 			$("#secondpage").append(secondpageLabel);
-			console.log(data);			
 			
-			$("#book_modal").modal("show");
-			
+			$("#book_modal").modal("show");	
 		}
 		
+		/* 슬롯 데이터를 불러옴 */
 		function getSlot(id, userId){
 			var getData = {user_id:id};
 			$.ajax({
@@ -837,14 +869,15 @@
 			});
 		}
 		
+		/* 가져온 슬롯 데이터를 디스플레이 시킴 */
 		function slotDisplay(data, id, userId){
 			var slot = null;
 			console.log(data);
 			$("#modal_bookcase_form").empty();
 			
-			
 			$.each(data, function(i, d){	
 				var label = "";
+				
 				label += '<div class="book-container-block">';
 				if(d["sp_backgroundColor"] == null || d["sp_backgroundColor"] == 'null' || d["sp_backgroundColor"] == ''){
 					label += '<div class="book-container-bbs" style="background-color:white;"><br>';	
@@ -852,6 +885,8 @@
 					label += '<div class="book-container-bbs" style="background-color:'+d["sp_backgroundColor"]+';"><br>';
 				}
 				label += '<div style="color:'+d["sp_fontColor"]+'; margin-top: 30px;">';
+				
+				/* 제목이 비어있지 않을 경우에는 내가 저장한 슬롯이름을, 아닐 경우 제목 이라고 출력 */
 				if(d["sp_title"] == null || d["sp_title"] == ""  || d["sp_title"] == "null") {
 					label += '<h4>제목</h4>';
 				} else {
@@ -864,6 +899,8 @@
 					}
 					
 				} 
+				
+				/* 글쓴이가 비어있지 않을 경우에는 내가 저장한 글쓴이를, 아닐 경우 글쓴이 라고 출력 */
 				if(d["sp_author"] == null || d["sp_author"] =="" || d["sp_author"] =="null") {
 					label += '<h6>글쓴이</h6></div>';
 				} else {
@@ -877,6 +914,7 @@
 				}
 				label += '<div class="book-container-bbs-img">';
 				
+				/* db에 내가 저장한 그림이 없을 경우 우리가 제공하는 기본 이미지 출력 아닐 경우 db에 있는 이미지 출력 */
 				if(d["sp_image"] != null && d["sp_image"] != "null" && d["sp_image"]!="") {
 					label +=  '<img src="/upload/'+d["sp_image"]+'" style="width:100%; height:100%;"></div></div><br>';
 				} else {
@@ -899,6 +937,7 @@
 			
 		}
 		
+		/* 책 커버를 만들기 위한 function 첫번째 모달 */
 		function addImageSlot(id, slotId, fontColor, backgroundColor, title, author){
 			if(fontColor == null || fontColor == "null"){
 				$("#color1").val("#ffffff");
@@ -949,7 +988,7 @@
 			);
 		}
 		
-		
+		/* 내가 저장한 이미지를 db에 저장하는 function */
 		function uploadSlot(id, slotId){
 			var formData = new FormData($("#modal_slot_form")[0]);
 			$.ajax({
@@ -960,6 +999,7 @@
 		        contentType : false,
 				success : function(data){
 					alert("커버 편집으로 넘어갑니다.");
+					/* 저장이 완료되면 커버페이지로 넘어감 */
 					getSlotData(slotId);
 				},
 				error:function(data){
@@ -967,6 +1007,8 @@
 				}
 			});
 		}
+		
+		/* 내가 사진으로 업데이트했던 데이터를 가져옴 */
 		function getSlotData(slotId){
 			var id = {
 				sp_id: slotId
@@ -986,6 +1028,7 @@
 				}
 			});
 		}
+		
 		
 		/* 책 표지 제목, 작성자, 컬러피커 */
 		function addColorSlot(data){
@@ -1050,6 +1093,7 @@
 			);
 		}
 		
+		/* 최종적으로 내가 만든 커버를 저장하는 function */
 		function registSlot(sp_id, sp_image){
 			var registData = {
 				sp_id : sp_id,
@@ -1067,6 +1111,7 @@
 				dataType : "json",
 				success : function(data) {
 					alert("슬롯 저장 완료");
+					/* 슬롯 저장이 완료되면 모달창을 닫는다. */
 					$("#slotModal").modal('hide');
 				},
 				error : function(data) {
@@ -1081,6 +1126,7 @@
 			console.log(id);*/
 			console.log(list); 
 			var label = "";
+			/* 책으로 만든경우 Y 아닌경우 N*/
 			var isThereBook = 'N';
 			var count = 0;
 			$("#bookcaseModal").modal("hide");
@@ -1111,7 +1157,10 @@
 			$.each(list, function(i, d){
 				slotId = d["slot_id"];
 				isThereBook = d["contents_book"];
-				
+				/* 불러와진 후기리스트를 누를경우 writeReview에서 내가 누른 데이터들을 갖고
+				 * 사진 추가와 후기를 작성할 수 있음
+				 * 밑 for문 쪽은 위치를 잡아놓기 위한 div들 
+				 *  */
 				label += '<div align="center" style="background-color:white;" id="review'+i+'" onClick="writeReview(\''+
 				d["contents_id"]+'\',\''+d["slot_id"]+'\',\''+d["contents_date"]+'\',\''+d["contents_time"]+'\',\''+
 				d["contents_plan"]+'\',\''+d["contents_name"]+'\',\''+d["contents_desc"]+'\',\''+
@@ -1208,11 +1257,15 @@
 		
 		function reviewList(i, count){
 			for(var j = 0; j < count; j++){
+				/* reviewlist폼을 각각 id를 두어서
+				   id값과 맞는 textarea와 image를 뿌림
+				*/
 				$("#reviewlist"+j).hide();
 			}
 			$("#reviewlist"+i).show();
 		}
 		
+		/* 내가 작성하려는 후기를 누를경우의 function */
 		function writeReview(id, slotid, date, time, plan, name, desc, number, addr, lat, lng, image, icon, review, picture, book, i, count){
 			console.log(id+","+slotid+","+date+","+time+","+plan+","+name+","+desc+","+number+","+addr+","+lat+","+lng+","+image+","+icon+","+review+","+picture);
 			$("#reviewtitle"+i).empty();
@@ -1279,6 +1332,7 @@
 			$("#savereviewbtn").append(btnLabel);
 		}
 		
+		/* image와 textarea를 저장함 */
 		function uploadReview(i, slotId){
 			var textarea = $("#reviewarea"+i).val();
 			var label = '<input type="hidden" id="reviewreview" name="reviewreview" value="'+textarea+'">'; 
@@ -1455,6 +1509,7 @@
 			addIndexButton(id, isThereBook);
 		}
 		
+		/* 내가 지정한 map을 지울 때 사용함 */
 		function deleteMap(i){
 			$("#mapbtn"+i).empty();
 			var label = "";
@@ -1472,10 +1527,7 @@
 			$("#iconbtn"+i).val("");
 		}
 		
-		function helpPlan(){
-			
-		}
-		
+		/* 내가 계획한 슬롯의 내용들을 저장하는 function */
 		function addIndexButton(id, book){
 			var label="";
 			/* 9 */
@@ -1494,24 +1546,27 @@
 		}
 		
 		
-		
+		/* 여행 계획중 숙소를 누를 경우 숙소의 list를 불러옴 */
 		function getAccomMap(btnId){
 			var accom = {id : 0};
 			accomList(accom, btnId);
 		}
 		
+		/* 여행 계획중 렌트를 누를 경우 렌트의 list를 불러옴 */
 		function getRentMap(btnId){
 			console.log(btnId);
 			var rent = {id : 0};
 			rentList(rent, btnId);
 		}
 		
+		/* 여행 계획중 레져를 누를 경우 레져의 list를 불러옴 */
 		function getLeisureMap(btnId){
 			console.log(btnId);
 			var leisure = {id : 0};
 			leisureList(leisure, btnId);
 		}
 			
+		/* map에서 내가 원하는 지도의 숙소, 렌트, 레져를 추가할 경우 발생하는 function */
 		function add(name, desc, number, addr, lat, lng, image, icon, btnId, each){
 			console.log("들어왔음 ");
 			console.log("name, desc, number, addr, lat, lng, image, icon, btnId");
@@ -1526,8 +1581,7 @@
 				addr : addr,
 				icon : "ssibul"
 			};	
-			console.log("addFunction info");
-			console.log(info);
+			
 			$("#name"+btnId).val(name);
 			$("#desc"+btnId).val(desc);
 			$("#number"+btnId).val(number);
@@ -1541,22 +1595,21 @@
 			$("#"+btnId).click(function(){
 				view(info, lat, lng, null, null);
 			});
-			console.log("each여부");
-			console.log(each);
+			
 			if(each == "true"){
-				console.log("each가 true라서 눌렸다");
 				view(info, lat, lng, null, null);
 			}
 		}
 		
+
+		/* 후기 데이터를 책으로 만드는 function */
 		function updateReview(id, count){
 			var result = confirm("한번 만든 책은 수정이 되지 않습니다 계속하시겠습니까?");
 			if(result){
-				/* alert(count); */
-				
 				var contents = {
 					slot_id : id
 				};
+				
 				var slot = {
 					sp_id : id	
 				};
@@ -1567,6 +1620,8 @@
 			} 
 		}
 		
+
+		/* 슬롯에서 책을 만들었음(N->Y)을 나타내기 위한 function */
 		function ajaxSlotUpdateBook(slot){
 			$.ajax({
 				url : "/project/user/updateBook",
@@ -1584,6 +1639,7 @@
 			});
 		}
 		
+		/* contents에서 book(N->Y)을 만드는 function */
 		function ajaxUpdateBook(contents){
 			$.ajax({
 				url : "/project/contents/updateBook",
@@ -1595,6 +1651,7 @@
 					alert("책 만들기 완료");
 					$("#slotReviewmodal").modal('hide');
 					$("#bbslist").empty();
+					/* 책을 만들 경우 modal창을 닫고 bbslist를 초기화 시킨후 새로 list를 불러와 뿌린다. */
 					callbbs(0);
 				},
 				error : function(data) {
@@ -1603,10 +1660,13 @@
 			});
 		}
 		
+		/* 내 계획을 저장하는 function */
 		function planSave(id){
 			/* ajax통해서 기존 id값 내용 삭제 */
 			var result = confirm("기존 내용이 삭제 됨 저장 할꺼임?");
+			/* Y를 선택할 경우 if문 발동 */
 			if(result){
+				/* 현재 저장되어 있는 db의 값을 모두 날림 */
 				ajaxDeletePlan(id);
 				
 				/* ajax통해서 새로운 값 insert */
@@ -1637,9 +1697,11 @@
 						count++;
 						console.log("저장하는 데이터");
 						console.log(contents);
+						/* 너무 막 넣으면 db에 insert하다가 사고발생하기 때문에 만든 delay */
 						for(var j=0; j<100000000; j++){
 							
 						}
+						/* ajaxinsertplan에서 실질적으로 db의 값을 넣는다. */
 						ajaxInsertPlan(id, contents);
 						
 					}				
@@ -1647,7 +1709,8 @@
 				alert("저장 완료!!");
 			}
 		}
-
+		
+		/* 슬롯의 데이터를 모두 날림 */
 		function ajaxDeletePlan(slot_id){
 			/* alert("삭제하고"); */
 			var id = {slot_id : slot_id};
@@ -1667,6 +1730,7 @@
 			});
 		}
 		
+		/* 슬롯의 데이터를 insert 함  */
 		function ajaxInsertPlan(id, contents){
 			/* alert("저장한다"); */
 			$.ajax({
@@ -1684,6 +1748,10 @@
 			});
 		}
 		
+
+		/* plan인지 review인지에 따라 다른 function을 부름
+		 * 내가 저장한 plan의 list를 불러오는 function
+		 *  */
 		function ajaxgetListPlan(slot_id, cr){
 			var id = {slot_id : slot_id};
 			$.ajax({
@@ -1708,6 +1776,7 @@
 		}
 		
 		var content = null;
+		/* 숙소, 렌트, 레져의 list를 만들어주는 함수 */
 		contentList = function contentList(listData, icon, btnId){
 			content = listData;
 			var label = "";
@@ -1722,6 +1791,7 @@
 			});
 			/* label += '<div id="pageViewList"></div>'; */
 			$("#contentList").append(label);
+			//페이지 처리
 			pageViewList(listData.length, 1, page);
 			
 		}
@@ -1729,6 +1799,7 @@
 			view(content, lat, lng, icon, btnId);
 		}
 		
+		/* 내가 가져온 숙소, 렌트, 레져의 page 처리를 해줌 */
 		function pageViewList(index, page, end){
 			$("#pageViewList").empty();
 			for(var i=0; i<index; i++){
@@ -1746,6 +1817,7 @@
 			$("#pageViewList").append(label);			
 		}
 		
+		/* 내 계획의 page 처리 */
 		function pagePlan(i){
 			for(var j=0; j<75; j++){
 				$("#planList"+j).hide();	
@@ -1756,6 +1828,7 @@
 			}
 		}
 		
+		/* 내 후기의 page 처리 */
 		function pageReview(i){
 			for(var j=0; j<75; j++){
 				$("#review"+j).hide();
