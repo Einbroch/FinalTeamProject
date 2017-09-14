@@ -15,11 +15,15 @@ public class AccomService {
 
 	@Inject
 	private SqlSessionTemplate sqlSession;
-	
+	/*
+		mapper 사용을 위한 클래스 설정 function
+	 */
 	public AccomDAO accomMapper(){
 		return sqlSession.getMapper(AccomDAO.class);
 	}
-	
+	/*
+		mapper에서 숙소의 List를 가져오기 위한 function 
+	 */
 	public List<AccomVO> getListAccom(AccomVO vo){
 		return accomMapper().getListAccom(vo);
 	}

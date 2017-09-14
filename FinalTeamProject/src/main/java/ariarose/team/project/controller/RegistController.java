@@ -20,6 +20,9 @@ public class RegistController {
 	@Inject
 	private RegistService service;
 	
+	/*
+		사용자가 회원가입시에 입력한 ID가 중복인지 아닌지를 체크하기 위한 function
+	 */
 	@RequestMapping("/checkUserId")
 	public ResponseEntity<UserVO> checkUserId(
 			@RequestBody UserVO vo){
@@ -33,6 +36,9 @@ public class RegistController {
 		return entity;
 	}
 	
+	/*
+		회원가입 하려는 input값을 db에 저장하기 위한 function
+	 */
 	@RequestMapping("/registUser")
 	public ResponseEntity<UserVO> registUser(
 			@RequestBody UserVO vo){
@@ -45,7 +51,9 @@ public class RegistController {
 		}
 		return entity;
 	}
-	
+	/*
+		slot을 만들기 위해 저장한 유저 정보를 가져오기 위한 function
+	 */
 	@RequestMapping("/getRegistUser")
 	public ResponseEntity<UserVO> getRegistUser(
 			@RequestBody UserVO vo){
@@ -55,7 +63,9 @@ public class RegistController {
 		entity = new ResponseEntity<UserVO>(vo, HttpStatus.OK);
 		return entity;
 	}
-	
+	/*
+		회원가입후 자기 정보를 수정하기 위한 function
+	 */
 	@RequestMapping("/modifyUser")
 	public ResponseEntity<UserVO> modifyUser(
 			@RequestBody UserVO vo){

@@ -19,16 +19,16 @@ public class LoginController {
 
 	@Inject
 	private LoginService service;
-	
+	/*
+		로그인을 하기 위한 function
+	 */
 	@RequestMapping("/userLogin")
 	public ResponseEntity<UserVO> userLogin(
 			@RequestBody UserVO vo, HttpServletRequest request){
-		System.out.println("userLogin 들어옴 씨불");
 		ResponseEntity<UserVO> entity = null;
 		if(service.userLogin(vo)){
 			vo = service.getUserInfo(vo);
 			HttpSession session = request.getSession();
-			/*session.setAttribute("getSessionId", vo.getUser_id());*/
 			session.setAttribute("getSession", vo);
 			entity = new ResponseEntity<UserVO>(vo, HttpStatus.OK); 
 		} else {
@@ -36,11 +36,12 @@ public class LoginController {
 		}
 		return entity;
 	}
-	
+	/*
+		로그아웃을 하기 위한 function
+	 */
 	@RequestMapping("/userLogout")
 	public ResponseEntity<UserVO> userLogout(
 			@RequestBody UserVO vo, HttpServletRequest request){
-		System.out.println("userLogout 함 씨불");
 		ResponseEntity<UserVO> entity = null;
 		entity = new ResponseEntity<UserVO>(vo, HttpStatus.OK);
 		HttpSession session = request.getSession();

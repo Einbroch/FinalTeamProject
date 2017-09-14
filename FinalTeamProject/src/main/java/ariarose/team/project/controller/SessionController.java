@@ -15,6 +15,9 @@ import ariarose.team.project.vo.UserVO;
 @RequestMapping("/session")
 public class SessionController {
 
+	/*
+		페이지에서 로그인 여부를 확인하기 위한 session function
+	 */
 	@RequestMapping("/getSession")
 	public ResponseEntity<UserVO> getSession(
 			@RequestBody UserVO vo, HttpServletRequest request){

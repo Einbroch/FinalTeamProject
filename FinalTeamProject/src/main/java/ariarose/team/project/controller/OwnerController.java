@@ -36,20 +36,27 @@ public class OwnerController {
 	@RequestMapping("/testMap")
 	public void testMap(){}
 	
+	/*
+		숙소의 list를 가져오기 위한 function
+	 */
 	@RequestMapping("/getListAccom")
 	public @ResponseBody List<AccomVO>
 		getListAccom(@RequestBody AccomVO vo){
 		System.out.println("accomlist"+accomService.getListAccom(vo));
 		return accomService.getListAccom(vo);
 	}
-	
+	/*
+		렌트의 list를 가져오기 위한 function
+	 */
 	@RequestMapping("/getListRent")
 	public @ResponseBody List<RentVO>
 		getListRent(@RequestBody RentVO vo){
 		System.out.println("rentlist"+rentService.getListRent(vo));
 		return rentService.getListRent(vo);
 	}
-	
+	/*
+		레져의 list를 가져오기 위한 function
+	 */
 	@RequestMapping("/getListLeisure")
 	public @ResponseBody List<LeisureVO>
 		getListLeisure(@RequestBody LeisureVO vo){

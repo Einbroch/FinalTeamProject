@@ -24,17 +24,23 @@ public class BBSController {
 	private SlotPlanService service;
 	@Inject
 	private ContentsService cService;
-	
+	/*
+		user page 하단에 게시판 형태의 책 list를 뿌리기 위한 function
+	 */
 	@RequestMapping("/book")
 	public @ResponseBody List<ContentsVO> bookContents(@RequestBody ContentsVO vo){
 		return cService.getListPlan(vo);
 	}
-	
+	/*
+		bbs에서 책 이름을 찾고자 할 때 사용하는 검색 function
+	 */
 	@RequestMapping("/search")
 	public @ResponseBody List<SlotPlanVO> searcBBSList(@RequestBody SearchVO vo){
 		return service.searchBBSList(vo);
 	}
-	
+	/*
+		bbs에서 page처리를 하기 위해 만든 function
+	 */
 	@RequestMapping("/data/{page}")
 	public @ResponseBody List<SlotPlanVO> bbslist(@PathVariable int page){
 	   System.out.println(service.getBBSList(page));

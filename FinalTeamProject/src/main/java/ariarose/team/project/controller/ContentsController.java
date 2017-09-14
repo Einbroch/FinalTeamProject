@@ -24,7 +24,9 @@ public class ContentsController {
 	
 	@Inject
 	private ContentsService service;
-	
+	/*
+		사용자가 만든 계획을 재갱신하기 위해 slot-id값을 모두 지우는 function
+	 */
 	@RequestMapping("/deletePlan")
 	public ResponseEntity<ContentsVO> deletePlan(
 			@RequestBody ContentsVO vo){
@@ -37,7 +39,9 @@ public class ContentsController {
 		}
 		return entity;
 	}
-	
+	/*
+		사용자가 만든 계획을 재갱신하기위해 모든 값을 지우고 새로 insert하는 function
+	 */
 	@RequestMapping("/insertPlan")
 	public ResponseEntity<ContentsVO> insertPlan(
 			@RequestBody ContentsVO vo){
@@ -51,7 +55,9 @@ public class ContentsController {
 		}
 		return entity;
 	}
-	
+	/*
+		후기 페이지에서 사용자가 입력한 값에서 사진을 넣을 경우 update함
+	 */
 	@RequestMapping("/updateBook")
 	public ResponseEntity<ContentsVO> updateBook(
 			@RequestBody ContentsVO vo){
@@ -63,14 +69,18 @@ public class ContentsController {
 		}
 		return entity;
 	}
-	
+	/*
+		내가 저장한 계획의 list를 가져오기 위한 function
+	 */
 	@RequestMapping("/getListPlan")
 	public @ResponseBody List<ContentsVO> 
 		getListPlan(@RequestBody ContentsVO vo){
 		System.out.println(service.getListPlan(vo));
 		return service.getListPlan(vo);
 	}
-	
+	/*
+		후기에서 사진을 넣는 function 사진을 넣으면 자동적으로 모든 데이터를 업데이트함
+	 */
 	@RequestMapping("/addReviewImage")
 	public ResponseEntity<String> addReviewImage(
 			MultipartHttpServletRequest multi,

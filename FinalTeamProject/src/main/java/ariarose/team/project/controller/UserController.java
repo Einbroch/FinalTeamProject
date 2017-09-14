@@ -25,17 +25,23 @@ public class UserController {
 
 	@Inject
 	private SlotPlanService service;
-	
+	/*
+	 	처음 프로그램을 실행시켰을 때 나오는 main page의 requestmapping
+	 */
 	@RequestMapping("/userMain")
 	public void userMain(){}
-	
+	/*
+	 	내 책장의 버튼을 눌렀을 때 나오는 slot data를 db에서 가져오기 위한 function
+	 */
 	@RequestMapping("/getSlot")
 	public @ResponseBody List<SlotPlanVO>
 		getSlot(@RequestBody SlotPlanVO vo){
 		System.out.println("list"+service.getSlotPlan(vo));
 		return service.getSlotPlan(vo);
 	}
-	
+	/*
+	 	3개의 slot data 중 내가 저장한 하나의 데이터를 가져 오기 위한 function 
+	 */
 	@RequestMapping("/getSlotData")
 	public ResponseEntity<SlotPlanVO> getSlotData(
 			@RequestBody SlotPlanVO vo){
@@ -45,7 +51,9 @@ public class UserController {
 		entity = new ResponseEntity<SlotPlanVO>(vo, HttpStatus.OK);
 		return entity;
 	}
-	
+	/*
+	 	회원가입 시 슬롯을 3개 생성하기 위한 function
+	 */
 	@RequestMapping("/addRegistSlot")
 	public ResponseEntity<SlotPlanVO> addRegistSlot(
 			@RequestBody SlotPlanVO vo){
@@ -61,7 +69,9 @@ public class UserController {
 		entity = new ResponseEntity<SlotPlanVO>(vo, HttpStatus.OK);
 		return entity;
 	}
-	
+	/*
+	 	슬롯을 저장하기 위한 function
+	 */
 	@RequestMapping("/registSlot")
 	public ResponseEntity<SlotPlanVO> registSlot(
 			@RequestBody SlotPlanVO vo){
@@ -73,7 +83,9 @@ public class UserController {
 		}
 		return entity;
 	}
-	
+	/*
+		사진을 사용자 컴퓨터에 저장하고 db에 사진의 이름을 저장하는 function
+	 */
 	@RequestMapping("/addSlot")
 	public ResponseEntity<String> addSlot(
 			MultipartHttpServletRequest multi,
@@ -123,7 +135,9 @@ public class UserController {
         }
         return entity;
 	}
-	
+	/*
+		책 만들기를 눌러 bbs에 등록이 되었을 경우 db에 bbs Y로 바꾸는 function
+	 */
 	@RequestMapping("/updateBook")
 	public ResponseEntity<SlotPlanVO> updateBook(
 			@RequestBody SlotPlanVO vo){

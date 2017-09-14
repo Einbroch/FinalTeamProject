@@ -16,11 +16,15 @@ public class LeisureService {
 
 	@Inject
 	private SqlSessionTemplate sqlSession;
-	
+	/*
+		mapper 사용을 위한 클래스 설정 function
+	 */
 	public LeisureDAO leisureMapper(){
 		return sqlSession.getMapper(LeisureDAO.class);
 	}
-	
+	/*
+		mapper에서 레져의 List를 가져오기 위한 function
+	 */
 	public List<LeisureVO> getListLeisure(LeisureVO vo){
 		return leisureMapper().getListLeisure(vo);
 	}
